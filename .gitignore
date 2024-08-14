@@ -1,0 +1,8 @@
+*.out
+.vscode/*
+*.o
+obj/*
+cub3d
+test*
+*.swp
+.DS_Store
