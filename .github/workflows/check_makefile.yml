@@ -1,4 +1,4 @@
-name: Compilation Makefile
+name: Compile build
 
 on: [push]
 
