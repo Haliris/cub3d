@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: okoca <okoca@student.42.fr>                +#+  +:+       +#+         #
+#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/08 11:20:19 by okoca             #+#    #+#              #
-#    Updated: 2024/08/15 00:49:16 by tsuchen          ###   ########.fr        #
+#    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
+#    Updated: 2024/08/15 12:14:25 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,21 @@ NAME 		= cub3d
 
 SRCS_M		= main.c
 
-SRCS_REPO1	= 
+SRCS_PS		= parser.c 
 
-SRCS_REPO2	= 
+SRCS_MAP	= map.c
 
-SRC 		= srcs/
+SRCS_RC		= raycasting.c
 
-REPO1_PATH	= srcs/repo1/
-REPO2_PATH	= srcs/repo2/
+PATH_M		= srcs/
+PATH_PS		= srcs/parser/
+PATH_MAP	= srcs/map/
+PATH_RC		= srcs/raycasting/
 
-SRCS		= $(addprefix $(SRC), $(SRCS_M)) \
-		  $(addprefix $(REPO1_PATH), $(SRCS_REPO1)) \
-		  $(addprefix $(REPO2_PATH), $(SRCS_REPO2)) \
+SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
+		  $(addprefix $(PATH_PS), $(SRCS_PS)) \
+		  $(addprefix $(PATH_MAP), $(SRCS_MAP)) \
+		  $(addprefix $(PATH_RC), $(SRCS_RC))
 
 HEADERS		= cub3d.h 
 
