@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 00:34:12 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/15 15:05:11 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line_bonus.h"
+
+# include "parser.h"
+
+# define SUCCESS 0
+# define PANIC 1
 
 # define OUT STDOUT_FILENO
 # define IN STDIN_FILENO
