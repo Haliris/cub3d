@@ -5,49 +5,85 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/14 18:14:24 by jteissie          #+#    #+#              #
-#    Updated: 2024/08/14 18:16:09 by jteissie         ###   ########.fr        #
+#    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
+#    Updated: 2024/08/15 14:40:12 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= cub3d
+NAME 		= cub3d
+
+SRCS_M		= main.c
+
+SRCS_PS		= parser.c
+
+SRCS_MAP	= map.c
+
+SRCS_RC		= raycasting.c
+
+PATH_M		= srcs/
+PATH_PS		= srcs/parser/
+PATH_MAP	= srcs/map/
+PATH_RC		= srcs/raycasting/
+
+SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
+		  $(addprefix $(PATH_PS), $(SRCS_PS)) \
+		  $(addprefix $(PATH_MAP), $(SRCS_MAP)) \
+		  $(addprefix $(PATH_RC), $(SRCS_RC))
+
+HEADERS		= cub3d.h
+
+OBJS		= $(SRCS:.c=.o)
+
+HEAD		= includes/
+
+CFLAGS		= -Wall -Wextra -Werror # -g
+
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra -g3
 
-SRCDIR	= srcs
-OBJDIR	= obj
-CFILES	= main.c
+H_DEPS		= $(addprefix $(HEAD), $(HEADERS))
 
-INCS	=	-I ./include \
-			-I ./libft
+LIBFT_PATH	= libft/
+LIBFT_H_PATH	= libft/includes/
+LIBFT		= -L $(LIBFT_PATH) -lft
 
-vpath %.c ./ srcs/
+MLX = minilibx-linux
+MLXFLAGS	= -L $(MLX) -lmlx -lXext -lX11 -lXext -lm -lz -Ofast
 
-OBJS	= $(addprefix $(OBJDIR)/, $(CFILES:.c=.o))
+all: minilibx-linux $(NAME)
 
-all: $(OBJDIR) $(NAME)
+$(NAME): $(OBJS) $(H_DEPS)
+	make -C $(LIBFT_PATH) all
+	make -C $(MLX) all
+	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) $(LIBFT) -o $(NAME)
 
-$(OBJDIR)/%.o: %.c | $(OBJDIR)
-	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+minilibx-linux:
+	git clone https://github.com/42Paris/minilibx-linux.git $@
 
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
+bonus: $(NAME)
 
-$(NAME): $(OBJS)
-	make -C ./libft all
-	$(CC) $(CFLAGS) $(INCS) -o $(NAME) $(OBJS) -L ./libft/ -lft $(LDFLAGS)
-	@echo "> Cub3d build done!"
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(HEAD) -I$(LIBFT_H_PATH) -I$(MLX) -c $< -o $@
 
-clean:
-	@echo "> Cleaning object files..."
-	make -C ./libft/ clean
-	@rm -rf $(OBJDIR)
+clean: libft-clean mlx-clean root-clean
 
-fclean: clean
-	@echo "> Removing cub3d..."
-	rm -f ./libft/libft.a
+libft-clean:
+	$(MAKE) -C $(LIBFT_PATH) clean
+
+mlx-clean:
+	$(MAKE) -C $(MLX) clean
+
+root-clean:
+	rm -f $(OBJS)
+
+fclean: libft-fclean root-fclean
+
+libft-fclean:
+	$(MAKE) -C $(LIBFT_PATH) fclean
+
+root-fclean: root-clean
 	rm -f $(NAME)
+	rm -rf minilibx-linux
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re bonus minilibx-linux mlx_clean libft-clean libft-fclean root-clean root-fclean

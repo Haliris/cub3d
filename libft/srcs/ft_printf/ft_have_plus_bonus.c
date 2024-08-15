@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_have_plus_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 12:04:17 by tsuchen          ###   ########.fr       */
+/*   Created: 2024/05/28 12:17:21 by tsuchen           #+#    #+#             */
+/*   Updated: 2024/05/28 12:18:07 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ft_printf.h"
 
-int	main(int ac, char *av[])
+int	ft_have_plus(char *str)
 {
-	(void)ac;
-	(void)av;
+	while (*str)
+	{
+		if (*str == '+')
+			return (1);
+		str++;
+	}
 	return (0);
 }

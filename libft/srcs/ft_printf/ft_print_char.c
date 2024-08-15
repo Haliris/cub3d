@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 12:04:17 by tsuchen          ###   ########.fr       */
+/*   Created: 2024/05/17 18:11:14 by tsuchen           #+#    #+#             */
+/*   Updated: 2024/05/24 15:59:20 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ft_printf.h"
 
-int	main(int ac, char *av[])
+int	ft_print_char(char c)
 {
-	(void)ac;
-	(void)av;
-	return (0);
+	return (write(STDOUT_FILENO, &c, 1));
 }

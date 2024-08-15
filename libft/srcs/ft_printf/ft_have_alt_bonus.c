@@ -1,15 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_have_alt_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 18:13:07 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/14 18:13:26 by jteissie         ###   ########.fr       */
+/*   Created: 2024/05/28 10:20:54 by tsuchen           #+#    #+#             */
+/*   Updated: 2024/05/28 10:43:59 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-#endif
+#include "ft_printf.h"
+
+int	ft_have_alt(char *str)
+{
+	while (*str)
+	{
+		if (*str == '#')
+			return (1);
+		str++;
+	}
+	return (0);
+}

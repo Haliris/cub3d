@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_rm_plus_space_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 12:04:17 by tsuchen          ###   ########.fr       */
+/*   Created: 2024/05/28 19:35:00 by tsuchen           #+#    #+#             */
+/*   Updated: 2024/05/28 19:38:03 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ft_printf.h"
 
-int	main(int ac, char *av[])
+void	ft_rm_plus_space(char *str)
 {
-	(void)ac;
-	(void)av;
-	return (0);
+	while (*str)
+	{
+		if (*str == ' ' || *str == '+')
+			*str = '#';
+		str++;
+	}
 }

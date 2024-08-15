@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isleft.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 12:04:17 by tsuchen          ###   ########.fr       */
+/*   Created: 2024/05/27 13:42:32 by tsuchen           #+#    #+#             */
+/*   Updated: 2024/05/27 13:45:37 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ft_printf.h"
 
-int	main(int ac, char *av[])
+int	ft_is_left(char *str)
 {
-	(void)ac;
-	(void)av;
+	while (*str)
+	{
+		if (*str == '-')
+			return (1);
+		str++;
+	}
 	return (0);
 }
