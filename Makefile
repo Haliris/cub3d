@@ -6,7 +6,7 @@
 #    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/15 12:14:25 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/08/15 13:34:11 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,33 +47,46 @@ LIBFT_H_PATH	= libft/includes/
 LIBFT		= $(LIBFT_PATH)libft.a
 
 MLX		= mlx_linux
+MLX_DIR = minilibx-linux
 MLXFLAGS	= -lmlx_Linux -lXext -lX11 -lm -lz
 
-all: $(NAME)
+all: minilibx-linux $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH)
 
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
 $(NAME): $(LIBFT) $(OBJS) $(H_DEPS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(MLX) -I$(MLX) $(MLXFLAGS) $(LIBFT) -o $(NAME)
+
+minilibx-linux:
+	git clone git@github.com:42Paris/minilibx-linux.git $@
 
 bonus: $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(HEAD) -I$(LIBFT_H_PATH) -I$(MLX) -c $< -o $@
 
-clean: libft-clean root-clean
+clean: libft-clean mlx-clean root-clean
 
 libft-clean:
 	$(MAKE) -C $(LIBFT_PATH) clean
 
+mlx-clean:
+	$(MAKE) -C $(MLX_DIR) clean
+
 root-clean:
 	rm -f $(OBJS)
 
-fclean: libft-fclean root-fclean
+fclean: libft-fclean mlx-fclean root-fclean
 
 libft-fclean:
 	$(MAKE) -C $(LIBFT_PATH) fclean
+
+mlx-fclean:
+	$(MAKE) -C $(MLX_DIR) fclean
 
 root-fclean: root-clean
 	rm -f $(NAME)
