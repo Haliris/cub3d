@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
+#    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/15 13:34:11 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/15 14:18:08 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= cub3d 
+NAME 		= cub3d
 
 SRCS_M		= main.c
 
-SRCS_PS		= parser.c 
+SRCS_PS		= parser.c
 
 SRCS_MAP	= map.c
 
@@ -30,7 +30,7 @@ SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_MAP), $(SRCS_MAP)) \
 		  $(addprefix $(PATH_RC), $(SRCS_RC))
 
-HEADERS		= cub3d.h 
+HEADERS		= cub3d.h
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -44,22 +44,17 @@ H_DEPS		= $(addprefix $(HEAD), $(HEADERS))
 
 LIBFT_PATH	= libft/
 LIBFT_H_PATH	= libft/includes/
-LIBFT		= $(LIBFT_PATH)libft.a
+LIBFT		= -L $(LIBFT_PATH) -lft
 
-MLX		= mlx_linux
-MLX_DIR = minilibx-linux
-MLXFLAGS	= -lmlx_Linux -lXext -lX11 -lm -lz
+MLX = minilibx-linux
+MLXFLAGS	= -L $(MLX) -lmlx -lXext -lX11 -lXext -lm -lz -Ofast
 
 all: minilibx-linux $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_PATH)
-
-$(MLX):
-	$(MAKE) -C $(MLX_DIR)
-
-$(NAME): $(LIBFT) $(OBJS) $(H_DEPS)
-	$(CC) $(CFLAGS) $(OBJS) -L$(MLX) -I$(MLX) $(MLXFLAGS) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJS) $(H_DEPS)
+	make -C $(LIBFT_PATH) all
+	make -C $(MLX) all
+	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) $(LIBFT) -o $(NAME)
 
 minilibx-linux:
 	git clone git@github.com:42Paris/minilibx-linux.git $@
@@ -75,21 +70,19 @@ libft-clean:
 	$(MAKE) -C $(LIBFT_PATH) clean
 
 mlx-clean:
-	$(MAKE) -C $(MLX_DIR) clean
+	$(MAKE) -C $(MLX) clean
 
 root-clean:
 	rm -f $(OBJS)
 
-fclean: libft-fclean mlx-fclean root-fclean
+fclean: libft-fclean root-fclean
 
 libft-fclean:
 	$(MAKE) -C $(LIBFT_PATH) fclean
 
-mlx-fclean:
-	$(MAKE) -C $(MLX_DIR) fclean
-
 root-fclean: root-clean
 	rm -f $(NAME)
+	rm -rf minilibx-linux
 
 re: fclean all
 
