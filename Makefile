@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/15 14:18:08 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/15 14:25:01 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(NAME): $(OBJS) $(H_DEPS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) $(LIBFT) -o $(NAME)
 
 minilibx-linux:
-	git clone git@github.com:42Paris/minilibx-linux.git $@
+	git clone https://github.com/42Paris/minilibx-linux.git $@
 
 bonus: $(NAME)
 
