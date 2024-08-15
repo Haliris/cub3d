@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/15 14:25:01 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/15 14:40:12 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,4 +86,4 @@ root-fclean: root-clean
 
 re: fclean all
 
-.PHONY:	all clean fclean re bonus libft libft-clean libft-fclean root-clean root-fclean
+.PHONY:	all clean fclean re bonus minilibx-linux mlx_clean libft-clean libft-fclean root-clean root-fclean
