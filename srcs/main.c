@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 19:29:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:40:02 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	if (parse_map(&data) == PANIC)
 		return (EXIT_FAILURE);
+	ft_free_all(data.map);
 	close(data.map_fd);
 	return (0);
 }
