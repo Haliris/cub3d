@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 19:07:31 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:08:45 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_parse_status	check_walls(char **map, uint32_t x, uint32_t y, size_t bound)
 {
-	if (x == bound - 1 || y >= ft_strlen(map[x]))
+	if (x == bound || y >= ft_strlen(map[x]))
 		return (MAP_ERR);
 	else if (map[x][y] == 'F')
 		return (MAP_OK);

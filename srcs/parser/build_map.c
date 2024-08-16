@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:51:48 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/16 18:31:34 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:08:39 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	**build_map(t_data *data)
 	size = get_map_size(data->map_path);
 	if (size == 0)
 		return (free(line), NULL);
-	data->map_bound = size;
+	data->map_bound = size - 1;
 	map = read_map_file(size, line, data);
 	return (map);
 }
