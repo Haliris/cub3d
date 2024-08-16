@@ -6,13 +6,11 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 19:20:38 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:21:33 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//check for file extension (.cub);
 
 static t_bool	is_cub_file(char *file)
 {
