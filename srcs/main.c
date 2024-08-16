@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 18:20:24 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:20:38 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,28 @@
 
 //check for file extension (.cub);
 
+static t_bool	is_cub_file(char *file)
+{
+	uint32_t	index;
+
+	index = 0;
+	if (!file)
+		return (FALSE);
+	while (file[index] && file[index] != '.')
+		index++;
+	if (ft_strncmp(&file[index], FILE_EXTENSION, 5) == 0)
+		return (TRUE);
+	ft_putstr_fd("Bad file extension, expected .cub map file.\n", STDERR_FILENO);
+	return (FALSE);
+}
+
 int	main(int ac, char *av[])
 {
 	t_data	data;
 
 	if (ac < 2 || ac > 2)
+		return (EXIT_FAILURE);
+	if (is_cub_file(av[1]) == FALSE)
 		return (EXIT_FAILURE);
 	ft_memset(&data, 0, sizeof(t_data));
 	data.map_path = av[1];

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 18:45:38 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:18:23 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
 # define CLOSE_BUTTON 17
+# define FILE_EXTENSION ".cub"
 
 typedef enum e_bool
 {
