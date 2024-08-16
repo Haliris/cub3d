@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/16 14:39:13 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/16 16:57:12 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME 		= cub3d
 
 SRCS_M		= main.c
 
-SRCS_PS		= parser.c
+SRCS_PS		= 	parser.c \
+				build_map.c
 
 SRCS_MAP	= map.c
 

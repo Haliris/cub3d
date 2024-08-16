@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 15:31:54 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:47:40 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,20 @@ typedef enum e_bool
 	TRUE,
 }	t_bool;
 
+typedef enum e_p_dir
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST,
+}	t_p_dir;
 typedef struct s_data
 {
 	char	*map_path;
 	int		map_fd;
+	size_t	map_bound;
 	char	**map;
+	t_p_dir	p_dir;
 }	t_data;
 
 #endif

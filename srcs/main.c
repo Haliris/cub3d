@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 15:43:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:51:16 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char *av[])
 	if (ac < 2 || ac > 2)
 		return (EXIT_FAILURE);
 	//check for file extension (.cub);
+	ft_memset(&data, 0, sizeof(t_data));
 	data.map_path = av[1];
 	data.map_fd = open(av[1], O_RDONLY);
 	if (data.map_fd < 0)
