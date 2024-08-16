@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 18:03:39 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:15:36 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	**build_map(int map_fd)
 {
 	char			**map;
 	char			*line;
-	u_int16_t		index;
+	uint32_t		index;
 
 	index = 0;
 	line = get_next_line(map_fd);
@@ -41,10 +41,10 @@ static char	**build_map(int map_fd)
 	return (map);
 }
 
-static int	find_start(u_int16_t *coordinates, char **map)
+static t_parse_status	find_start(uint32_t *coordinates, char **map)
 {
-	u_int16_t	x;
-	u_int16_t	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	x = 0;
 	y = 0;
@@ -57,7 +57,7 @@ static int	find_start(u_int16_t *coordinates, char **map)
 			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'W' || map[x][y] == 'E') //enums please
 			{
 				if (coordinates[0] != -1 || coordinates[1] != 1)
-					return (PANIC);
+					return (MAP_ERR);
 				coordinates[0] = x;
 				coordinates[1] = y;
 			}
@@ -67,8 +67,8 @@ static int	find_start(u_int16_t *coordinates, char **map)
 		y = 0;
 	}
 	if (coordinates[0] == -1)
-		return (PANIC);
-	return (SUCCESS);
+		return (MAP_ERR);
+	return (MAP_OK);
 }
 
 
@@ -83,10 +83,10 @@ t_bool	is_invalid_char(char c)
 	return (TRUE);
 }
 
-int	check_invalid_chars(char **map)
+t_parse_status	check_invalid_chars(char **map)
 {
-	u_int16_t	x;
-	u_int16_t	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	x = 0;
 	y = 0;
@@ -95,19 +95,19 @@ int	check_invalid_chars(char **map)
 		while (map[x][y])
 		{
 			if (is_invalid_char(map[x][y]) == TRUE)
-				return (PANIC);
+				return (MAP_ERR);
 			y++;
 		}
 		x++;
 		y = 0;
 	}
-	return (SUCCESS);
+	return (MAP_OK);
 }
 
 void	fill_whitespaces(char **map)
 {
-	u_int16_t	x;
-	u_int16_t	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	x = 0;
 	y = 0;
@@ -116,7 +116,7 @@ void	fill_whitespaces(char **map)
 		while (map[x][y])
 		{
 			if (map[x][y] == ' ')
-				map[x][y] == '1';
+				map[x][y] = '1';
 			y++;
 		}
 		x++;
@@ -124,37 +124,39 @@ void	fill_whitespaces(char **map)
 	}
 }
 
-int	check_walls(char **map)
+t_parse_status	check_walls(char **map, uint32_t x, uint32_t y)
 {
-	u_int16_t	x;
-	u_int16_t	y;
-	char		**control;
-
-	control = dup_array(map);
-	if (!control)
-		return (PANIC);
-	x = 0;
-	y = 0;
-	while ()
-	{
-
-	}
+	if (map[x][y] == '1')
+		return (MAP_OK);
+	else if (map[x][y] == '\n' || x == 0 || map[x] == NULL)
+		return (MAP_ERR);
+	else if (map[x][y] == '\0' || y == 0)
+		return (MAP_ERR);
+	if (check_walls(map, x - 1, y) == MAP_ERR)
+		return (MAP_ERR);
+	if (check_walls(map, x + 1, y) == MAP_ERR)
+		return (MAP_ERR);
+	if (check_walls(map, x, y - 1) == MAP_ERR)
+		return (MAP_ERR);
+	if (check_walls(map, x, y + 1) == MAP_ERR)
+		return (MAP_ERR);
+	return (MAP_OK);
 }
 
-int	verify_map(char **map)
+t_parse_status	verify_map(char **map)
 {
-	u_int16_t	start[2];
+	uint32_t	start[2];
 
-	if (check_invalid_chars(map) == PANIC)
-		return (PANIC);
-	if (find_start(&start, map) == PANIC)
-		return (PANIC);
+	if (check_invalid_chars(map) == MAP_ERR)
+		return (MAP_ERR);
+	if (find_start(&start, map) == MAP_ERR)
+		return (MAP_ERR);
 	fill_whitespaces(map);
-	if (check_walls(map) == PANIC)
+	if (check_walls(map, start[0], start[1]) == MAP_ERR)
 		return (PANIC);
 	if (error)
 		return (MAP_ERR);
-	return (SUCCESS);
+	return (MAP_OK);
 }
 
 int	parse_map(int map_fd)

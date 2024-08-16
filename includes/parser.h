@@ -6,12 +6,19 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/15 15:04:21 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:12:23 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 # include "cub3d.h"
-# define MAP_ERR 1
+
+typedef enum e_parse_status
+{
+	MAP_OK,
+	MAP_ERR,
+	PANIC_ERR,
+}	t_parse_status
+
 #endif
