@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 14:23:50 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:31:54 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,12 @@ typedef enum e_bool
 	FALSE,
 	TRUE,
 }	t_bool;
+
+typedef struct s_data
+{
+	char	*map_path;
+	int		map_fd;
+	char	**map;
+}	t_data;
 
 #endif

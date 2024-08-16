@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 14:42:13 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:46:18 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,61 @@ static void	panic_free(char **array)
 	free(array);
 }
 
-static char	**build_map(int map_fd)
+static size_t	get_map_size(char *path)
+{
+	int		fd;
+	size_t	line_nb;
+	char	*gnl_buff;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	gnl_buff = get_next_line(fd);
+	if (!gnl_buff)
+		return (0);
+	line_nb = 1;
+	while (gnl_buff)
+	{
+		free(gnl_buff);
+		gnl_buff = get_next_line(fd);
+		line_nb++;
+	}
+	close(fd);
+	return (line_nb);
+}
+
+static char	**build_map(t_data *data)
 {
 	char			**map;
 	char			*line;
+	size_t			size;
 	uint32_t		index;
 
 	index = 0;
-	map = ft_calloc(1, sizeof(char **));
-	if (!map)
-		return (NULL);
-	line = get_next_line(map_fd);
+	map = NULL;
+	line = get_next_line(data->map_fd);
 	if (!line)
+		return (NULL);
+	size = get_map_size(data->map_path);
+	if (size == 0)
+	{
+		free(line);
+		return (NULL);
+	}
+	map = ft_calloc(size + 1, sizeof(char *));
+	if (!map)
 		return (NULL);
 	while (line)
 	{
-		map[index] = ft_calloc(1, sizeof(char *));
+		map[index] = ft_strdup(line);
 		if (!map[index])
 		{
 			free(line);
 			panic_free(map);
 			return (NULL);
 		}
-		map[index] = line;
 		free(line);
-		line = get_next_line(map_fd);
+		line = get_next_line(data->map_fd);
 		index++;
 	}
 	map[index] = NULL;
@@ -174,17 +204,15 @@ t_parse_status	verify_map(char **map)
 	return (MAP_OK);
 }
 
-int	parse_map(int map_fd)
+int	parse_map(t_data *data)
 {
-	char	**map;
-
-	map = build_map(map_fd);
-	if (!map)
+	data->map = build_map(data);
+	if (!data->map)
 		return (PANIC);
-	if (verify_map(map) == MAP_ERR)
+	if (verify_map(data->map) == MAP_ERR)
 	{
 		ft_putstr_fd("Error, implement custom messages here (parse_map)\n", STDERR_FILENO);
-		return (ft_free_all(map), PANIC);
+		return (ft_free_all(data->map), PANIC);
 	}
 	return (SUCCESS);
 }
