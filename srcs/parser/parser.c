@@ -6,13 +6,26 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 14:15:36 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:42:13 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // 1 are walls, 0 are walkable spaces, whitespaces are walkable spaces. Map is invalid if no walkable spaces or not enclosed by walls
+
+static void	panic_free(char **array)
+{
+	u_int32_t	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 
 static char	**build_map(int map_fd)
 {
@@ -21,12 +34,15 @@ static char	**build_map(int map_fd)
 	uint32_t		index;
 
 	index = 0;
+	map = ft_calloc(1, sizeof(char **));
+	if (!map)
+		return (NULL);
 	line = get_next_line(map_fd);
 	if (!line)
 		return (NULL);
 	while (line)
 	{
-		map[index] == ft_calloc(1, sizeof(char *));
+		map[index] = ft_calloc(1, sizeof(char *));
 		if (!map[index])
 		{
 			free(line);
@@ -34,6 +50,7 @@ static char	**build_map(int map_fd)
 			return (NULL);
 		}
 		map[index] = line;
+		free(line);
 		line = get_next_line(map_fd);
 		index++;
 	}
@@ -41,22 +58,22 @@ static char	**build_map(int map_fd)
 	return (map);
 }
 
-static t_parse_status	find_start(uint32_t *coordinates, char **map)
+static t_parse_status	find_start(uint32_t coordinates[], char **map)
 {
 	uint32_t	x;
 	uint32_t	y;
 
 	x = 0;
 	y = 0;
-	coordinates[0] = -1;
-	coordinates[1] = -1;
+	coordinates[0] = 0;
+	coordinates[1] = 0;
 	while (map[x][y])
 	{
 		while (map[x][y])
 		{
 			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'W' || map[x][y] == 'E') //enums please
 			{
-				if (coordinates[0] != -1 || coordinates[1] != 1)
+				if (coordinates[0] != 0 || coordinates[1] != 0)
 					return (MAP_ERR);
 				coordinates[0] = x;
 				coordinates[1] = y;
@@ -66,7 +83,7 @@ static t_parse_status	find_start(uint32_t *coordinates, char **map)
 		x++;
 		y = 0;
 	}
-	if (coordinates[0] == -1)
+	if (coordinates[0] == 0 && (map[0][0] == '0' || map[0][0] == '1'))
 		return (MAP_ERR);
 	return (MAP_OK);
 }
@@ -149,12 +166,10 @@ t_parse_status	verify_map(char **map)
 
 	if (check_invalid_chars(map) == MAP_ERR)
 		return (MAP_ERR);
-	if (find_start(&start, map) == MAP_ERR)
-		return (MAP_ERR);
 	fill_whitespaces(map);
+	if (find_start(start, map) == MAP_ERR)
+		return (MAP_ERR);
 	if (check_walls(map, start[0], start[1]) == MAP_ERR)
-		return (PANIC);
-	if (error)
 		return (MAP_ERR);
 	return (MAP_OK);
 }
@@ -165,7 +180,11 @@ int	parse_map(int map_fd)
 
 	map = build_map(map_fd);
 	if (!map)
-		return (ft_free(map), PANIC);
+		return (PANIC);
 	if (verify_map(map) == MAP_ERR)
-		return (ft_free(map), PANIC);
+	{
+		ft_putstr_fd("Error, implement custom messages here (parse_map)\n", STDERR_FILENO);
+		return (ft_free_all(map), PANIC);
+	}
+	return (SUCCESS);
 }

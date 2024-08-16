@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 13:43:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:23:50 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,11 @@
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
 # define CLOSE_BUTTON 17
+
+typedef enum e_bool
+{
+	FALSE,
+	TRUE,
+}	t_bool;
 
 #endif

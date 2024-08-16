@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 16:57:49 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:35:22 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 int	main(int ac, char *av[])
 {
 	int	map_fd;
-	(void)ac;
-	(void)av;
-	//verify arguments
+
+	//check for file
+
+	if (ac < 2 || ac > 2)
+		return (EXIT_FAILURE);
 	map_fd = open(av[1], O_RDONLY);
 	if (map_fd < 0)
 		return (EXIT_FAILURE);

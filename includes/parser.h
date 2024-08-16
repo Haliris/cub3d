@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/16 14:12:23 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:22:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef enum e_parse_status
 	MAP_OK,
 	MAP_ERR,
 	PANIC_ERR,
-}	t_parse_status
+}	t_parse_status;
+
+int	parse_map(int map_fd);
 
 #endif

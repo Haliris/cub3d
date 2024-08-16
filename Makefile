@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/15 14:40:12 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/16 14:39:13 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJS		= $(SRCS:.c=.o)
 
 HEAD		= includes/
 
-CFLAGS		= -Wall -Wextra -Werror # -g
+CFLAGS		= -Wall -Wextra -Werror -g3
 
 CC		= cc
 
