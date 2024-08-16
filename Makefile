@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/16 19:24:33 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/16 19:28:50 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ minilibx-linux:
 	@if [ ! -d "$@" ]; then \
 		git clone https://github.com/42Paris/minilibx-linux.git $@; \
 	else \
-		echo "mlx already present in the repo, aborting clone."; \
+		echo "mlx already present in the working directory, aborting clone."; \
 	fi
 
 bonus: $(NAME)
