@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 16:47:40 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:45:38 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ typedef enum e_bool
 
 typedef enum e_p_dir
 {
-	NORTH,
-	SOUTH,
-	WEST,
-	EAST,
+	NORTH = 'N',
+	SOUTH = 'S',
+	WEST = 'W',
+	EAST = 'E',
 }	t_p_dir;
 typedef struct s_data
 {

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:51:48 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/16 16:55:45 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:31:34 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static size_t	get_map_size(char *path)
 	return (line_nb);
 }
 
-static char **read_map_file(size_t size, char *line, t_data *data)
+static char	**read_map_file(size_t size, char *line, t_data *data)
 {
 	size_t	index;
 	char	**map;

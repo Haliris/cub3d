@@ -6,112 +6,11 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 16:58:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:49:30 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static t_parse_status	find_start(uint32_t coordinates[], char **map)
-{
-	uint32_t	x;
-	uint32_t	y;
-
-	x = 0;
-	y = 0;
-	coordinates[0] = 0;
-	coordinates[1] = 0;
-	while (map[x])
-	{
-		while (map[x][y])
-		{
-			if (map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'W' || map[x][y] == 'E') //enums please
-			{
-				if (coordinates[0] != 0 || coordinates[1] != 0)
-					return (MAP_ERR);
-				coordinates[0] = x;
-				coordinates[1] = y;
-			}
-			y++;
-		}
-		y = 0;
-		x++;
-	}
-	if (coordinates[0] == 0 && (map[0][0] == '0' || map[0][0] == '1'))
-		return (MAP_ERR);
-	return (MAP_OK);
-}
-
-t_bool	is_invalid_char(char c)
-{
-	if (c == '1' || c == '0')
-		return (FALSE);
-	else if (c == ' ' || c == '\n')
-		return (FALSE);
-	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (FALSE);
-	return (TRUE);
-}
-
-t_parse_status	check_invalid_chars(char **map)
-{
-	uint32_t	x;
-	uint32_t	y;
-
-	x = 0;
-	y = 0;
-	while (map[x])
-	{
-		while (map[x][y])
-		{
-			if (is_invalid_char(map[x][y]) == TRUE)
-				return (MAP_ERR);
-			y++;
-		}
-		x++;
-		y = 0;
-	}
-	return (MAP_OK);
-}
-
-void	fill_whitespaces(char **map)
-{
-	uint32_t	x;
-	uint32_t	y;
-
-	x = 0;
-	y = 0;
-	while (map[x])
-	{
-		while (map[x][y])
-		{
-			if (map[x][y] == ' ')
-				map[x][y] = '1';
-			y++;
-		}
-		y = 0;
-		x++;
-	}
-}
-
-// static void	print_map(char **map)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = 0;
-// 	y = 0;
-// 	while (map[x])
-// 	{
-// 		while (map[x][y])
-// 		{
-// 			ft_putchar_fd(map[x][y], STDOUT_FILENO);
-// 			y++;
-// 		}
-// 		y = 0;
-// 		x++;
-// 	}
-// }
 
 t_parse_status	check_walls(char **map, uint32_t x, uint32_t y, size_t bound)
 {
@@ -153,6 +52,8 @@ t_parse_status	verify_map(char **map, t_data *data)
 {
 	uint32_t	start[2];
 
+	start[0] = 0;
+	start[1] = 0;
 	if (check_invalid_chars(map) == MAP_ERR)
 		return (MAP_ERR);
 	get_player_dir(data, start[0], start[1]);
@@ -171,7 +72,7 @@ int	parse_map(t_data *data)
 		return (PANIC);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
-		ft_putstr_fd("Error, implement custom messages here (parse_map)\n", STDERR_FILENO);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 		return (ft_free_all(data->map), PANIC);
 	}
 	return (SUCCESS);
