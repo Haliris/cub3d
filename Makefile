@@ -20,15 +20,21 @@ SRCS_MAP	= map.c
 
 SRCS_RC		= raycasting.c
 
+SRCS_GC		=  gc_handler.c \
+		   add_del.c \
+		   gc_routine.c 
+
 PATH_M		= srcs/
 PATH_PS		= srcs/parser/
 PATH_MAP	= srcs/map/
 PATH_RC		= srcs/raycasting/
+PATH_GC		= srcs/garbage_collector/
 
 SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_PS), $(SRCS_PS)) \
 		  $(addprefix $(PATH_MAP), $(SRCS_MAP)) \
-		  $(addprefix $(PATH_RC), $(SRCS_RC))
+		  $(addprefix $(PATH_RC), $(SRCS_RC)) \
+		  $(addprefix $(PATH_GC), $(SRCS_GC))
 
 HEADERS		= cub3d.h
 
