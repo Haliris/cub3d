@@ -14,9 +14,9 @@
 
 int	gc_init(t_gc_container *gc, pthread_t *gc_thread)
 {
-	memset(gc->garbage, 0, MAX_GARBAGE * sizeof(void *));
-	memset(gc->garbage_type, 0, MAX_GARBAGE * sizeof(t_type));
-	memset(gc->garbage_size, 0, MAX_GARBAGE * sizeof(size_t));
+	ft_memset(gc->garbage, 0, MAX_GARBAGE * sizeof(void *));
+	ft_memset(gc->garbage_type, 0, MAX_GARBAGE * sizeof(t_type));
+	ft_memset(gc->garbage_size, 0, MAX_GARBAGE * sizeof(size_t));
 	gc->last_pos = 0;
 	gc->run_status = RUN;
 	if (pthread_mutex_init(&gc->garbage_lock, NULL) != 0)
@@ -37,7 +37,7 @@ void	gc_destroy(t_gc_container *gc, pthread_t *gc_thread)
 	pthread_join(*gc_thread, NULL);
 	gc_thread = NULL;
 	pthread_mutex_destroy(&gc->garbage_lock);
-	memset(gc->garbage, 0, MAX_GARBAGE * sizeof(void *));
-	memset(gc->garbage_type, 0, MAX_GARBAGE * sizeof(t_type));
-	memset(gc->garbage_size, 0, MAX_GARBAGE * sizeof(size_t));
+	ft_memset(gc->garbage, 0, MAX_GARBAGE * sizeof(void *));
+	ft_memset(gc->garbage_type, 0, MAX_GARBAGE * sizeof(t_type));
+	ft_memset(gc->garbage_size, 0, MAX_GARBAGE * sizeof(size_t));
 }
