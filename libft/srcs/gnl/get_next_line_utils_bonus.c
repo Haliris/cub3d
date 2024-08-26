@@ -3,91 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 16:25:45 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/06/15 13:58:28 by tsuchen          ###   ########.fr       */
+/*   Created: 2024/05/27 16:04:51 by jteissie          #+#    #+#             */
+/*   Updated: 2024/08/16 14:50:14 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	ft_lst_append(t_list_gnl **lst, char *str)
+void	copy_and_cat(char *out, char *cpy_src, char *cat_src)
 {
-	t_list_gnl	*new_lst;
-	t_list_gnl	*tmp;
-
-	new_lst = (t_list_gnl *)malloc(sizeof(t_list_gnl));
-	if (!new_lst)
-		return ;
-	new_lst->str = str;
-	new_lst->next = NULL;
-	if (!(*lst))
-	{
-		*lst = new_lst;
-		return ;
-	}
-	tmp = *lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new_lst;
-}
-
-int	ft_line_size(t_list_gnl *lst)
-{
-	int			len;
-	t_list_gnl	*tmp;
-	char		*tmp2;
-
-	len = 0;
-	tmp = lst;
-	while (tmp)
-	{
-		tmp2 = tmp->str;
-		while (*tmp2)
-		{
-			if (*tmp2 == '\n')
-				return (++len);
-			len++;
-			tmp2++;
-		}
-		tmp = tmp->next;
-	}
-	return (len);
-}
-
-void	ft_delone(t_list_gnl *lst)
-{
-	free(lst->str);
-	free(lst);
-}
-/*
-size_t	ft_strlen(const char *s)
-{
-	const char	*ptr;
-
-	ptr = s;
-	while (*ptr)
-		ptr++;
-	return (ptr - s);
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*dup;
-	size_t	n;
-	int		i;
+	int	i;
+	int	src_i;
 
 	i = 0;
-	n = ft_strlen(s);
-	dup = (char *)malloc((n + 1) * sizeof(char));
-	if (!dup)
-		return (0);
-	while (s[i])
+	src_i = 0;
+	while (cpy_src[src_i])
 	{
-		dup[i] = s[i];
+		out[i] = cpy_src[src_i];
+		i++;
+		src_i++;
+	}
+	src_i = 0;
+	while (cat_src[src_i])
+		out[i++] = cat_src[src_i++];
+	out[i] = '\0';
+}
+
+int	find_eol(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (1);
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
-}*/
+	return (0);
+}

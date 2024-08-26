@@ -3,166 +3,162 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 17:53:03 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/06/15 13:57:55 by tsuchen          ###   ########.fr       */
+/*   Created: 2024/05/25 14:12:35 by jteissie          #+#    #+#             */
+/*   Updated: 2024/05/31 13:46:35 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*get_next_line(int fd)
+char	*ft_str_rejoin(char *stash, char *add)
 {
-	static t_list_gnl	*bgn_lst[MAX_FD];
-	char				*next_line;
+	char	*joined;
 
-	if (fd == -1 || read(fd, &next_line, 0) < 0 || BUFFER_SIZE <= 0)
-	{
-		if (fd >= 0 && bgn_lst[fd])
-		{
-			ft_delone(bgn_lst[fd]);
-			bgn_lst[fd] = NULL;
-		}
+	if (!stash)
 		return (NULL);
-	}
-	if (!bgn_lst[fd] || ft_have_nl_lst(bgn_lst[fd]) == 0)
-		ft_fetch_nl(fd, &bgn_lst[fd]);
-	next_line = ft_gen_nl(bgn_lst[fd]);
-	if (bgn_lst[fd])
-		ft_update_list(&bgn_lst[fd]);
-	if (!next_line && bgn_lst[fd])
-	{
-		ft_delone(bgn_lst[fd]);
-		bgn_lst[fd] = NULL;
-	}
-	return (next_line);
+	joined = ft_calloc((ft_strlen(stash) + ft_strlen(add) + 1), sizeof(char));
+	if (!joined)
+		return (free(stash), NULL);
+	copy_and_cat(joined, stash, add);
+	return (free(stash), joined);
 }
 
-int	ft_have_nl_lst(t_list_gnl *bgn_lst)
+char	*fetch_line(char *line_stash, int fd, int *status)
 {
-	t_list_gnl	*tmp;
-	char		*tmp2;
+	char	*read_buff;
 
-	tmp = bgn_lst;
-	while (tmp)
+	if (!line_stash)
+		return (NULL);
+	read_buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!read_buff)
+		return (free(line_stash), NULL);
+	while (!find_eol(line_stash))
 	{
-		tmp2 = tmp->str;
-		while (*tmp2)
+		*status = read(fd, read_buff, BUFFER_SIZE);
+		if (*status <= 0)
 		{
-			if (*tmp2 == '\n')
-				return (1);
-			tmp2++;
+			free(read_buff);
+			if (ft_strlen(line_stash) != 0)
+				return (line_stash);
+			return (free(line_stash), NULL);
 		}
-		tmp = tmp->next;
+		line_stash = ft_str_rejoin(line_stash, read_buff);
+		ft_bzero(read_buff, BUFFER_SIZE + 1);
 	}
-	return (0);
+	return (free(read_buff), line_stash);
 }
 
-void	ft_fetch_nl(int fd, t_list_gnl **bgn_lst)
+void	get_stash(char *stash, char *line)
 {
-	int		nu_rd;
-	char	*buff;
+	int	i;
+	int	stash_i;
 
-	while (!ft_have_nl_lst(*bgn_lst))
-	{
-		buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-		if (!buff)
-			return ;
-		nu_rd = read(fd, buff, BUFFER_SIZE);
-		if (!nu_rd || nu_rd == -1)
-		{
-			free(buff);
-			return ;
-		}
-		buff[nu_rd] = '\0';
-		ft_lst_append(bgn_lst, buff);
-	}
-}
-
-char	*ft_gen_nl(t_list_gnl *lst)
-{
-	char	*next_line;
-	char	*tmp2;
-	int		i;
-
-	if (ft_line_size(lst) == 0)
-		return (NULL);
-	next_line = (char *)malloc((ft_line_size(lst) + 1) * sizeof(char));
-	if (!next_line)
-		return (NULL);
 	i = 0;
-	while (lst)
+	stash_i = 0;
+	if (!line)
+		return ;
+	while (line[i])
 	{
-		tmp2 = lst->str;
-		while (*tmp2 && *tmp2 != '\n')
-			next_line[i++] = *tmp2++;
-		if (*tmp2 == '\n')
+		if (line[i] == '\n')
 		{
-			next_line[i++] = '\n';
+			i++;
 			break ;
 		}
-		lst = lst->next;
-	}
-	next_line[i] = '\0';
-	return (next_line);
-}
-
-void	ft_update_list(t_list_gnl **lst)
-{
-	t_list_gnl	*tmp;
-	char		*str_left;
-	char		*tmp2;
-
-	if (!lst || !*lst)
-		return ;
-	tmp = *lst;
-	while ((*lst)->next)
-	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		ft_delone(tmp);
-	}
-	tmp2 = (*lst)->str;
-	while (*tmp2 && *tmp2 != '\n')
-		tmp2++;
-	if (*tmp2 == '\n')
-		tmp2++;
-	str_left = ft_strdup(tmp2);
-	ft_delone(*lst);
-	*lst = NULL;
-	if (str_left && *str_left != '\0')
-		ft_lst_append(lst, str_left);
-	else
-		free(str_left);
-}
-/*
-#include <stdio.h>
-
-int	main(int ac, char *av[])
-{
-	int	fd;
-
-	if (ac == 1)
-		fd = STDIN_FILENO;
-	else if (ac == 2)
-		fd = open(av[1], O_RDONLY);
-	else
-		return (0);
-	int	i = 0;
-	char	*line;
-
-	line = get_next_line(fd);
-	
-	while (line)
-	{
 		i++;
-		printf("%.3d call :%s", i, line);
-		free(line);
-		line = get_next_line(fd);
 	}
-	//printf("1st call\n%s", get_next_line(fd));
-	//printf("2nd call\n%s", get_next_line(fd));
-	close(fd);
-	return (0);
-}*/
+	while (line[i])
+	{
+		stash[stash_i] = line[i];
+		line[i] = '\0';
+		stash_i++;
+		i++;
+	}
+	stash[stash_i] = '\0';
+}
+
+char	*trim_line(char	*untrimmed)
+{
+	int		i;
+	char	*trimmed;
+
+	i = 0;
+	if (!untrimmed)
+		return (NULL);
+	while (untrimmed[i])
+		i++;
+	trimmed = ft_calloc(i + 1, sizeof(char));
+	if (!trimmed)
+		return (free(untrimmed), NULL);
+	i = 0;
+	while (untrimmed[i])
+	{
+		trimmed[i] = untrimmed[i];
+		i++;
+	}
+	trimmed[i] = '\0';
+	return (free(untrimmed), trimmed);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	stash[1024][BUFFER_SIZE + 1];
+	char		*line;
+	int			status;
+
+	status = 0;
+	if (fd == -1 || BUFFER_SIZE <= 0)
+		return (NULL);
+	line = ft_calloc(1, sizeof(char));
+	if (ft_strlen(stash[fd]))
+		line = ft_str_rejoin(line, stash[fd]);
+	line = fetch_line(line, fd, &status);
+	if (status == -1)
+	{
+		ft_bzero(stash[fd], BUFFER_SIZE + 1);
+		return (free(line), NULL);
+	}
+	get_stash(stash[fd], line);
+	line = trim_line(line);
+	if (!line)
+		return (NULL);
+	return (line);
+}
+
+// #include <fcntl.h>
+// #include <stdio.h>
+
+// int	main(int argc, char *argv[])
+// {
+// 	int	fd;
+// 	int	fd2;
+// 	int	fd3;
+// 	char	*line;
+// 	char	*line2;
+// 	char	*line3;
+// 	(void)argc;
+
+// 	fd = open(argv[1], O_RDONLY);
+// 	fd2 = open(argv[2], O_RDONLY);
+// 	fd3 = open(argv[3], O_RDONLY);
+// 	line = get_next_line(fd);
+// 	line2 = get_next_line(fd2);
+// 	line3 = get_next_line(fd3);
+// 	while (line && line2 && line3)
+// 	{
+// 		printf("%s", line);
+// 		printf("%s", line2);
+// 		printf("%s", line3);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		free(line2);
+// 		line2 = get_next_line(fd2);
+// 		free(line3);
+// 		line3 = get_next_line(fd3);
+// 	}
+// 	free(line);
+// 	free(line2);
+// 	close(fd);
+// 	return (0);
+// }

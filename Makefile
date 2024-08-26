@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/15 14:40:12 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/16 19:28:50 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME 		= cub3d
 
 SRCS_M		= main.c
 
-SRCS_PS		= parser.c
+SRCS_PS		= 	parser.c \
+				build_map.c \
+				parser_utils.c
 
 SRCS_MAP	= map.c
 
@@ -36,7 +38,7 @@ OBJS		= $(SRCS:.c=.o)
 
 HEAD		= includes/
 
-CFLAGS		= -Wall -Wextra -Werror # -g
+CFLAGS		= -Wall -Wextra -Werror -g3
 
 CC		= cc
 
@@ -57,7 +59,11 @@ $(NAME): $(OBJS) $(H_DEPS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) $(LIBFT) -o $(NAME)
 
 minilibx-linux:
-	git clone https://github.com/42Paris/minilibx-linux.git $@
+	@if [ ! -d "$@" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git $@; \
+	else \
+		echo "mlx already present in the working directory, aborting clone."; \
+	fi
 
 bonus: $(NAME)
 
