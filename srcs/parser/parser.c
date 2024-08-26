@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 19:08:45 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:48:20 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ t_parse_status	verify_map(char **map, t_data *data)
 	start[1] = 0;
 	if (check_invalid_chars(map) == MAP_ERR)
 		return (MAP_ERR);
-	get_player_dir(data, start[0], start[1]);
 	fill_whitespaces(map);
 	if (find_start(start, map) == MAP_ERR)
 		return (MAP_ERR);
+	get_player_dir(data, start[0], start[1]);
 	if (check_walls(map, start[0], start[1], data->map_bound) == MAP_ERR)
 		return (MAP_ERR);
 	return (MAP_OK);
