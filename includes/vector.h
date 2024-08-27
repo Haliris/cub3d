@@ -6,16 +6,20 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:56:32 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 13:55:58 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/27 14:42:47 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
 
+# include <stdio.h>
 # include <math.h>
 # include <limits.h>
+# include <stdlib.h>
 # include <stdint.h>
+
+# define PI 3.14159265359f
 
 typedef struct s_vec
 {

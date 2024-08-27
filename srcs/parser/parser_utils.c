@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:12:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 11:59:20 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/27 14:08:37 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ t_parse_status	find_start(uint32_t coordinates[], char **map)
 		y = 0;
 		x++;
 	}
-	/* Need to check logic here */
-	if (coordinates[0] == 0 && (!is_cardinal_pos(map[0][0])))
+	if (coordinates[0] == 0 && coordinates[1] == 0)
 		return (MAP_ERR);
 	return (MAP_OK);
 }
