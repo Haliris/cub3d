@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 11:11:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 15:10:26 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/27 15:46:44 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ double	vec_dot(const t_vec *vec_a, const t_vec *vec_b)
 // 	printf("vec_a after mirror ax: %.2f, ay: %.2f\n", a.x, a.y);
 // 	vec_transp(&a);
 // 	printf("vec_a after transp ax: %.2f, ay: %.2f\n", a.x, a.y);
-// 	vec_rotate(&b, PI/6);
+// 	vec_rotate(&b, 30);
 // 	printf("vec_b after rotate 30 degree bx: %.2f, by: %.2f\n", b.x, b.y);
 // 	return (0);
 // }
