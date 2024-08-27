@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 17:43:20 by tsuchen          ###   ########.fr       */
+/*   Created: 2024/08/27 17:39:13 by tsuchen           #+#    #+#             */
+/*   Updated: 2024/08/27 17:46:24 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
 
-void	my_mlx_pixel_put(t_image *image, int x, int y, int color)
+typedef struct s_image
 {
-	char	*dst;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_image;
 
-	dst = image->addr + (y * image->line_length + x * (image->bpp / 8));
-	*(unsigned int *)dst = color;
-}
+void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
+
+
+#endif

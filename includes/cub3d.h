@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 17:21:22 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/27 17:51:21 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 
 # include "parser.h"
 # include "vector.h"
+# include "raycasting.h"
 
 # define SUCCESS 0
 # define PANIC 1
@@ -44,6 +45,7 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
+# define FOV 120
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
@@ -74,6 +76,7 @@ typedef enum e_texture
 	EAST = 2,
 	WEST = 3,
 }	t_texture;
+
 typedef struct s_data
 {
 	char	*map_path;
@@ -82,8 +85,7 @@ typedef struct s_data
 	char	**map;
 	void	*mlx;
 	void	*window;
-	void	*img; // Maybe we will need multiple pointers
-	char	*img_addr;
+	t_image	*image;
 	void	*textures[4];
 	t_p_dir	p_dir_default;
 	t_vec	p_pos;

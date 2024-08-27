@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
+#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/27 17:18:33 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/27 17:40:05 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_RC), $(SRCS_RC)) \
 		  $(addprefix $(PATH_VEC), $(SRCS_VEC))
 
-HEADERS		= cub3d.h parser.h vector.h
+HEADERS		= cub3d.h parser.h vector.h raycasting.h
 
 OBJS		= $(SRCS:.c=.o)
 
