@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 17:18:38 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:20:22 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,27 @@ typedef enum e_texture
 	EAST = 2,
 	WEST = 3,
 }	t_texture;
+typedef struct s_textdata
+{
+	void	*text_img[4];
+	char	*text_addr[4];
+}	t_textdata;
 typedef struct s_data
 {
-	char	*map_path;
-	int		map_fd;
-	size_t	map_bound;
-	char	**map;
-	void	*mlx;
-	void	*window;
-	void	*img; // Maybe we will need multiple pointers
-	char	*img_addr;
-	void	*textures[4];
-	t_p_dir	p_dir_default;
-	t_vec	p_pos;
-	t_vec	p_dir;
-	t_vec	p_cam;
-	t_p_dir	p_dir;
+	char		*map_path;
+	int			map_fd;
+	size_t		map_bound;
+	char		**map;
+	void		*mlx;
+	void		*window;
+	void		*img;
+	char		*img_addr;
+	t_textdata	*textures;
+	t_p_dir		p_dir_default;
+	t_vec		p_pos;
+	t_vec		p_dir;
+	t_vec		p_cam;
+	t_p_dir		p_dir;
 }	t_data;
 
 void	cleanup(t_data *data);

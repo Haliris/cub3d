@@ -6,27 +6,29 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 17:04:48 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:18:52 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	cleanup_textures(void *textures)
+static void	cleanup_textures(t_textdata *textures)
 {
-	if (textures[NORTH])
-		mlx_destroy_image(textures[NORTH]);
-	if (textures[SOUTH])
-		mlx_destroy_image(textures[SOUTH]);
-	if (textures[EAST])
-		mlx_destroy_image(textures[EAST]);
-	if (textures[WEST])
-		mlx_destroy_image(textures[WEST]);
+	if (textures->text_img[NORTH])
+		mlx_destroy_image(textures->text_img[NORTH]);
+	if (textures->text_img[SOUTH])
+		mlx_destroy_image(textures->text_img[SOUTH]);
+	if (textures->text_img[EAST])
+		mlx_destroy_image(textures->text_img[EAST]);
+	if (textures->text_img[WEST])
+		mlx_destroy_image(textures->text_img[WEST]);
+	free(textures);
 }
 
 void	cleanup(t_data *data)
 {
-	cleanup_textures(data->texture);
+	if (data->textures)
+		cleanup_textures(data->texture);
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->window)
