@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:37 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:12:53 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ static t_bool	is_cub_file(char *file)
 
 static int	init_data(t_data *data)
 {
+	t_textdata	*textures;
+
+	textures = ft_calloc(1, sizeof(t_textdata));
+	if (!textures)
+		return (PANIC);
+	data->textures = textures;
 	ft_memset(data, 0, sizeof(t_data));
 	data->map_path = av[1];
 	data->map_fd = open(av[1], O_RDONLY);
