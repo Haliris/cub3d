@@ -67,6 +67,6 @@ double	vec_dot(const t_vec *vec_a, const t_vec *vec_b)
 // 	vec_transp(&a);
 // 	printf("vec_a after transp ax: %.2f, ay: %.2f\n", a.x, a.y);
 // 	vec_rotate(&b, PI/6);
-// 	printf("vec_b after rotate 30 degree counterclockwise bx: %.2f, by: %.2f\n", b.x, b.y);
+// 	printf("vec_b after rotate 30 degree bx: %.2f, by: %.2f\n", b.x, b.y);
 // 	return (0);
 // }
