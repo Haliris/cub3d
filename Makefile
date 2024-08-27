@@ -6,7 +6,7 @@
 #    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/27 11:36:32 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/08/27 13:58:10 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS_MAP	= map.c
 
 SRCS_RC		= raycasting.c
 
-SRCS_VEC	= vector.c
+SRCS_VEC	= vector.c vector_2.c
 
 PATH_M		= srcs/
 PATH_PS		= srcs/parser/
