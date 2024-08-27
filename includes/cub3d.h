@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 16:12:22 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:29:44 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,16 @@
 # define CLOSE_BUTTON 17
 # define FILE_EXTENSION ".cub"
 
+# define TEXTURE_NORTH "assets/dummy.xpm"
+# define TEXTURE_SOUTH "assets/dummy.xpm"
+# define TEXTURE_EAST "assets/dummy.xpm"
+# define TEXTURE_WEST "assets/dummy.xpm"
+
 typedef enum e_bool
 {
 	FALSE,
 	TRUE,
 }	t_bool;
-
 typedef enum e_p_dir
 {
 	NORTH = 'N',
@@ -63,7 +67,13 @@ typedef enum e_p_dir
 	WEST = 'W',
 	EAST = 'E',
 }	t_p_dir;
-
+typedef enum e_texture
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3,
+}	t_texture;
 typedef struct s_data
 {
 	char	*map_path;
@@ -73,6 +83,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*window;
 	void	*img; // Maybe we will need multiple pointers
+	void	*textures[4];
 	char	*img_addr;
 	t_p_dir	p_dir_default;
 	t_vec	p_pos;

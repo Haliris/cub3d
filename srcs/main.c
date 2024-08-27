@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 16:13:05 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:25:04 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ static int	init_data(t_data *data)
 	return (SUCCESS);
 }
 
+static int	load_assets(t_data *data)
+{
+
+}
+
 static int	game_init(t_data *data)
 {
 	data->mlx = mlx_init();
@@ -81,6 +86,11 @@ static int	game_init(t_data *data)
 		return (PANIC);
 	}
 	return (SUCCESS);
+	if (load_assets(data) == PANIC)
+	{
+		cleanup(data);
+		return (PANIC);
+	}
 }
 
 void	start_game(t_data *data)
