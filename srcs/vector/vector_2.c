@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 13:33:30 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 15:32:46 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/27 15:42:12 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	vec_rotate(t_vec *vec, double angle)
 	double	angle_r;
 
 	pi = acos(-1);
-	angle_r = angle * pi / 180;	
+	angle_r = angle * pi / 180;
 	new_x = vec->x * cos(angle_r) - vec->y * sin(angle_r);
 	new_y = vec->x * sin(angle_r) + vec->y * cos(angle_r);
 	vec->x = new_x;
