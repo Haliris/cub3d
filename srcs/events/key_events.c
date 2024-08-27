@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 18:40:50 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 18:45:30 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:53:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ void	key_events(int keycode, t_data *data)
 
 	value = 0;
 	if (keycode == ARROW_RIGHT)
-		move_player(data, value);
+		move_camera(data, value);
 	else if (keycode == ARROW_LEFT)
-		move_player(data, value);
+		move_camera(data, value);
 	else if (keycode == ARROW_UP)
-		move_player(data, value);
+		move_camera(data, value);
 	else if (keycode == ARROW_DOWN)
-		move_player(data, value);
+		move_camera(data, value);
 	else if (keycode == W_KEY)
-		move_camera(data, value);
+		move_player(data, value);
 	else if (keycode == S_KEY)
-		move_camera(data, value);
+		move_player(data, value);
 	else if (keycode == A_KEY)
-		move_camera(data, value);
+		move_player(data, value);
 	else if (keycode == D_KEY)
-		move_camera(data, value);
+		move_player(data, value);
 	else if (keycode == ESC_KEY)
 	{
 		cleanup(data);

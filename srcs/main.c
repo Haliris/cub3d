@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 18:43:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:49:37 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static int	init_data(t_data *data)
 void	init_hooks(t_data *data) // Need to add mouse event if we do the bonus part with the door
 {
 	mlx_hook(data->window, KeyRelease, KeyReleaseMask, &key_events, data);
+	//mlx_hook for mouse position for camera rotation
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
 }
 

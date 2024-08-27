@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 18:45:08 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:53:08 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,4 @@ void	cleanup(t_data *data)
 	if (data->mlx)
 		free(data->mlx);
 	mlx_destroy_display(data->mlx);
-	exit(EXIT_SUCCESS);
 }
