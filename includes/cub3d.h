@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 19:18:23 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:37:10 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "get_next_line_bonus.h"
 
 # include "parser.h"
+# include "vector.h"
 
 # define SUCCESS 0
 # define PANIC 1
@@ -60,13 +61,17 @@ typedef enum e_p_dir
 	WEST = 'W',
 	EAST = 'E',
 }	t_p_dir;
+
 typedef struct s_data
 {
 	char	*map_path;
 	int		map_fd;
 	size_t	map_bound;
 	char	**map;
-	t_p_dir	p_dir;
+	t_p_dir	p_dir_default;
+	t_vec	p_pos;
+	t_vec	p_dir;
+	t_vec	p_cam;
 }	t_data;
 
 #endif
