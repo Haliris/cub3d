@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 16:29:44 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:18:38 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ typedef struct s_data
 	void	*mlx;
 	void	*window;
 	void	*img; // Maybe we will need multiple pointers
-	void	*textures[4];
 	char	*img_addr;
+	void	*textures[4];
 	t_p_dir	p_dir_default;
 	t_vec	p_pos;
 	t_vec	p_dir;
@@ -92,4 +92,6 @@ typedef struct s_data
 	t_p_dir	p_dir;
 }	t_data;
 
+void	cleanup(t_data *data);
+int		game_init(t_data *data);
 #endif

@@ -3,16 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
+#    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/27 13:58:10 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/08/27 17:18:33 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= cub3d
 
-SRCS_M		= main.c
+SRCS_M		=	main.c \
+				game_init.c \
+				cleanup.c \
+
 
 SRCS_PS		= 	parser.c \
 				build_map.c \

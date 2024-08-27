@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 16:25:04 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:06:13 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,6 @@ static t_bool	is_cub_file(char *file)
 	return (FALSE);
 }
 
-void	cleanup(t_data *data)
-{
-	if (data->img)
-		mlx_destroy_image(data->mlx, data->img);
-	if (data->window)
-		mlx_destroy_window(data->mlx, data->window);
-	if (data->mlx)
-		free(data->mlx);
-	mlx_destroy_display(data->mlx);
-}
-
 static int	init_data(t_data *data)
 {
 	ft_memset(data, 0, sizeof(t_data));
@@ -67,30 +56,6 @@ static int	init_data(t_data *data)
 		return (PANIC);
 	}
 	return (SUCCESS);
-}
-
-static int	load_assets(t_data *data)
-{
-
-}
-
-static int	game_init(t_data *data)
-{
-	data->mlx = mlx_init();
-	if (!data->mlx)
-		return (PANIC);
-	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
-	if (!data->window)
-	{
-		cleanup(data);
-		return (PANIC);
-	}
-	return (SUCCESS);
-	if (load_assets(data) == PANIC)
-	{
-		cleanup(data);
-		return (PANIC);
-	}
 }
 
 void	start_game(t_data *data)
