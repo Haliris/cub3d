@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/16 19:18:23 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:31:17 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ typedef struct s_data
 	int		map_fd;
 	size_t	map_bound;
 	char	**map;
+	void	*mlx;
+	void	*window;
+	void	*img; // Maybe we will need multiple pointers
+	char	*img_addr;
 	t_p_dir	p_dir;
 }	t_data;
 
