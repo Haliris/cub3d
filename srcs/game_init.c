@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 18:16:54 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:22:47 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	load_assets(t_data *data)
 	textures->text_img[SOUTH] = mlx_xpm_file_to_image(data->mlx, TEXTURE_SOUTH, &width, &height);
 	textures->text_img[EAST] = mlx_xpm_file_to_image(data->mlx, TEXTURE_EAST, &width, &height);
 	textures->text_img[WEST] = mlx_xpm_file_to_image(data->mlx, TEXTURE_WEST, &width, &height);
-	if (!textures->text_img[NORTH] || !textures->text_img[SOUTH] || !textures->text_img[WEST] || !textures->text_img[EAST])
+	if (!textures->text_img[NORTH] || !textures->text_img[SOUTH]
+		|| !textures->text_img[WEST] || !textures->text_img[EAST])
 	{
 		free(textures);
 		return (PANIC);

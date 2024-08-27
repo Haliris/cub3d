@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 17:06:13 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:43:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,17 @@ static int	init_data(t_data *data)
 	return (SUCCESS);
 }
 
+void	init_hooks(t_data *data) // Need to add mouse event if we do the bonus part with the door
+{
+	mlx_hook(data->window, KeyRelease, KeyReleaseMask, &key_events, data);
+	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
+}
+
 void	start_game(t_data *data)
 {
-
+	render_here(data);
+	init_hooks(data);
+	mlx_loop(data->mlx);
 }
 
 int	main(int ac, char *av[])

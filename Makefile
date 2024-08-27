@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/27 17:18:33 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/27 18:47:01 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS_PS		= 	parser.c \
 				build_map.c \
 				parser_utils.c
 
+SRCS_EV		=	key_events.c
+
 SRCS_MAP	= map.c
 
 SRCS_RC		= raycasting.c
@@ -29,12 +31,14 @@ SRCS_VEC	= vector.c vector_2.c
 
 PATH_M		= srcs/
 PATH_PS		= srcs/parser/
+PATH_EV		= srcs/events/
 PATH_MAP	= srcs/map/
 PATH_RC		= srcs/raycasting/
 PATH_VEC	= srcs/vector/
 
 SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_PS), $(SRCS_PS)) \
+		  $(addprefix $(PATH_EV), $(SRCS_EV)) \
 		  $(addprefix $(PATH_MAP), $(SRCS_MAP)) \
 		  $(addprefix $(PATH_RC), $(SRCS_RC)) \
 		  $(addprefix $(PATH_VEC), $(SRCS_VEC))

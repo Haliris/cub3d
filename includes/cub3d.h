@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 18:20:22 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:45:54 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,18 @@
 # define TEXTURE_EAST "assets/dummy.xpm"
 # define TEXTURE_WEST "assets/dummy.xpm"
 
+typedef enum e_keys
+{
+	ARROW_RIGHT = 65363,
+	ARROW_LEFT = 65361,
+	ARROW_UP = 65362,
+	ARROW_DOWN = 65364,
+	KEY_ESC = 65307,
+	W_KEY = 119,
+	A_KEY = 97,
+	S_KEY = 115,
+	D_KEY = 100,
+}	t_keys
 typedef enum e_bool
 {
 	FALSE,
