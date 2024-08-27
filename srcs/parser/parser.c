@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/26 15:48:20 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:17:50 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_parse_status	verify_map(char **map, t_data *data)
 {
 	uint32_t	start[2];
 
-	start[0] = 0;
-	start[1] = 0;
+	start[0] = -1;
+	start[1] = -1;
 	if (check_invalid_chars(map) == MAP_ERR)
 		return (MAP_ERR);
 	fill_whitespaces(map);
