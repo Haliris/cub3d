@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 16:09:06 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:12:22 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "get_next_line_bonus.h"
 
 # include "parser.h"
+# include "vector.h"
 
 # define SUCCESS 0
 # define PANIC 1
@@ -62,6 +63,7 @@ typedef enum e_p_dir
 	WEST = 'W',
 	EAST = 'E',
 }	t_p_dir;
+
 typedef struct s_data
 {
 	char	*map_path;
@@ -72,6 +74,10 @@ typedef struct s_data
 	void	*window;
 	void	*img; // Maybe we will need multiple pointers
 	char	*img_addr;
+	t_p_dir	p_dir_default;
+	t_vec	p_pos;
+	t_vec	p_dir;
+	t_vec	p_cam;
 	t_p_dir	p_dir;
 }	t_data;
 

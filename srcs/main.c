@@ -6,11 +6,29 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 15:12:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:13:05 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	print_data(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	printf("Player position  x: %.2f, y: %.2f\n", data->p_pos.x, data->p_pos.y);
+	printf("Player direction x: %.2f, y: %.2f\n", data->p_dir.x, data->p_dir.y);
+	printf("Player default dir: %d\n", data->p_dir_default);
+	printf("Map path is: %s\n", data->map_path);
+	printf("Map output:\n");
+	while (data->map[i])
+	{
+		printf("%s", data->map[i]);
+		i++;
+	}
+	printf("Map bound: %zu\n", data->map_bound);
+}
 
 static t_bool	is_cub_file(char *file)
 {

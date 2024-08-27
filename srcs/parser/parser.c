@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/26 15:48:20 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:17:50 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,26 @@ t_parse_status	check_walls(char **map, uint32_t x, uint32_t y, size_t bound)
 static void	get_player_dir(t_data *data, u_int32_t x, u_int32_t y)
 {
 	if (data->map[x][y] == 'N')
-		data->p_dir = NORTH;
+	{
+		data->p_dir_default = NORTH;
+		vec_init(&data->p_dir, -1.0f, 0.0f);
+	}
 	else if (data->map[x][y] == 'S')
-		data->p_dir = SOUTH;
+	{
+		data->p_dir_default = SOUTH;
+		vec_init(&data->p_dir, 1.0f, 0.0f);
+	}
 	else if (data->map[x][y] == 'W')
-		data->p_dir = WEST;
+	{
+		data->p_dir_default = WEST;
+		vec_init(&data->p_dir, 0.0f, -1.0f);
+	}
 	else if (data->map[x][y] == 'E')
-		data->p_dir = EAST;
+	{
+		data->p_dir_default = EAST;
+		vec_init(&data->p_dir, 0.0f, 1.0f);
+	}
+	vec_init(&data->p_pos, (double)x, (double)y);
 }
 
 t_parse_status	verify_map(char **map, t_data *data)
