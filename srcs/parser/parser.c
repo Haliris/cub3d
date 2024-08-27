@@ -52,8 +52,8 @@ t_parse_status	verify_map(char **map, t_data *data)
 {
 	uint32_t	start[2];
 
-	start[0] = -1;
-	start[1] = -1;
+	start[0] = 0;
+	start[1] = 0;
 	if (check_invalid_chars(map) == MAP_ERR)
 		return (MAP_ERR);
 	fill_whitespaces(map);
