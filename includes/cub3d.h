@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 15:08:28 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:33:44 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_data
 	char		*map_path;
 	int			map_fd;
 	size_t		map_bound;
+	size_t		map_start;
 	char		**map;
 	void		*mlx;
 	void		*window;

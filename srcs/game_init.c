@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 14:24:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:03:24 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ static int	load_assets(t_data *data)
 	textures->text_img[W] = mlx_xpm_file_to_image(data->mlx,textures->text_paths[W], &width, &height);
 	if (!textures->text_img[N] || !textures->text_img[S]
 		|| !textures->text_img[W] || !textures->text_img[E])
-	{
-		free(textures);
 		return (PANIC);
-	}
 	return (SUCCESS);
 }
 

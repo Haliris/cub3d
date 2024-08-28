@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 15:02:33 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:04:36 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	cleanup(t_data *data)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->window)
 		mlx_destroy_window(data->mlx, data->window);
-	if (data->mlx)
-		free(data->mlx);
 	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 	return (SUCCESS);
 }

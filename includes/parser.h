@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 15:03:27 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:01:48 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef enum e_parse_status
 int				parse_map(t_data *data);
 char			**build_map(t_data *data);
 t_bool			is_invalid_char(char c);
-t_parse_status	check_invalid_chars(char **map);
+t_parse_status	check_invalid_chars(char **map, size_t map_start);
 void			fill_whitespaces(char **map);
-int				get_textures_info(t_textdata *textures, int	map_fd);
-t_parse_status	find_start(uint32_t coordinates[], char **map);
+t_textdata		*get_textures_info(char *map_path, t_data *data);
+t_parse_status	find_start(uint32_t coordinates[], char **map, size_t map_start);
 #endif
