@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 17:56:03 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/28 18:17:43by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,52 +38,54 @@ void	rc_stripe_pixel_put(t_image *image, int x, double ray_dist)
 	}
 }
 
-double	rc_dist_ray(double ray_pos, double ray_dir, double delta_dist)
+void	rc_ray_init(t_vec *dist_ray, t_vec *ray_pos, t_vec *ray_dir, t_vec *unit_dst)
 {
-	double	dist_unit;
-
-	if (ray->dir < 0)
-		dist_unit = (ray_pos - (int)ray_pos) * delta_dist;
+	if (ray_dir->x < 0)
+		dist_ray->x = (ray_pos->x - (int)ray_pos->x) * unit_dst->x;
 	else
-		dist_unit = ((int)ray_pos + 1.0 - ray_pos) * delta_dist;
-	return (dist_unit);
+		dist_ray->x = ((int)ray_pos->x + 1.0 - ray_pos->x) * unit_dst->x;
+	if (ray_dir->y < 0)
+		dist_ray->y = (ray_pos->y - (int)ray_pos->y) * unit_dst->y;
+	else
+		dist_ray->y = ((int)ray_pos->y + 1.0 - ray_pos->y) * unit_dst->y;
+}
+
+int	rc_dda(t_vec *dist_ray, t_vec *unit_dist, t_vec *ray_pos, t_vec *ray_dir)
+{
+	if (dist_ray->x < dist_ray->y)
+	{
+		dist_ray->x += unit_dist->x;
+		if (ray_dir->x < 0)
+			ray_pos->x -= 1;
+		else
+			ray_pos->x += 1;
+		return (0);
+	}
+	else
+	{
+		dist_ray->y += unit_dist->y;
+		if (ray_dir->y < 0)
+			ray_pos->y -= 1;
+		else
+			ray_pos->y += 1;
+		return (1);
+	}
 }
 
 double	rc_raydist(t_vec *ray, t_data *data)
 {
 	t_vec	ray_pos;
-	double	unit_dist_x;
-	double	unit_dist_y;
-	double	dist_ray_x;
-	double	dist_ray_y;
+	t_vec	unit_dist;
+	t_vec	dist_ray;
 	int		side;
 
-	side = 0;
 	vec_init(&ray_pos, (int)data->p_pos.x, (int)data->p_pos.y);
-	unit_dist_x = sqrt(1 + ((ray->y * ray->y) / (ray->x * ray->x)));
-	unit_dist_y = sqrt(1 + ((ray->x * ray->x) / (ray->y * ray->y)));
-	dist_ray_x = rc_dist_ray(ray_pos.x, ray->x, unit_dist_x);
-	dist_ray_x = rc_dist_ray(ray_pos.y, ray->y, unit_dist_y);
+	unit_dist.x = sqrt(1 + ((ray->y * ray->y) / (ray->x * ray->x)));
+	unit_dist.y = sqrt(1 + ((ray->x * ray->x) / (ray->y * ray->y)));
+	rc_ray_init(&dist_ray, &ray_pos, ray, &unit_dist);
 	while (1)
 	{
-		if (dist_ray_x < dist_ray_y)
-		{
-			dist_ray_x += unit_dist_x;
-			if (ray->x < 0)
-				ray_pos.x -= 1;
-			else
-				ray_pos.x += 1;
-			side = 0;
-		}
-		else
-		{
-			dist_ray_y += unit_dist_y;
-			if (ray->y < 0)
-				ray_pos.y -= 1;
-			else
-				ray_pos.y += 1;
-			side = 1;
-		}
+		side = rc_dda(&dist_ray, &unit_dist, &ray_pos, ray);
 		if (data->map[ray_pos.x][ray_pos.y] == '1')
 			break ;
 	}
