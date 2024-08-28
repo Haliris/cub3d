@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:39:13 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 11:24:38 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/28 17:41:05 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ typedef struct s_image
 }	t_image;
 
 void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
-void	rc_strip_pixel_put(t_image *image, int x, double ray_dist);
+void	rc_stripe_pixel_put(t_image *image, int x, double ray_dist);
 double	rc_raydist(t_vec *ray, t_data *data);
+double	rc_dist_ray(double ray_pos, double ray_dir, double delta_dist);
+void	rc_rendering(t_data *data);
 
 #endif

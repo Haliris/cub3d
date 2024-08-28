@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 16:46:47 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/28 17:56:03 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	rc_mlx_pixel_put(t_image *image, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	rc_strip_pixel_put(t_image *image, int x, double ray_dist)
+void	rc_stripe_pixel_put(t_image *image, int x, double ray_dist)
 {
 	int	y;
 	int	wall_height;
 
-	wall_height = ; // something reverse related to ray_dist
+	wall_height = (int)(HEIGHT / ray_dist);
 	y = -1;
 	while (++y < HEIGHT)
 	{
@@ -91,4 +91,24 @@ double	rc_raydist(t_vec *ray, t_data *data)
 		return ((dist_ray_y - unit_dist_y) * vec_cos(ray, data->p_dir));
 	else
 		return ((dist_ray_x - unit_dist_x) * vec_cos(ray, data->p_dir));
+}
+
+void	rc_rendering(t_data *data)
+{
+	int		x;
+	double	cam_x;
+	double	ray_dist;
+	t_vec	ray_dir;
+
+	mlx_clear_window(data->mlx, data->window);
+	x = -1;
+	while (++x < WIDTH)
+	{
+		cam_x = 2 * x / (double)WIDTH - 1;
+		ray_dir.x = data->p_dir.x + data->p_cam.x * cam_x;
+		ray_dir.y = data->p_dir.y + data->p_cam.y * cam_x;
+		ray_dist = rc_raydist(&ray_dir, data);
+		rc_stripe_pixel_put(data->image, x, ray_dist);
+	}
+	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
 }
