@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:12:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 16:01:30 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:45:05 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static uint32_t	is_cardinal_pos(char c)
 	return (c == NORTH || c == SOUTH || c == WEST || c == EAST);
 }
 
-t_parse_status	find_start(uint32_t coordinates[], char **map, size_t map_start)
+t_parse_status	find_start(uint32_t coordinate[], char **map, size_t map_start)
 {
 	uint32_t	x;
 	uint32_t	y;
@@ -82,17 +82,17 @@ t_parse_status	find_start(uint32_t coordinates[], char **map, size_t map_start)
 		{
 			if (is_cardinal_pos(map[x][y]))
 			{
-				if (coordinates[0] != 0 || coordinates[1] != 0)
+				if (coordinate[0] != 0 || coordinate[1] != 0)
 					return (MAP_ERR);
-				coordinates[0] = x;
-				coordinates[1] = y;
+				coordinate[0] = x;
+				coordinate[1] = y;
 			}
 			y++;
 		}
 		y = 0;
 		x++;
 	}
-	if (coordinates[0] == 0 && coordinates[1] == 0)
+	if (coordinate[0] == 0 && coordinate[1] == 0)
 		return (MAP_ERR);
 	return (MAP_OK);
 }

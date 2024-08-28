@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/28 13:59:15 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/28 17:35:43 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS_M		=	main.c \
 SRCS_PS		= 	parser.c \
 				build_map.c \
 				parser_utils.c \
-				get_textures.c
+				get_textures.c \
+				get_textures_utils.c
 
 SRCS_EV		=	key_events.c
 

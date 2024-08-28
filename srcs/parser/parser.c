@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 16:01:11 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:41:45 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ t_parse_status	verify_map(char **map, t_data *data)
 		return (MAP_ERR);
 	return (MAP_OK);
 }
-
 
 int	parse_map(t_data *data)
 {

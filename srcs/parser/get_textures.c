@@ -6,41 +6,11 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:44:55 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 15:56:29 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:45:41 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static int	ft_atoi_texture(t_textdata *textures, int array[], char *line)
-{
-	size_t	i;
-	size_t	array_i;
-	int		value;
-
-	i = 2;
-	array_i = 0;
-	value = 0;
-	while(line[i] && array_i < 3)
-	{
-		while (line[i] && line[i] != ',' && line[i] != '\n')
-		{
-			if (ft_isdigit(line[i]) == FALSE)
-				return (PANIC);
-			value = 10 * value + (line[i++] - '0');
-		}
-		array[array_i] = value;
-		array_i++;
-		if (line[i] == ',')
-			i++;
-		else
-			break ;
-	}
-	if (array_i != 3)
-		return (PANIC);
-	textures->textures_nb++;
-	return (SUCCESS);
-}
 
 static int	add_floor_ceiling(char *line, t_textdata *textures)
 {
@@ -54,77 +24,26 @@ static int	add_floor_ceiling(char *line, t_textdata *textures)
 static int	is_element(char *line, t_textdata *textures)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
-	{
-		textures->text_paths[N] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[N])
-			return (PANIC);
-	}
+		return (add_info_buff(line, textures, N));
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-	{
-		textures->text_paths[S] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[S])
-			return (PANIC);
-	}
+		return (add_info_buff(line, textures, S));
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-	{
-		textures->text_paths[E] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[E])
-			return (PANIC);
-	}
+		return (add_info_buff(line, textures, E));
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-	{
-		textures->text_paths[W] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[W])
-			return (PANIC);
-	}
+		return (add_info_buff(line, textures, W));
 	else if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
 		return (add_floor_ceiling(line, textures));
 	else if (ft_strncmp(line, "\n", 2) == 0)
 		return (SUCCESS);
 	else
 		return (PANIC);
-	textures->textures_nb++;
 	return (SUCCESS);
 }
 
-static int	check_textpaths(char **paths)
+static int	parse_info_line(char *line, t_textdata *textures, t_data *data)
 {
-	size_t	index;
-
-	index = 0;
-	while (paths[index] != NULL)
-		index++;
-	if (index != TEXTURES_PATHS)
-		return (PANIC);
-	return (SUCCESS);
-}
-
-static void	panic_clean(t_textdata *textures)
-{
-	size_t	i;
-
-	i = 0;
-	while (textures->text_paths[i])
-	{
-		free(textures->text_paths[i]);
-		i++;
-	}
-	free(textures);
-}
-
-t_textdata	*get_textures_info(char *map_path, t_data *data)
-{
-	char	*line;
 	size_t	line_nb;
-	t_textdata	*textures;
 
-	data->map_fd = open(map_path, O_RDONLY);
-	if (data->map_fd == -1)
-		return (NULL);
-	textures = ft_calloc(1, sizeof(t_textdata));
-	if (!textures)
-		return (NULL);
-	line = get_next_line(data->map_fd);
 	line_nb = 0;
 	while (line)
 	{
@@ -132,7 +51,7 @@ t_textdata	*get_textures_info(char *map_path, t_data *data)
 		{
 			free(line);
 			panic_clean(textures);
-			return (NULL);
+			return (PANIC);
 		}
 		free(line);
 		line = get_next_line(data->map_fd);
@@ -144,7 +63,25 @@ t_textdata	*get_textures_info(char *map_path, t_data *data)
 		}
 		line_nb++;
 	}
-	if (textures->textures_nb != TEXTURES_NB || check_textpaths(textures->text_paths) == PANIC)
+	return (SUCCESS);
+}
+
+t_textdata	*get_textures_info(char *map_path, t_data *data)
+{
+	char		*line;
+	t_textdata	*textures;
+
+	data->map_fd = open(map_path, O_RDONLY);
+	if (data->map_fd == -1)
+		return (NULL);
+	textures = ft_calloc(1, sizeof(t_textdata));
+	if (!textures)
+		return (NULL);
+	line = get_next_line(data->map_fd);
+	if (parse_info_line(line, textures, data) == PANIC)
+		return (NULL);
+	if (textures->textures_nb != TEXTURES_NB
+		|| check_textpaths(textures->text_paths) == PANIC)
 	{
 		panic_clean(textures);
 		return (NULL);
