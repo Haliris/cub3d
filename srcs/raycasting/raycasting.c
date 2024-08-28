@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 18:40:43 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/28 16:46:47 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,57 @@ void	rc_strip_pixel_put(t_image *image, int x, double ray_dist)
 	}
 }
 
-double	rc_raydist(t_vec *ray, t_data *data)
+double	rc_dist_ray(double ray_pos, double ray_dir, double delta_dist)
 {
-	double	dist;
+	double	dist_unit;
 
-	dist = 0.0f;
-	
-	/* take an individual ray vector and calculate distance from P to Wall*/
+	if (ray->dir < 0)
+		dist_unit = (ray_pos - (int)ray_pos) * delta_dist;
+	else
+		dist_unit = ((int)ray_pos + 1.0 - ray_pos) * delta_dist;
+	return (dist_unit);
 }
 
+double	rc_raydist(t_vec *ray, t_data *data)
+{
+	t_vec	ray_pos;
+	double	unit_dist_x;
+	double	unit_dist_y;
+	double	dist_ray_x;
+	double	dist_ray_y;
+	int		side;
+
+	side = 0;
+	vec_init(&ray_pos, (int)data->p_pos.x, (int)data->p_pos.y);
+	unit_dist_x = sqrt(1 + ((ray->y * ray->y) / (ray->x * ray->x)));
+	unit_dist_y = sqrt(1 + ((ray->x * ray->x) / (ray->y * ray->y)));
+	dist_ray_x = rc_dist_ray(ray_pos.x, ray->x, unit_dist_x);
+	dist_ray_x = rc_dist_ray(ray_pos.y, ray->y, unit_dist_y);
+	while (1)
+	{
+		if (dist_ray_x < dist_ray_y)
+		{
+			dist_ray_x += unit_dist_x;
+			if (ray->x < 0)
+				ray_pos.x -= 1;
+			else
+				ray_pos.x += 1;
+			side = 0;
+		}
+		else
+		{
+			dist_ray_y += unit_dist_y;
+			if (ray->y < 0)
+				ray_pos.y -= 1;
+			else
+				ray_pos.y += 1;
+			side = 1;
+		}
+		if (data->map[ray_pos.x][ray_pos.y] == '1')
+			break ;
+	}
+	if (side == 1)
+		return ((dist_ray_y - unit_dist_y) * vec_cos(ray, data->p_dir));
+	else
+		return ((dist_ray_x - unit_dist_x) * vec_cos(ray, data->p_dir));
+}

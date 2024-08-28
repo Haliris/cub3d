@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:39:13 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 18:37:26 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/28 11:24:38 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
+
+# include "vector.h"
+# include "cub3d.h"
 
 typedef struct s_vec	t_vec;
 typedef struct s_data	t_data;
