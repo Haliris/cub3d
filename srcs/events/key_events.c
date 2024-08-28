@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 18:40:50 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 18:53:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:08:21 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 static void	move_player(t_data *data, int value)
 {
-
+	(void)data;
+	(void)value;
+	return ;
 }
 
 static void	move_camera(t_data *data, int value)
 {
-
+	(void)data;
+	(void)value;
+	return ;
 }
 
-void	key_events(int keycode, t_data *data)
+int	key_events(int keycode, t_data *data)
 {
 	int	value;
 
@@ -48,4 +52,5 @@ void	key_events(int keycode, t_data *data)
 		cleanup(data);
 		exit(EXIT_SUCCESS);
 	}
+	return (SUCCESS);
 }

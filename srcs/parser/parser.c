@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 19:32:41 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:45:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,76 +76,6 @@ t_parse_status	verify_map(char **map, t_data *data)
 	if (check_walls(map, start[0], start[1], data->map_bound) == MAP_ERR)
 		return (MAP_ERR);
 	return (MAP_OK);
-}
-
-static int	is_element(char *line, t_textdata *textures)
-{
-	if (ft_strncmp(line, "NO ", 3) == 0)
-	{
-		textures->text_paths[NORTH] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[NORTH])
-			return (PANIC);
-	}
-	else if (ft_strncmp(line, "SO ", 3) == 0)
-	{
-		textures->text_paths[SOUTH] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[SOUTH])
-			return (PANIC);
-	}
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-	{
-		textures->text_paths[EAST] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[EAST])
-			return (PANIC);
-	}
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-	{
-		textures->text_paths[WEST] = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (!textures->text_paths[WEST])
-			return (PANIC);
-	}
-	else if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
-		add_floor_ceiling(line, textures);
-	return (SUCCESS);
-}
-
-static t_bool	has_all_textures(t_textdata *textures)
-{
-	size_t	index;
-
-	index = 0;
-	while(textures->text_paths[index])
-		index++;
-	if (index < 4)
-		return (FALSE);
-	return (TRUE);
-}
-
-static int	get_textures_info(t_textdata *textures, int	map_fd)
-{
-	char	*line;
-
-	line = NULL;
-
-	line = get_next_line(map_fd);
-	while (line)
-	{
-		if (check_element(line, textures) == PANIC)
-		{
-			free(line);
-			return (PANIC);
-		}
-		free(line);
-		line = get_next_line(map_fd);
-		if (ft_strncmp(line, "1", 2) == 0 || ft_strncmp(line, "0", 2) == 0)
-		{
-			free(line);
-			break ;
-		}
-	}
-	if (has_all_textures(textures) == FALSE)
-		return (PANIC);
-	return (SUCCESS);
 }
 
 int	parse_map(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 19:17:45 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:08:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <math.h>
 
 # include "mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line_bonus.h"
@@ -50,10 +52,8 @@
 # define CLOSE_BUTTON 17
 # define FILE_EXTENSION ".cub"
 
-# define TEXTURE_NORTH "assets/dummy.xpm"
-# define TEXTURE_SOUTH "assets/dummy.xpm"
-# define TEXTURE_EAST "assets/dummy.xpm"
-# define TEXTURE_WEST "assets/dummy.xpm"
+typedef enum e_texture		t_texture;
+typedef struct s_textdata	t_textdata;
 
 typedef enum e_keys
 {
@@ -61,12 +61,12 @@ typedef enum e_keys
 	ARROW_LEFT = 65361,
 	ARROW_UP = 65362,
 	ARROW_DOWN = 65364,
-	KEY_ESC = 65307,
+	ESC_KEY = 65307,
 	W_KEY = 119,
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
-}	t_keys
+}	t_keys;
 typedef enum e_bool
 {
 	FALSE,
@@ -79,21 +79,7 @@ typedef enum e_p_dir
 	WEST = 'W',
 	EAST = 'E',
 }	t_p_dir;
-typedef enum e_texture
-{
-	NORTH = 0,
-	SOUTH = 1,
-	EAST = 2,
-	WEST = 3,
-}	t_texture;
-typedef struct s_textdata
-{
-	void	*text_img[4];
-	char	*text_paths[4];
-	char	*text_addr[4];
-	int		floor[3];
-	int		ceiling[3];
-}	t_textdata;
+
 typedef struct s_data
 {
 	char		*map_path;
@@ -109,9 +95,11 @@ typedef struct s_data
 	t_vec		p_pos;
 	t_vec		p_dir;
 	t_vec		p_cam;
-	t_p_dir		p_dir;
+	t_p_dir		spawn_dir;
 }	t_data;
 
-void	cleanup(t_data *data);
+int		cleanup(t_data *data);
 int		game_init(t_data *data);
+int		key_events(int keycode, t_data *data);
+
 #endif

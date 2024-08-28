@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 19:14:20 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:24:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static int	load_assets(t_data *data)
 	textures = data->textures;
 	width = 0;
 	height = 0;
-	textures->text_img[NORTH] = mlx_xpm_file_to_image(data->mlx, textures->text_paths[NORTH], &width, &height);
-	textures->text_img[SOUTH] = mlx_xpm_file_to_image(data->mlx, textures->text_paths[SOUTH], &width, &height);
-	textures->text_img[EAST] = mlx_xpm_file_to_image(data->mlx,textures->text_paths[EAST], &width, &height);
-	textures->text_img[WEST] = mlx_xpm_file_to_image(data->mlx,textures->text_paths[WEST], &width, &height);
-	if (!textures->text_img[NORTH] || !textures->text_img[SOUTH]
-		|| !textures->text_img[WEST] || !textures->text_img[EAST])
+	textures->text_img[N] = mlx_xpm_file_to_image(data->mlx, textures->text_paths[N], &width, &height);
+	textures->text_img[S] = mlx_xpm_file_to_image(data->mlx, textures->text_paths[S], &width, &height);
+	textures->text_img[E] = mlx_xpm_file_to_image(data->mlx,textures->text_paths[E], &width, &height);
+	textures->text_img[W] = mlx_xpm_file_to_image(data->mlx,textures->text_paths[W], &width, &height);
+	if (!textures->text_img[N] || !textures->text_img[S]
+		|| !textures->text_img[W] || !textures->text_img[E])
 	{
 		free(textures);
 		return (PANIC);
