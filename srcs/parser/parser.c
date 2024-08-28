@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 17:41:45 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:50:06 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,28 @@ t_parse_status	verify_map(char **map, t_data *data)
 	return (MAP_OK);
 }
 
+static void	print_textures(t_textdata *textures)
+{
+	int	index;
+
+	index = 0;
+	printf("SO: %s\n", textures->text_paths[S]);
+	printf("NO: %s\n", textures->text_paths[N]);
+	printf("EA: %s\n", textures->text_paths[E]);
+	printf("WE: %s\n", textures->text_paths[W]);
+	while (index < 3)
+	{
+		printf("F%d: %d\n", index, textures->floor[index]);
+		index++;
+	}
+	index = 0;
+	while (index < 3)
+	{
+		printf("C%d: %d\n", index, textures->ceiling[index]);
+		index++;
+	}
+}
+
 int	parse_map(t_data *data)
 {
 	data->map = build_map(data);
@@ -91,6 +113,7 @@ int	parse_map(t_data *data)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		return (ft_free_all(data->map), PANIC);
 	}
+	print_textures(data->textures);
 	close(data->map_fd);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
