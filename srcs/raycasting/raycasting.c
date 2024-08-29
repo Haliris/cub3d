@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 12:12:51 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 16:05:30 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,15 @@ void	rc_rendering(t_data *data)
 	int		x;
 	double	cam_x;
 	double	ray_dist;
-	t_vec	ray_dir;
 
 	mlx_clear_window(data->mlx, data->window);
 	x = -1;
 	while (++x < WIDTH)
 	{
 		cam_x = 2 * x / (double)WIDTH - 1;
-		ray_dir.x = data->p_dir.x + data->p_cam.x * cam_x;
-		ray_dir.y = data->p_dir.y + data->p_cam.y * cam_x;
-		ray_dist = rc_raydist(&ray_dir, data);
+		data->ray_dir.x = data->p_dir.x + data->p_cam.x * cam_x;
+		data->ray_dir.y = data->p_dir.y + data->p_cam.y * cam_x;
+		ray_dist = rc_raydist(data->ray_dir, data);
 		rc_stripe_pixel_put(data, x, ray_dist);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->image->img, 0, 0);
