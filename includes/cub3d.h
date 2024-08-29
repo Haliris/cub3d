@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 15:53:50 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:23:21 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 typedef enum e_texture		t_texture;
 typedef struct s_textdata	t_textdata;
 typedef struct s_image		t_image;
-
+typedef struct s_wall		t_wall;
 typedef enum e_keys
 {
 	ARROW_RIGHT = 65363,
@@ -94,11 +94,13 @@ typedef struct s_data
 	void		*window;
 	t_image		*image;
 	t_textdata	*textures;
+	t_wall		wall_data;
 	t_p_dir		p_dir_default;
 	t_vec		p_pos;
 	t_vec		p_dir;
 	t_vec		p_cam;
 	t_vec		ray_dir;
+	int			side;
 	t_p_dir		spawn_dir;
 }	t_data;
 
