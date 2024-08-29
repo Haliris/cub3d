@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:12:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 13:23:59 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:45:05 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_bool	is_invalid_char(char c)
 	return (TRUE);
 }
 
-t_parse_status	check_invalid_chars(char **map)
+t_parse_status	check_invalid_chars(char **map, size_t map_start)
 {
 	uint32_t	x;
 	uint32_t	y;
 
-	x = 0;
+	x = map_start;
 	y = 0;
 	while (map[x])
 	{
@@ -69,12 +69,12 @@ static uint32_t	is_cardinal_pos(char c)
 	return (c == NORTH || c == SOUTH || c == WEST || c == EAST);
 }
 
-t_parse_status	find_start(uint32_t coordinates[], char **map)
+t_parse_status	find_start(uint32_t coordinate[], char **map, size_t map_start)
 {
 	uint32_t	x;
 	uint32_t	y;
 
-	x = 0;
+	x = map_start;
 	y = 0;
 	while (map[x])
 	{
@@ -82,17 +82,17 @@ t_parse_status	find_start(uint32_t coordinates[], char **map)
 		{
 			if (is_cardinal_pos(map[x][y]))
 			{
-				if (coordinates[0] != 0 || coordinates[1] != 0)
+				if (coordinate[0] != 0 || coordinate[1] != 0)
 					return (MAP_ERR);
-				coordinates[0] = x;
-				coordinates[1] = y;
+				coordinate[0] = x;
+				coordinate[1] = y;
 			}
 			y++;
 		}
 		y = 0;
 		x++;
 	}
-	if (coordinates[0] == 0 && coordinates[1] == 0)
+	if (coordinate[0] == 0 && coordinate[1] == 0)
 		return (MAP_ERR);
 	return (MAP_OK);
 }

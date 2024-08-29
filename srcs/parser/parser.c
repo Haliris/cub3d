@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 13:17:50 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:04:32 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ t_parse_status	verify_map(char **map, t_data *data)
 
 	start[0] = 0;
 	start[1] = 0;
-	if (check_invalid_chars(map) == MAP_ERR)
+	if (check_invalid_chars(map, data->map_start) == MAP_ERR)
 		return (MAP_ERR);
 	fill_whitespaces(map);
-	if (find_start(start, map) == MAP_ERR)
+	if (find_start(start, map, data->map_start) == MAP_ERR)
 		return (MAP_ERR);
 	get_player_dir(data, start[0], start[1]);
 	if (check_walls(map, start[0], start[1], data->map_bound) == MAP_ERR)
@@ -78,11 +78,43 @@ t_parse_status	verify_map(char **map, t_data *data)
 	return (MAP_OK);
 }
 
+static void	print_textures(t_textdata *textures)
+{
+	int	index;
+
+	index = 0;
+	printf("SO: %s\n", textures->text_paths[S]);
+	printf("NO: %s\n", textures->text_paths[N]);
+	printf("EA: %s\n", textures->text_paths[E]);
+	printf("WE: %s\n", textures->text_paths[W]);
+	while (index < 3)
+	{
+		printf("F%d: %d\n", index, textures->floor[index]);
+		index++;
+	}
+	index = 0;
+	while (index < 3)
+	{
+		printf("C%d: %d\n", index, textures->ceiling[index]);
+		index++;
+	}
+}
+
 int	parse_map(t_data *data)
 {
 	data->map = build_map(data);
+	close(data->map_fd);
 	if (!data->map)
 		return (PANIC);
+	data->textures = get_textures_info(data->map_path, data);
+	if (!data->textures)
+	{
+		close(data->map_fd);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		return (ft_free_all(data->map), PANIC);
+	}
+	print_textures(data->textures);
+	close(data->map_fd);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);

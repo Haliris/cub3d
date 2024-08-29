@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 11:37:10 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/28 15:33:44 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <math.h>
 
 # include "mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line_bonus.h"
@@ -42,18 +44,34 @@
 # define ER STDERR_FILENO
 # define P_NAME "cub3d"
 
+# define WIDTH 1280
+# define HEIGHT 720
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
 # define CLOSE_BUTTON 17
 # define FILE_EXTENSION ".cub"
 
+typedef enum e_texture		t_texture;
+typedef struct s_textdata	t_textdata;
+
+typedef enum e_keys
+{
+	ARROW_RIGHT = 65363,
+	ARROW_LEFT = 65361,
+	ARROW_UP = 65362,
+	ARROW_DOWN = 65364,
+	ESC_KEY = 65307,
+	W_KEY = 119,
+	A_KEY = 97,
+	S_KEY = 115,
+	D_KEY = 100,
+}	t_keys;
 typedef enum e_bool
 {
 	FALSE,
 	TRUE,
 }	t_bool;
-
 typedef enum e_p_dir
 {
 	NORTH = 'N',
@@ -64,14 +82,25 @@ typedef enum e_p_dir
 
 typedef struct s_data
 {
-	char	*map_path;
-	int		map_fd;
-	size_t	map_bound;
-	char	**map;
-	t_p_dir	p_dir_default;
-	t_vec	p_pos;
-	t_vec	p_dir;
-	t_vec	p_cam;
+	char		*map_path;
+	int			map_fd;
+	size_t		map_bound;
+	size_t		map_start;
+	char		**map;
+	void		*mlx;
+	void		*window;
+	void		*img;
+	char		*img_addr;
+	t_textdata	*textures;
+	t_p_dir		p_dir_default;
+	t_vec		p_pos;
+	t_vec		p_dir;
+	t_vec		p_cam;
+	t_p_dir		spawn_dir;
 }	t_data;
+
+int		cleanup(t_data *data);
+int		game_init(t_data *data);
+int		key_events(int keycode, t_data *data);
 
 #endif
