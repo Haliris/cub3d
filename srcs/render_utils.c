@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:12:17 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 15:09:36 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 15:44:21 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist)
 		else if (y > (HEIGHT + wall_height) / 2)
 			rc_mlx_pixel_put(&data->image, x, y, data->textures->floor);
 		else
-			rc_mlx_pixel_put(&data->image, x, y, data->textures->ceiling);
+			rc_mlx_pixel_put(&data->image, x, y, get_opposite(data->textures->ceiling));
 	}
 }

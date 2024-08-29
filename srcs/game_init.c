@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 14:51:26 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 15:38:10 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	game_init(t_data *data)
 	}
 	if (load_assets(data) == PANIC)
 	{
-		cleanup(data);
-		return (PANIC);
+		// cleanup(data);
+		// return (PANIC);
 	}
 	data->image.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->image.addr = mlx_get_data_addr(data->image.img, &data->image.bpp,

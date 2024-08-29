@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 17:39:19 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:36:06 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	init_hooks(t_data *data)
 
 void	start_game(t_data *data)
 {
-	init_hooks(data);
+	// init_hooks(data);
+	mlx_loop_hook(data->mlx, rc_rendering, data);
+	mlx_hook(data->window, KeyRelease, KeyReleaseMask, &key_events, data);
+	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
 	mlx_loop(data->mlx);
 }
 
@@ -82,8 +85,10 @@ int	main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	if (parse_map(&data) == PANIC)
 		return (EXIT_FAILURE);
+	printf("ready to init game\n");
 	if (game_init(&data) == PANIC)
 		return (EXIT_FAILURE);
+	printf("ready to start game\n");
 	start_game(&data);
 	cleanup(&data);
 	close(data.map_fd);
