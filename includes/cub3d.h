@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 17:33:28 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:42:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define FOV 90
+# define ROT_STEP 1.0f
+# define MOV_STEP 0.1f
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
-# define CLOSE_BUTTON 17
 # define FILE_EXTENSION ".cub"
 
 typedef enum e_texture		t_texture;
@@ -80,6 +81,20 @@ typedef enum e_bool
 	FALSE,
 	TRUE,
 }	t_bool;
+
+typedef enum e_rot
+{
+	CLOCK,
+	CCLOCK,
+}	t_rot;
+
+typedef enum e_move
+{
+	FORWARD,
+	BACKWARD,
+	RIGHT,
+	LEFT,
+}	t_move;
 typedef enum e_p_dir
 {
 	NORTH = 'N',
@@ -87,6 +102,15 @@ typedef enum e_p_dir
 	WEST = 'W',
 	EAST = 'E',
 }	t_p_dir;
+
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_image;
 
 typedef struct s_data
 {
@@ -97,7 +121,7 @@ typedef struct s_data
 	char		**map;
 	void		*mlx;
 	void		*window;
-	t_image		*image;
+	t_image		image;
 	t_textdata	*textures;
 	t_wall		wall_data;
 	t_p_dir		p_dir_default;
@@ -117,5 +141,8 @@ int		create_trgb(int t, int r, int g, int b);
 int		get_color(int trgb, char index);
 int		add_shade(double factor, int color);
 int		get_opposite(int color);
+/* rendering utils*/
+void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
+void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/29 17:27:35 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/29 17:44:16 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME 		= cub3d
 SRCS_M		=	main.c \
 				game_init.c \
 				cleanup.c \
-				color_utils.c
+				color_utils.c \
+				render_utils.c
 
 
 SRCS_PS		= 	parser.c \

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 17:29:02 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:44:55 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	game_init(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (PANIC);
-	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
+	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, P_NAME);
 	if (!data->window)
 	{
 		cleanup(data);
@@ -56,5 +56,8 @@ int	game_init(t_data *data)
 		cleanup(data);
 		return (PANIC);
 	}
+	data->image.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->image.addr = mlx_get_data_addr(data->image.img, &data->image.bpp,
+			&data->image.line_length, &data->image.endian);
 	return (SUCCESS);
 }
