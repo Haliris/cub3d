@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:12:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 17:45:05 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:50:54 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	fill_whitespaces(char **map)
 
 static uint32_t	is_cardinal_pos(char c)
 {
-	return (c == NORTH || c == SOUTH || c == WEST || c == EAST);
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
 t_parse_status	find_start(uint32_t coordinate[], char **map, size_t map_start)

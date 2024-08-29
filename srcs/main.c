@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 16:37:04 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 17:48:44 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 // 	i = 0;
 // 	printf("Player position  x: %.2f, y: %.2f\n", data->p_pos.x, data->p_pos.y);
 // 	printf("Player direction x: %.2f, y: %.2f\n", data->p_dir.x, data->p_dir.y);
-// 	printf("Player default dir: %d\n", data->p_dir_default);
 // 	printf("Map path is: %s\n", data->map_path);
 // 	printf("Map output:\n");
 // 	while (data->map[i])

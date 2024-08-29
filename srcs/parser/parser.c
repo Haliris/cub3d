@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 10:55:16 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 17:49:49 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,21 @@ static void	get_player_dir(t_data *data, u_int32_t x, u_int32_t y)
 {
 	if (data->map[x][y] == 'N')
 	{
-		data->p_dir_default = NORTH;
 		vec_init(&data->p_dir, -1.0f, 0.0f);
 		vec_init(&data->p_cam, 0.0f, tan(FOV / 2));
 	}
 	else if (data->map[x][y] == 'S')
 	{
-		data->p_dir_default = SOUTH;
 		vec_init(&data->p_dir, 1.0f, 0.0f);
 		vec_init(&data->p_cam, 0.0f, tan(FOV / 2) * -1);
 	}
 	else if (data->map[x][y] == 'W')
 	{
-		data->p_dir_default = WEST;
 		vec_init(&data->p_dir, 0.0f, -1.0f);
 		vec_init(&data->p_cam, tan(FOV / 2) * -1, 0.0f);
 	}
 	else if (data->map[x][y] == 'E')
 	{
-		data->p_dir_default = EAST;
 		vec_init(&data->p_dir, 0.0f, 1.0f);
 		vec_init(&data->p_cam, tan(FOV / 2), 0.0f);
 	}
