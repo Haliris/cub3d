@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 17:44:31 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:29:05 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_textdata
 	void	*text_img[4];
 	char	*text_paths[4];
 	char	*text_addr[4];
-	int		floor[3];
-	int		ceiling[3];
+	int		floor;
+	int		ceiling;
 	int		textures_nb;
 }	t_textdata;
 typedef enum e_parse_status
@@ -48,8 +48,9 @@ t_parse_status	check_invalid_chars(char **map, size_t map_start);
 void			fill_whitespaces(char **map);
 t_textdata		*get_textures_info(char *map_path, t_data *data);
 t_parse_status	find_start(uint32_t coordinate[], char **map, size_t map_start);
-int				ft_atoi_texture(t_textdata *textures, int array[], char *line);
+int				ft_atoi_texture(t_textdata *textures, int *color, char *line);
 int				add_info_buff(char *line, t_textdata *textures, t_texture type);
 int				check_textpaths(char **paths);
 void			panic_clean(t_textdata *textures);
+
 #endif

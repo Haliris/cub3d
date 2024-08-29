@@ -20,7 +20,7 @@ void	rc_mlx_pixel_put(t_image *image, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	rc_stripe_pixel_put(t_image *image, int x, double ray_dist)
+void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist)
 {
 	int	y;
 	int	wall_height;
@@ -30,11 +30,11 @@ void	rc_stripe_pixel_put(t_image *image, int x, double ray_dist)
 	while (++y < HEIGHT)
 	{
 		if (y < (HEIGHT - wall_height) / 2)
-			rc_mlx_pixel_put(image, x, y, color_cieling);
+			rc_mlx_pixel_put(data->image, x, y, data->textures->ceiling);
 		else if (y > (HEIGHT + wall_height) / 2)
-			rc_mlx_pixel_put(image, x, y, color_floor);
+			rc_mlx_pixel_put(data->image, x, y, data->textures->floor);
 		else
-			rc_mlx_pixel_put(image, x, y, color_wall);
+			rc_mlx_pixel_put(data->image, x, y, color_wall);
 	}
 }
 
@@ -86,13 +86,13 @@ double	rc_raydist(t_vec *ray, t_data *data)
 	while (1)
 	{
 		side = rc_dda(&dist_ray, &unit_dist, &ray_pos, ray);
-		if (data->map[ray_pos.x][ray_pos.y] == '1')
+		if (data->map[(int)ray_pos.x][(int)ray_pos.y] == '1')
 			break ;
 	}
 	if (side == 1)
-		return ((dist_ray_y - unit_dist_y) * vec_cos(ray, data->p_dir));
+		return ((dist_ray.y - unit_dist.y) * vec_cos(ray, &data->p_dir));
 	else
-		return ((dist_ray_x - unit_dist_x) * vec_cos(ray, data->p_dir));
+		return ((dist_ray.x - unit_dist.x) * vec_cos(ray, &data->p_dir));
 }
 
 void	rc_rendering(t_data *data)
@@ -110,7 +110,7 @@ void	rc_rendering(t_data *data)
 		ray_dir.x = data->p_dir.x + data->p_cam.x * cam_x;
 		ray_dir.y = data->p_dir.y + data->p_cam.y * cam_x;
 		ray_dist = rc_raydist(&ray_dir, data);
-		rc_stripe_pixel_put(data->image, x, ray_dist);
+		rc_stripe_pixel_put(data, x, ray_dist);
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->image->img, 0, 0);
 }

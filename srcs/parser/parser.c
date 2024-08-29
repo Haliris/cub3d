@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 10:50:42 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 10:55:16 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ t_parse_status	verify_map(char **map, t_data *data)
 
 	start[0] = 0;
 	start[1] = 0;
-	if (check_invalid_chars(map) == MAP_ERR)
+	if (check_invalid_chars(map, data->map_start) == MAP_ERR)
 		return (MAP_ERR);
 	fill_whitespaces(map);
-	if (find_start(start, map) == MAP_ERR)
+	if (find_start(start, map, data->map_start) == MAP_ERR)
 		return (MAP_ERR);
 	get_player_dir(data, start[0], start[1]);
 	if (check_walls(map, start[0], start[1], data->map_bound) == MAP_ERR)

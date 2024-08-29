@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:29:47 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 18:37:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:39:01 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ static int	convert_nb(char *str, int *array, size_t *array_i, size_t *i)
 	return (SUCCESS);
 }
 
-int	ft_atoi_texture(t_textdata *textures, int array[], char *line)
+int	ft_atoi_texture(t_textdata *textures, int *color, char *line)
 {
 	size_t	i;
 	size_t	array_i;
+	int		rgb[3];
 
 	i = 2;
 	array_i = 0;
@@ -37,7 +38,7 @@ int	ft_atoi_texture(t_textdata *textures, int array[], char *line)
 		while (line[i] == ' ')
 			i++;
 		if (ft_isdigit(line[i]))
-			convert_nb(line, array, &array_i, &i);
+			convert_nb(line, rgb, &array_i, &i);
 		else
 			return (PANIC);
 		while (line[i] == ' ')
@@ -46,11 +47,10 @@ int	ft_atoi_texture(t_textdata *textures, int array[], char *line)
 			return (PANIC);
 		i++;
 	}
-	if (array_i != 3)
-		return (PANIC);
-	if (line[i] != '\0')
+	if (array_i != 3 || line[i] != '\0')
 		return (PANIC);
 	textures->textures_nb++;
+	*color = create_trgb(0, rgb[0], rgb[1], rgb[2]);
 	return (SUCCESS);
 }
 

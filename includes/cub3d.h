@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 10:41:22 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 11:16:16 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,10 @@ typedef struct s_data
 int		cleanup(t_data *data);
 int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
+/* color utils*/
+int		create_trgb(int t, int r, int g, int b);
+int		get_color(int trgb, char index);
+int		add_shade(double factor, int color);
+int		get_opposite(int color);
 
 #endif

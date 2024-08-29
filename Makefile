@@ -6,7 +6,7 @@
 #    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/29 10:42:38 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/08/29 11:12:59 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME 		= cub3d
 SRCS_M		=	main.c \
 				game_init.c \
 				cleanup.c \
+				color_utils.c
 
 
 SRCS_PS		= 	parser.c \
