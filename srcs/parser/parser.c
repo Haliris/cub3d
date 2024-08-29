@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 17:49:49 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 20:04:30 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,24 @@ t_parse_status	verify_map(char **map, t_data *data)
 
 int	parse_map(t_data *data)
 {
-	data->map = build_map(data);
+	char	*line;
+
+	line = get_next_line(data->map_fd);
+	if (!line)
+		return (PANIC);
+	data->textures = get_textures_info(data, line);
+	if (!data->textures)
+	{
+		if (line)
+			free(line);
+		close(data->map_fd);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		return (PANIC);
+	}
+	data->map = build_map(data, line);
 	close(data->map_fd);
 	if (!data->map)
 		return (PANIC);
-	data->textures = get_textures_info(data->map_path, data);
-	if (!data->textures)
-	{
-		close(data->map_fd);
-		ft_putstr_fd("Error\n", STDERR_FILENO);
-		return (ft_free_all(data->map), PANIC);
-	}
-	close(data->map_fd);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);

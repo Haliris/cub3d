@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:51:48 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 18:14:21 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 20:04:38 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ static char	**read_map_file(size_t size, char *line, t_data *data)
 	return (map);
 }
 
-char	**build_map(t_data *data)
+char	**build_map(t_data *data, char *line)
 {
 	char			**map;
-	char			*line;
+	// char			*line;
 	size_t			size;
 
-	line = get_next_line(data->map_fd);
+	// line = get_next_line(data->map_fd);
 	if (!line)
 		return (NULL);
 	size = get_map_size(data->map_path);
