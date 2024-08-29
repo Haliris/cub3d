@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 17:39:19 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:37:04 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,11 @@ static int	init_data(t_data *data, char *map_file)
 	return (SUCCESS);
 }
 
-void	init_hooks(t_data *data)
-{
-	mlx_hook(data->window, KeyRelease, KeyReleaseMask, &key_events, data);
-	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
-}
-
 void	start_game(t_data *data)
 {
-	init_hooks(data);
+	mlx_loop_hook(data->mlx, rc_rendering, data);
+	mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
+	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
 	mlx_loop(data->mlx);
 }
 
