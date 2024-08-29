@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:29:47 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 11:39:01 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 14:00:13 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 static int	convert_nb(char *str, int *array, size_t *array_i, size_t *i)
 {
+	int	nb;
+
+	nb = 0;
 	while (ft_isdigit(str[*i]))
 	{
-		array[*array_i] = 10 * array[*array_i] + (str[*i] - '0');
+		nb = 10 * nb + (str[*i] - '0');
+		array[*array_i] = nb;
 		if (array[*array_i] > 255)
 			return (PANIC);
 		*i = *i + 1;
