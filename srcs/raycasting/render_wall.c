@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:22:08 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 17:50:42 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 18:32:21 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	mlx_render_wall(t_data *data, int x, int y, double ray_dist)
 		wall_data.draw_bounds[1] = HEIGHT - 1;
 	get_x_coordinates(wall_data.tex_coordinates, data, ray_dist);
 	get_y_coordinates(wall_data.tex_coordinates, data, wall_data.height, y);
-	color = data->textures->text_addr[dir][wall_data.tex_coordinates[1] * data->textures->text_width + wall_data.tex_coordinates[0]];
+	color = ((uint32_t*)data->textures->text_addr[dir])[wall_data.tex_coordinates[1] * data->textures->text_width + wall_data.tex_coordinates[0]];
 	rc_mlx_pixel_put(&data->image, x, y, color);
 }
