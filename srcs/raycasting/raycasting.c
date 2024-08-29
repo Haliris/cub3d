@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 15:33:25 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 16:54:37 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ double	rc_raydist(t_vec *ray, t_data *data)
 	t_vec	dist_ray;
 	int		side;
 
-	vec_init(&ray_pos, (int)data->p_pos.x, (int)data->p_pos.y);
+	vec_init(&ray_pos, data->p_pos.x, data->p_pos.y);
 	unit_dist.x = sqrt(1 + ((ray->y * ray->y) / (ray->x * ray->x)));
 	unit_dist.y = sqrt(1 + ((ray->x * ray->x) / (ray->y * ray->y)));
 	rc_ray_init(&dist_ray, &ray_pos, ray, &unit_dist);

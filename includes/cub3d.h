@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 15:30:44 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 16:57:43 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define FOV 90
+# define ROT_STEP 1.0f
+# define MOV_STEP 0.1f
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
@@ -73,6 +75,20 @@ typedef enum e_bool
 	FALSE,
 	TRUE,
 }	t_bool;
+
+typedef enum e_rot
+{
+	CLOCK,
+	CCLOCK,
+}	t_rot;
+
+typedef enum e_move
+{
+	FORWARD,
+	BACKWARD,
+	RIGHT,
+	LEFT,
+}	t_move;
 typedef enum e_p_dir
 {
 	NORTH = 'N',
