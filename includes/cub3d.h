@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 10:42:19 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 10:41:22 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <math.h>
 
 # include "mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line_bonus.h"
@@ -52,11 +54,21 @@
 # define CLOSE_BUTTON 17
 # define FILE_EXTENSION ".cub"
 
-# define TEXTURE_NORTH "assets/dummy.xpm"
-# define TEXTURE_SOUTH "assets/dummy.xpm"
-# define TEXTURE_EAST "assets/dummy.xpm"
-# define TEXTURE_WEST "assets/dummy.xpm"
+typedef enum e_texture		t_texture;
+typedef struct s_textdata	t_textdata;
 
+typedef enum e_keys
+{
+	ARROW_RIGHT = 65363,
+	ARROW_LEFT = 65361,
+	ARROW_UP = 65362,
+	ARROW_DOWN = 65364,
+	ESC_KEY = 65307,
+	W_KEY = 119,
+	A_KEY = 97,
+	S_KEY = 115,
+	D_KEY = 100,
+}	t_keys;
 typedef enum e_bool
 {
 	FALSE,
@@ -69,31 +81,27 @@ typedef enum e_p_dir
 	WEST = 'W',
 	EAST = 'E',
 }	t_p_dir;
-typedef enum e_texture
-{
-	NORTH = 0,
-	SOUTH = 1,
-	EAST = 2,
-	WEST = 3,
-}	t_texture;
 
 typedef struct s_data
 {
-	char	*map_path;
-	int		map_fd;
-	size_t	map_bound;
-	char	**map;
-	void	*mlx;
-	void	*window;
-	t_image	*image;
-	void	*textures[4];
-	t_p_dir	p_dir_default;
-	t_vec	p_pos;
-	t_vec	p_dir;
-	t_vec	p_cam;
-	t_p_dir	p_dir;
+	char		*map_path;
+	int			map_fd;
+	size_t		map_bound;
+	size_t		map_start;
+	char		**map;
+	void		*mlx;
+	void		*window;
+	t_image		*image;
+	t_textdata	*textures;
+	t_p_dir		p_dir_default;
+	t_vec		p_pos;
+	t_vec		p_dir;
+	t_vec		p_cam;
+	t_p_dir		spawn_dir;
 }	t_data;
 
-void	cleanup(t_data *data);
+int		cleanup(t_data *data);
 int		game_init(t_data *data);
+int		key_events(int keycode, t_data *data);
+
 #endif

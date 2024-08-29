@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 17:05:59 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:41:25 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 static int	load_assets(t_data *data)
 {
-	int	width;
-	int	height;
+	int			w;
+	int			h;
+	t_textdata	*t;
 
-	width = 0;
-	height = 0;
-	data->textures[NORTH] = mlx_xpm_file_to_image(data->mlx, TEXTURE_NORTH, &width, &height);
-	data->textures[SOUTH] = mlx_xpm_file_to_image(data->mlx, TEXTURE_SOUTH, &width, &height);
-	data->textures[EAST] = mlx_xpm_file_to_image(data->mlx, TEXTURE_EAST, &width, &height);
-	data->textures[WEST] = mlx_xpm_file_to_image(data->mlx, TEXTURE_WEST, &width, &height);
-	if (!data->textures[NORTH] || !data->textures[SOUTH] || !data->textures[WEST] || !data->textures[EAST])
+	t = data->textures;
+	w = 0;
+	h = 0;
+	t->text_img[N] = mlx_xpm_file_to_image(data->mlx, t->text_paths[N], &w, &h);
+	t->text_img[S] = mlx_xpm_file_to_image(data->mlx, t->text_paths[S], &w, &h);
+	t->text_img[E] = mlx_xpm_file_to_image(data->mlx, t->text_paths[E], &w, &h);
+	t->text_img[W] = mlx_xpm_file_to_image(data->mlx, t->text_paths[W], &w, &h);
+	if (!t->text_img[N] || !t->text_img[S]
+		|| !t->text_img[W] || !t->text_img[E])
 		return (PANIC);
+	return (SUCCESS);
 }
 
 int	game_init(t_data *data)

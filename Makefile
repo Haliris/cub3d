@@ -6,7 +6,7 @@
 #    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/28 16:41:23 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/08/29 10:42:38 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,11 @@ SRCS_M		=	main.c \
 
 SRCS_PS		= 	parser.c \
 				build_map.c \
-				parser_utils.c
+				parser_utils.c \
+				get_textures.c \
+				get_textures_utils.c
+
+SRCS_EV		=	key_events.c
 
 SRCS_MAP	= map.c
 
@@ -29,12 +33,14 @@ SRCS_VEC	= vector.c vector_2.c vector_3.c
 
 PATH_M		= srcs/
 PATH_PS		= srcs/parser/
+PATH_EV		= srcs/events/
 PATH_MAP	= srcs/map/
 PATH_RC		= srcs/raycasting/
 PATH_VEC	= srcs/vector/
 
 SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_PS), $(SRCS_PS)) \
+		  $(addprefix $(PATH_EV), $(SRCS_EV)) \
 		  $(addprefix $(PATH_MAP), $(SRCS_MAP)) \
 		  $(addprefix $(PATH_RC), $(SRCS_RC)) \
 		  $(addprefix $(PATH_VEC), $(SRCS_VEC))

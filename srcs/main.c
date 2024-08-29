@@ -6,29 +6,29 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 17:06:13 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:39:19 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_data(t_data *data)
-{
-	int	i;
+// void	print_data(t_data *data)
+// {
+// 	int	i;
 
-	i = 0;
-	printf("Player position  x: %.2f, y: %.2f\n", data->p_pos.x, data->p_pos.y);
-	printf("Player direction x: %.2f, y: %.2f\n", data->p_dir.x, data->p_dir.y);
-	printf("Player default dir: %d\n", data->p_dir_default);
-	printf("Map path is: %s\n", data->map_path);
-	printf("Map output:\n");
-	while (data->map[i])
-	{
-		printf("%s", data->map[i]);
-		i++;
-	}
-	printf("Map bound: %zu\n", data->map_bound);
-}
+// 	i = 0;
+// 	printf("Player position  x: %.2f, y: %.2f\n", data->p_pos.x, data->p_pos.y);
+// 	printf("Player direction x: %.2f, y: %.2f\n", data->p_dir.x, data->p_dir.y);
+// 	printf("Player default dir: %d\n", data->p_dir_default);
+// 	printf("Map path is: %s\n", data->map_path);
+// 	printf("Map output:\n");
+// 	while (data->map[i])
+// 	{
+// 		printf("%s", data->map[i]);
+// 		i++;
+// 	}
+// 	printf("Map bound: %zu\n", data->map_bound);
+// }
 
 static t_bool	is_cub_file(char *file)
 {
@@ -45,11 +45,11 @@ static t_bool	is_cub_file(char *file)
 	return (FALSE);
 }
 
-static int	init_data(t_data *data)
+static int	init_data(t_data *data, char *map_file)
 {
 	ft_memset(data, 0, sizeof(t_data));
-	data->map_path = av[1];
-	data->map_fd = open(av[1], O_RDONLY);
+	data->map_path = map_file;
+	data->map_fd = open(map_file, O_RDONLY);
 	if (data->map_fd < 0)
 	{
 		ft_putstr_fd("Could not open map file!\n", STDERR_FILENO);
@@ -58,9 +58,16 @@ static int	init_data(t_data *data)
 	return (SUCCESS);
 }
 
+void	init_hooks(t_data *data)
+{
+	mlx_hook(data->window, KeyRelease, KeyReleaseMask, &key_events, data);
+	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
+}
+
 void	start_game(t_data *data)
 {
-
+	init_hooks(data);
+	mlx_loop(data->mlx);
 }
 
 int	main(int ac, char *av[])
@@ -71,7 +78,7 @@ int	main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	if (is_cub_file(av[1]) == FALSE)
 		return (EXIT_FAILURE);
-	if (init_data(&data) == PANIC)
+	if (init_data(&data, av[1]) == PANIC)
 		return (EXIT_FAILURE);
 	if (parse_map(&data) == PANIC)
 		return (EXIT_FAILURE);
