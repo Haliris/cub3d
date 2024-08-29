@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 15:49:32 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:28:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef enum e_texture
 typedef struct s_textdata
 {
 	void		*text_img[4];
-	double		text_height;
-	double		text_width;
+	int			text_height;
+	int			text_width;
 	char		*text_paths[4];
 	char		*text_addr[4];
 	int			floor;

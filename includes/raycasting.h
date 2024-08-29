@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:39:13 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 16:22:35 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:37:26 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@ typedef struct s_image
 	int		line_length;
 	int		endian;
 }	t_image;
-typedef struct s_wall
-{
-	int	height
-	int	draw_bounds[2];
-	int	tex_coordinates[2];
-}	t_wall;
+
 
 void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
@@ -43,5 +38,6 @@ int		rc_dda(t_vec *dist, t_vec *unit_dist, t_vec *pos, t_vec *dir);
 void	rc_ray_init(t_vec *dist, t_vec *pos, t_vec *dir, t_vec *unit_dst);
 double	rc_raydist(t_vec *ray, t_data *data);
 void	rc_rendering(t_data *data);
+void	mlx_render_wall(t_data *data, int x, int y, double ray_dist);
 
 #endif

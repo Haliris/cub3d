@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
+#    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/29 12:13:13 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/08/29 17:27:35 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS_EV		=	key_events.c
 
 SRCS_MAP	= map.c
 
-SRCS_RC		= raycasting.c render_utils.c
+SRCS_RC		= raycasting.c render_utils.c render_wall.c
 
 SRCS_VEC	= vector.c vector_2.c vector_3.c
 

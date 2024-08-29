@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 16:23:21 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:33:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,12 @@
 typedef enum e_texture		t_texture;
 typedef struct s_textdata	t_textdata;
 typedef struct s_image		t_image;
-typedef struct s_wall		t_wall;
+typedef struct s_wall
+{
+	int	height;
+	int	draw_bounds[2];
+	int	tex_coordinates[2];
+}	t_wall;
 typedef enum e_keys
 {
 	ARROW_RIGHT = 65363,

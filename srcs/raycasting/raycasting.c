@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 16:07:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 17:30:08 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	rc_rendering(t_data *data)
 		cam_x = 2 * x / (double)WIDTH - 1;
 		data->ray_dir.x = data->p_dir.x + data->p_cam.x * cam_x;
 		data->ray_dir.y = data->p_dir.y + data->p_cam.y * cam_x;
-		ray_dist = rc_raydist(data->ray_dir, data);
+		ray_dist = rc_raydist(&data->ray_dir, data);
 		rc_stripe_pixel_put(data, x, ray_dist);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->image->img, 0, 0);
