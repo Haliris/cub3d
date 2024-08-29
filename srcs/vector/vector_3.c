@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:41:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 16:45:12 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 11:46:19 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ double	vec_cos(t_vec *vec_a, t_vec *vec_b)
 {
 	double	output;
 
-	output = vec_doc(vec_a, vec_b) / (vec_absv(vec_a) * vec_absv(vec_b));
+	output = vec_dot(vec_a, vec_b) / (vec_absv(vec_a) * vec_absv(vec_b));
 	return (output);
 }

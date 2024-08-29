@@ -6,68 +6,42 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 18:17:43by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 12:12:51 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	rc_mlx_pixel_put(t_image *image, int x, int y, int color)
+void	rc_ray_init(t_vec *dist, t_vec *pos, t_vec *dir, t_vec *unit_dst)
 {
-	char	*dst;
-
-	dst = image->addr + (y * image->line_length + x * (image->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist)
-{
-	int	y;
-	int	wall_height;
-
-	wall_height = (int)(HEIGHT / ray_dist);
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		if (y < (HEIGHT - wall_height) / 2)
-			rc_mlx_pixel_put(data->image, x, y, data->textures->ceiling);
-		else if (y > (HEIGHT + wall_height) / 2)
-			rc_mlx_pixel_put(data->image, x, y, data->textures->floor);
-		else
-			rc_mlx_pixel_put(data->image, x, y, color_wall);
-	}
-}
-
-void	rc_ray_init(t_vec *dist_ray, t_vec *ray_pos, t_vec *ray_dir, t_vec *unit_dst)
-{
-	if (ray_dir->x < 0)
-		dist_ray->x = (ray_pos->x - (int)ray_pos->x) * unit_dst->x;
+	if (dir->x < 0)
+		dist->x = (pos->x - (int)pos->x) * unit_dst->x;
 	else
-		dist_ray->x = ((int)ray_pos->x + 1.0 - ray_pos->x) * unit_dst->x;
-	if (ray_dir->y < 0)
-		dist_ray->y = (ray_pos->y - (int)ray_pos->y) * unit_dst->y;
+		dist->x = ((int)pos->x + 1.0 - pos->x) * unit_dst->x;
+	if (dir->y < 0)
+		dist->y = (pos->y - (int)pos->y) * unit_dst->y;
 	else
-		dist_ray->y = ((int)ray_pos->y + 1.0 - ray_pos->y) * unit_dst->y;
+		dist->y = ((int)pos->y + 1.0 - pos->y) * unit_dst->y;
 }
 
-int	rc_dda(t_vec *dist_ray, t_vec *unit_dist, t_vec *ray_pos, t_vec *ray_dir)
+int	rc_dda(t_vec *dist, t_vec *unit_dist, t_vec *pos, t_vec *dir)
 {
-	if (dist_ray->x < dist_ray->y)
+	if (dist->x < dist->y)
 	{
-		dist_ray->x += unit_dist->x;
-		if (ray_dir->x < 0)
-			ray_pos->x -= 1;
+		dist->x += unit_dist->x;
+		if (dir->x < 0)
+			pos->x -= 1;
 		else
-			ray_pos->x += 1;
+			pos->x += 1;
 		return (0);
 	}
 	else
 	{
-		dist_ray->y += unit_dist->y;
-		if (ray_dir->y < 0)
-			ray_pos->y -= 1;
+		dist->y += unit_dist->y;
+		if (dir->y < 0)
+			pos->y -= 1;
 		else
-			ray_pos->y += 1;
+			pos->y += 1;
 		return (1);
 	}
 }

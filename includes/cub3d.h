@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 11:16:16 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 12:14:33 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 
 typedef enum e_texture		t_texture;
 typedef struct s_textdata	t_textdata;
+typedef struct s_image		t_image;
 
 typedef enum e_keys
 {
