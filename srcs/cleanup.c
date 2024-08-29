@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 10:52:00 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 14:52:53 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	cleanup(t_data *data)
 {
 	if (data->textures)
 		cleanup_textures(data->textures, data->mlx);
-	if (data->image->img)
-		mlx_destroy_image(data->mlx, data->image->img);
+	if (data->image.img)
+		mlx_destroy_image(data->mlx, data->image.img);
 	if (data->window)
 		mlx_destroy_window(data->mlx, data->window);
 	mlx_destroy_display(data->mlx);

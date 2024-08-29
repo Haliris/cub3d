@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 12:14:33 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 15:08:37 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@
 
 typedef enum e_texture		t_texture;
 typedef struct s_textdata	t_textdata;
-typedef struct s_image		t_image;
 
 typedef enum e_keys
 {
@@ -83,6 +82,15 @@ typedef enum e_p_dir
 	EAST = 'E',
 }	t_p_dir;
 
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_image;
+
 typedef struct s_data
 {
 	char		*map_path;
@@ -92,7 +100,7 @@ typedef struct s_data
 	char		**map;
 	void		*mlx;
 	void		*window;
-	t_image		*image;
+	t_image		image;
 	t_textdata	*textures;
 	t_p_dir		p_dir_default;
 	t_vec		p_pos;
@@ -109,5 +117,8 @@ int		create_trgb(int t, int r, int g, int b);
 int		get_color(int trgb, char index);
 int		add_shade(double factor, int color);
 int		get_opposite(int color);
+/* rendering utils*/
+void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
+void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
 
 #endif
