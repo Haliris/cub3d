@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
+#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/28 17:35:43 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/29 12:13:13 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME 		= cub3d
 SRCS_M		=	main.c \
 				game_init.c \
 				cleanup.c \
+				color_utils.c
 
 
 SRCS_PS		= 	parser.c \
@@ -27,9 +28,9 @@ SRCS_EV		=	key_events.c
 
 SRCS_MAP	= map.c
 
-SRCS_RC		= raycasting.c
+SRCS_RC		= raycasting.c render_utils.c
 
-SRCS_VEC	= vector.c vector_2.c
+SRCS_VEC	= vector.c vector_2.c vector_3.c
 
 PATH_M		= srcs/
 PATH_PS		= srcs/parser/
@@ -45,7 +46,7 @@ SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_RC), $(SRCS_RC)) \
 		  $(addprefix $(PATH_VEC), $(SRCS_VEC))
 
-HEADERS		= cub3d.h parser.h vector.h
+HEADERS		= cub3d.h parser.h vector.h raycasting.h
 
 OBJS		= $(SRCS:.c=.o)
 

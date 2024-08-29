@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:56:32 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/27 14:42:47 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/28 16:45:05 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ double	vec_dist(const t_vec *vec_a, const t_vec *vec_b);
 void	vec_mirror(t_vec *vec);
 void	vec_transp(t_vec *vec);
 void	vec_rotate(t_vec *vec, double angle);
+double	vec_cos(t_vec *vec_a, t_vec *vec_b);
 
 #endif

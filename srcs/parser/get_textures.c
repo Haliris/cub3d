@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:44:55 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 17:45:41 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:29:32 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	add_floor_ceiling(char *line, t_textdata *textures)
 {
 	if (ft_strncmp(line, "F ", 2) == 0)
-		return (ft_atoi_texture(textures, textures->floor, line));
+		return (ft_atoi_texture(textures, &textures->floor, line));
 	else if (ft_strncmp(line, "C ", 2) == 0)
-		return (ft_atoi_texture(textures, textures->ceiling, line));
+		return (ft_atoi_texture(textures, &textures->ceiling, line));
 	return (PANIC);
 }
 

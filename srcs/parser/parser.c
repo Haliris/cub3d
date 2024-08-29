@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 19:04:32 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 10:55:16 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,25 @@ static void	get_player_dir(t_data *data, u_int32_t x, u_int32_t y)
 	{
 		data->p_dir_default = NORTH;
 		vec_init(&data->p_dir, -1.0f, 0.0f);
+		vec_init(&data->p_cam, 0.0f, tan(FOV / 2));
 	}
 	else if (data->map[x][y] == 'S')
 	{
 		data->p_dir_default = SOUTH;
 		vec_init(&data->p_dir, 1.0f, 0.0f);
+		vec_init(&data->p_cam, 0.0f, tan(FOV / 2) * -1);
 	}
 	else if (data->map[x][y] == 'W')
 	{
 		data->p_dir_default = WEST;
 		vec_init(&data->p_dir, 0.0f, -1.0f);
+		vec_init(&data->p_cam, tan(FOV / 2) * -1, 0.0f);
 	}
 	else if (data->map[x][y] == 'E')
 	{
 		data->p_dir_default = EAST;
 		vec_init(&data->p_dir, 0.0f, 1.0f);
+		vec_init(&data->p_cam, tan(FOV / 2), 0.0f);
 	}
 	vec_init(&data->p_pos, (double)x, (double)y);
 }
@@ -78,28 +82,6 @@ t_parse_status	verify_map(char **map, t_data *data)
 	return (MAP_OK);
 }
 
-static void	print_textures(t_textdata *textures)
-{
-	int	index;
-
-	index = 0;
-	printf("SO: %s\n", textures->text_paths[S]);
-	printf("NO: %s\n", textures->text_paths[N]);
-	printf("EA: %s\n", textures->text_paths[E]);
-	printf("WE: %s\n", textures->text_paths[W]);
-	while (index < 3)
-	{
-		printf("F%d: %d\n", index, textures->floor[index]);
-		index++;
-	}
-	index = 0;
-	while (index < 3)
-	{
-		printf("C%d: %d\n", index, textures->ceiling[index]);
-		index++;
-	}
-}
-
 int	parse_map(t_data *data)
 {
 	data->map = build_map(data);
@@ -113,7 +95,6 @@ int	parse_map(t_data *data)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		return (ft_free_all(data->map), PANIC);
 	}
-	print_textures(data->textures);
 	close(data->map_fd);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{

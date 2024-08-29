@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/28 15:33:44 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 12:14:33 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 # include "parser.h"
 # include "vector.h"
+# include "raycasting.h"
 
 # define SUCCESS 0
 # define PANIC 1
@@ -46,6 +47,7 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
+# define FOV 90
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
@@ -54,6 +56,7 @@
 
 typedef enum e_texture		t_texture;
 typedef struct s_textdata	t_textdata;
+typedef struct s_image		t_image;
 
 typedef enum e_keys
 {
@@ -89,8 +92,7 @@ typedef struct s_data
 	char		**map;
 	void		*mlx;
 	void		*window;
-	void		*img;
-	char		*img_addr;
+	t_image		*image;
 	t_textdata	*textures;
 	t_p_dir		p_dir_default;
 	t_vec		p_pos;
@@ -102,5 +104,10 @@ typedef struct s_data
 int		cleanup(t_data *data);
 int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
+/* color utils*/
+int		create_trgb(int t, int r, int g, int b);
+int		get_color(int trgb, char index);
+int		add_shade(double factor, int color);
+int		get_opposite(int color);
 
 #endif

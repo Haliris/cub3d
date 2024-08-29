@@ -6,8 +6,85 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/15 12:13:43 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 12:12:51 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "raycasting.h"
+
+void	rc_ray_init(t_vec *dist, t_vec *pos, t_vec *dir, t_vec *unit_dst)
+{
+	if (dir->x < 0)
+		dist->x = (pos->x - (int)pos->x) * unit_dst->x;
+	else
+		dist->x = ((int)pos->x + 1.0 - pos->x) * unit_dst->x;
+	if (dir->y < 0)
+		dist->y = (pos->y - (int)pos->y) * unit_dst->y;
+	else
+		dist->y = ((int)pos->y + 1.0 - pos->y) * unit_dst->y;
+}
+
+int	rc_dda(t_vec *dist, t_vec *unit_dist, t_vec *pos, t_vec *dir)
+{
+	if (dist->x < dist->y)
+	{
+		dist->x += unit_dist->x;
+		if (dir->x < 0)
+			pos->x -= 1;
+		else
+			pos->x += 1;
+		return (0);
+	}
+	else
+	{
+		dist->y += unit_dist->y;
+		if (dir->y < 0)
+			pos->y -= 1;
+		else
+			pos->y += 1;
+		return (1);
+	}
+}
+
+double	rc_raydist(t_vec *ray, t_data *data)
+{
+	t_vec	ray_pos;
+	t_vec	unit_dist;
+	t_vec	dist_ray;
+	int		side;
+
+	vec_init(&ray_pos, (int)data->p_pos.x, (int)data->p_pos.y);
+	unit_dist.x = sqrt(1 + ((ray->y * ray->y) / (ray->x * ray->x)));
+	unit_dist.y = sqrt(1 + ((ray->x * ray->x) / (ray->y * ray->y)));
+	rc_ray_init(&dist_ray, &ray_pos, ray, &unit_dist);
+	while (1)
+	{
+		side = rc_dda(&dist_ray, &unit_dist, &ray_pos, ray);
+		if (data->map[(int)ray_pos.x][(int)ray_pos.y] == '1')
+			break ;
+	}
+	if (side == 1)
+		return ((dist_ray.y - unit_dist.y) * vec_cos(ray, &data->p_dir));
+	else
+		return ((dist_ray.x - unit_dist.x) * vec_cos(ray, &data->p_dir));
+}
+
+void	rc_rendering(t_data *data)
+{
+	int		x;
+	double	cam_x;
+	double	ray_dist;
+	t_vec	ray_dir;
+
+	mlx_clear_window(data->mlx, data->window);
+	x = -1;
+	while (++x < WIDTH)
+	{
+		cam_x = 2 * x / (double)WIDTH - 1;
+		ray_dir.x = data->p_dir.x + data->p_cam.x * cam_x;
+		ray_dir.y = data->p_dir.y + data->p_cam.y * cam_x;
+		ray_dist = rc_raydist(&ray_dir, data);
+		rc_stripe_pixel_put(data, x, ray_dist);
+	}
+	mlx_put_image_to_window(data->mlx, data->window, data->image->img, 0, 0);
+}
