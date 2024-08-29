@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 15:50:27 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 18:15:17 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int	cleanup(t_data *data)
 		mlx_destroy_window(data->mlx, data->window);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
+	panic_free(data->map);
 	exit(SUCCESS);
 }

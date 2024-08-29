@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   build_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:51:48 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 15:23:19 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/29 18:14:21 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void	panic_free(char **array)
+void	panic_free(char **array)
 {
 	u_int32_t	i;
 

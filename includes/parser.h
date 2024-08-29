@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 11:29:05 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/29 18:14:56 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef enum e_parse_status
 
 int				parse_map(t_data *data);
 char			**build_map(t_data *data);
+void			panic_free(char **array);
 t_bool			is_invalid_char(char c);
 t_parse_status	check_invalid_chars(char **map, size_t map_start);
 void			fill_whitespaces(char **map);
