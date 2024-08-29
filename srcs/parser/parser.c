@@ -85,8 +85,17 @@ t_parse_status	verify_map(char **map, t_data *data)
 int	parse_map(t_data *data)
 {
 	data->map = build_map(data);
+	close(data->map_fd);
 	if (!data->map)
 		return (PANIC);
+	data->textures = get_textures_info(data->map_path, data);
+	if (!data->textures)
+	{
+		close(data->map_fd);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		return (ft_free_all(data->map), PANIC);
+	}
+	close(data->map_fd);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);
