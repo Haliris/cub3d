@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:22:08 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 18:32:21 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:18:10 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,47 @@ static t_texture	get_curr_dir(t_data *data)
 
 static void	get_x_coordinates(int *tex_coordinates, t_data *data, double ray_dist)
 {
-	double	wall_x;
+    double wall_hit_x, wall_hit_y;
+    int map_x, map_y;
 
-	if (data->side == 0)
-		wall_x = data->p_pos.y + ray_dist * data->ray_dir.y;
-	else
-		wall_x = data->p_pos.x + ray_dist * data->ray_dir.x;
-	wall_x -= floor(wall_x);
-	tex_coordinates[0] = (int)(wall_x * (double)data->textures->text_width);
-	if (tex_coordinates[0] >= data->textures->text_width)
-		tex_coordinates[0] = data->textures->text_width - 1;
+    // Calculate the world coordinates of where the ray hits the wall
+    if (data->side == 0)
+    {
+        wall_hit_x = data->p_pos.x + ray_dist * data->ray_dir.x;
+        map_x = (int)wall_hit_x;
+        wall_hit_y = data->p_pos.y + ray_dist * data->ray_dir.y;
+        tex_coordinates[0] = (int)((wall_hit_y - floor(wall_hit_y)) * data->textures->text_width);
+    }
+    else
+    {
+        wall_hit_x = data->p_pos.x + ray_dist * data->ray_dir.x;
+        wall_hit_y = data->p_pos.y + ray_dist * data->ray_dir.y;
+        map_y = (int)wall_hit_y;
+        tex_coordinates[0] = (int)((wall_hit_x - floor(wall_hit_x)) * data->textures->text_width);
+    }
+
+    // Flip texture if needed
+    if ((data->side == 0 && data->ray_dir.x < 0) ||
+        (data->side == 1 && data->ray_dir.y > 0))
+        tex_coordinates[0] = data->textures->text_width - tex_coordinates[0] - 1;
+
+    // Ensure texture coordinate is within bounds
+    tex_coordinates[0] &= (data->textures->text_width - 1);
 }
 
 static void	get_y_coordinates(int *tex_coordinates, t_data *data, int wall_height, int y)
 {
-	tex_coordinates[1] = ((y - data->wall_data.draw_bounds[0]) * data->textures->text_height) / wall_height;
-	if (tex_coordinates[1] >= data->textures->text_height)
-		tex_coordinates[1] = data->textures->text_height - 1;
+	double	tex_pos;
+	int		tex_y;
+	double	wall_pos;
+
+	// Calculate distance from top of wall to current pixel
+	wall_pos = y - (HEIGHT / 2) + (wall_height / 2);
+	// Calculate texture y coordinate
+	tex_pos = (wall_pos * data->textures->text_height) / wall_height;
+	tex_y = (int)tex_pos & (data->textures->text_height - 1);
+
+	tex_coordinates[1] = tex_y;
 }
 
 void	mlx_render_wall(t_data *data, int x, int y, double ray_dist)
