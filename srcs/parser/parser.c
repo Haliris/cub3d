@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 11:46:42by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 14:09:41 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	parse_map(t_data *data)
 	close(data->map_fd);
 	if (!data->map)
 		return (PANIC);
-	// print_parsed_map(data);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);

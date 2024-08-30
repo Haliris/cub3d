@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 11:48:49 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 14:09:06 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	if (parse_map(&data) == PANIC)
 		return (EXIT_FAILURE);
-	// print_data(&data);
 	if (game_init(&data) == PANIC)
 		return (EXIT_FAILURE);
 	start_game(&data);
