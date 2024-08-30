@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 17:45:39 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:31:07 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 static void	cleanup_textures(t_textdata *textures, void *mlx)
 {
+	if (textures->text_img[N])
+		mlx_destroy_image(mlx, textures->text_img[N]);
+	if (textures->text_img[S])
+		mlx_destroy_image(mlx, textures->text_img[S]);
+	if (textures->text_img[E])
+		mlx_destroy_image(mlx, textures->text_img[E]);
+	if (textures->text_img[W])
+		mlx_destroy_image(mlx, textures->text_img[W]);
 	if (textures->text_paths[N])
 		free(textures->text_paths[N]);
 	if (textures->text_paths[S])
@@ -22,14 +30,6 @@ static void	cleanup_textures(t_textdata *textures, void *mlx)
 		free(textures->text_paths[E]);
 	if (textures->text_paths[W])
 		free(textures->text_paths[W]);
-	if (textures->text_img[N])
-		mlx_destroy_image(textures->text_img[N], mlx);
-	if (textures->text_img[S])
-		mlx_destroy_image(textures->text_img[S], mlx);
-	if (textures->text_img[E])
-		mlx_destroy_image(textures->text_img[E], mlx);
-	if (textures->text_img[W])
-		mlx_destroy_image(textures->text_img[W], mlx);
 	free(textures);
 }
 
