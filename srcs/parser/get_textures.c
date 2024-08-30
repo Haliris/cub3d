@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:44:55 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 11:29:32 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:49:44 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,48 +40,37 @@ static int	is_element(char *line, t_textdata *textures)
 	return (SUCCESS);
 }
 
-static int	parse_info_line(char *line, t_textdata *textures, t_data *data)
+static int	parse_info_line(char **line, t_textdata *textures, t_data *data)
 {
-	size_t	line_nb;
-
-	line_nb = 0;
-	while (line)
+	while (*line && textures->textures_nb < TEXTURES_NB)
 	{
-		if (is_element(line, textures) == PANIC)
+		if (is_element(*line, textures) == PANIC)
 		{
-			free(line);
+			free(*line);
 			panic_clean(textures);
 			return (PANIC);
 		}
-		free(line);
-		line = get_next_line(data->map_fd);
-		if (ft_strncmp(line, "1", 1) == 0 || ft_strncmp(line, "0", 1) == 0)
-		{
-			data->map_start = line_nb;
-			free(line);
-			break ;
-		}
-		line_nb++;
+		free(*line);
+		*line = get_next_line(data->map_fd);
+	}
+	if (!(*line))
+	{
+		panic_clean(textures);
+		return (PANIC);
 	}
 	return (SUCCESS);
 }
 
-t_textdata	*get_textures_info(char *map_path, t_data *data)
+t_textdata	*get_textures_info(t_data *data, char **line)
 {
-	char		*line;
 	t_textdata	*textures;
 
-	data->map_fd = open(map_path, O_RDONLY);
-	if (data->map_fd == -1)
-		return (NULL);
 	textures = ft_calloc(1, sizeof(t_textdata));
 	if (!textures)
 		return (NULL);
-	line = get_next_line(data->map_fd);
 	if (parse_info_line(line, textures, data) == PANIC)
 		return (NULL);
-	if (textures->textures_nb != TEXTURES_NB
-		|| check_textpaths(textures->text_paths) == PANIC)
+	if (check_textpaths(textures->text_paths) == PANIC)
 	{
 		panic_clean(textures);
 		return (NULL);

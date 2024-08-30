@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 16:57:43 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 14:08:32 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,6 @@ typedef enum e_move
 	RIGHT,
 	LEFT,
 }	t_move;
-typedef enum e_p_dir
-{
-	NORTH = 'N',
-	SOUTH = 'S',
-	WEST = 'W',
-	EAST = 'E',
-}	t_p_dir;
 
 typedef struct s_image
 {
@@ -111,17 +104,14 @@ typedef struct s_data
 	char		*map_path;
 	int			map_fd;
 	size_t		map_bound;
-	size_t		map_start;
 	char		**map;
 	void		*mlx;
 	void		*window;
 	t_image		image;
 	t_textdata	*textures;
-	t_p_dir		p_dir_default;
 	t_vec		p_pos;
 	t_vec		p_dir;
 	t_vec		p_cam;
-	t_p_dir		spawn_dir;
 }	t_data;
 
 int		cleanup(t_data *data);

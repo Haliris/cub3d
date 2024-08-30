@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:09:48 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/05/24 12:04:41 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 10:55:17 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		ft_lstdelone(tmp, del);
 	}
 }
+
+void	ft_lstclear_1(t_list **lst)
+{
+	t_list	*tmp;
+
+	while (*lst)
+	{
+		tmp = *lst;
+		*lst = (*lst)->next;
+		free(tmp);
+	}
+}
+
 /* Note
  * 1. if *lst (or bgn_lst) is NULL, do nothing (already cleared)
  * 2. if function "del" is NULL, it will crash at lstdelone

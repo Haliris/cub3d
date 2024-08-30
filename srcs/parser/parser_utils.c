@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:12:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/28 17:45:05 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 11:03:19 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_bool	is_invalid_char(char c)
 	return (TRUE);
 }
 
-t_parse_status	check_invalid_chars(char **map, size_t map_start)
+t_parse_status	check_invalid_chars(char **map)
 {
 	uint32_t	x;
 	uint32_t	y;
 
-	x = map_start;
+	x = 0;
 	y = 0;
 	while (map[x])
 	{
@@ -66,15 +66,15 @@ void	fill_whitespaces(char **map)
 
 static uint32_t	is_cardinal_pos(char c)
 {
-	return (c == NORTH || c == SOUTH || c == WEST || c == EAST);
+	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
-t_parse_status	find_start(uint32_t coordinate[], char **map, size_t map_start)
+t_parse_status	find_start(uint32_t coordinate[], char **map)
 {
 	uint32_t	x;
 	uint32_t	y;
 
-	x = map_start;
+	x = 0;
 	y = 0;
 	while (map[x])
 	{
