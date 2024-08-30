@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 14:37:22 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:40:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,11 @@ typedef struct s_data
 	t_image		image;
 	t_textdata	*textures;
 	t_wall		wall_data;
-	t_p_dir		p_dir_default;
 	t_vec		p_pos;
 	t_vec		p_dir;
 	t_vec		p_cam;
 	t_vec		ray_dir;
 	int			side;
-	t_p_dir		spawn_dir;
 }	t_data;
 
 int		cleanup(t_data *data);
