@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 15:40:55 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:08:53 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ static void	get_text_addr(t_textdata *t)
 static int	load_assets(t_data *data)
 {
 	t_textdata	*t;
-	char		**path;
-	void		*mlx;
+	char		**p;
+	void		*m;
 
 	t = data->textures;
-	path = t->text_paths;
-	mlx = data->mlx;
-	t->text_img[N] = mlx_xpm_file_to_image(mlx, path[N], &t->tex_h, &t->tex_w);
-	t->text_img[S] = mlx_xpm_file_to_image(mlx, path[S], &t->tex_h, &t->tex_w);
-	t->text_img[E] = mlx_xpm_file_to_image(mlx, path[E], &t->tex_h, &t->tex_w);
-	t->text_img[W] = mlx_xpm_file_to_image(mlx, path[W], &t->tex_h, &t->tex_w);
+	p = t->text_paths;
+	m = data->mlx;
+	t->text_img[W] = mlx_xpm_file_to_image(m, p[W], &t->tex_h[W], &t->tex_w[W]);
+	t->text_img[S] = mlx_xpm_file_to_image(m, p[S], &t->tex_h[S], &t->tex_w[S]);
+	t->text_img[E] = mlx_xpm_file_to_image(m, p[E], &t->tex_h[E], &t->tex_w[E]);
+	t->text_img[N] = mlx_xpm_file_to_image(m, p[N], &t->tex_h[N], &t->tex_w[N]);
 	if (!t->text_img[N] || !t->text_img[S]
 		|| !t->text_img[W] || !t->text_img[E])
 		return (PANIC);
