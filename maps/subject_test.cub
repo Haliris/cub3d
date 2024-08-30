@@ -1,7 +1,7 @@
-NO ./assets/dummy.xpm
-SO ./assets/dummy.xpm
-WE ./assets/dummy.xpm
-EA ./assets/dummy.xpm
+NO ./assets/dummy1.xpm
+SO ./assets/dummy2.xpm
+WE ./assets/dummy3.xpm
+EA ./assets/dummy4.xpm
 
 F 220,100,0
 C 225,30,0

@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:12:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 17:50:54 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:03:19 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_bool	is_invalid_char(char c)
 	return (TRUE);
 }
 
-t_parse_status	check_invalid_chars(char **map, size_t map_start)
+t_parse_status	check_invalid_chars(char **map)
 {
 	uint32_t	x;
 	uint32_t	y;
 
-	x = map_start;
+	x = 0;
 	y = 0;
 	while (map[x])
 	{
@@ -69,12 +69,12 @@ static uint32_t	is_cardinal_pos(char c)
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
-t_parse_status	find_start(uint32_t coordinate[], char **map, size_t map_start)
+t_parse_status	find_start(uint32_t coordinate[], char **map)
 {
 	uint32_t	x;
 	uint32_t	y;
 
-	x = map_start;
+	x = 0;
 	y = 0;
 	while (map[x])
 	{

@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 17:49:31 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:02:01 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct s_data
 	char		*map_path;
 	int			map_fd;
 	size_t		map_bound;
-	size_t		map_start;
+	// size_t		map_start;
 	char		**map;
 	void		*mlx;
 	void		*window;
