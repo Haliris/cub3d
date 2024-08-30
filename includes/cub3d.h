@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 15:14:33 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:28:06 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_wall
 {
 	int	height;
 	int	draw_bounds[2];
-	int	tex_coordinates[2];
+	int	tex_pos[2];
 }	t_wall;
 typedef enum e_keys
 {
@@ -115,7 +115,7 @@ typedef struct s_data
 	void		*window;
 	t_image		image;
 	t_textdata	*textures;
-	t_wall		wall_data;
+	t_wall		w_data;
 	t_vec		p_pos;
 	t_vec		p_dir;
 	t_vec		p_cam;

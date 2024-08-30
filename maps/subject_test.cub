@@ -1,7 +1,7 @@
 NO ./assets/okan.xpm
-SO ./assets/yohurteb.xpm
-WE ./assets/okan.xpm
-EA ./assets/okan.xpm
+SO ./assets/okan.xpm
+WE ./assets/yohurteb.xpm
+EA ./assets/yohurteb.xpm
 
 F 220,100,0
 C 225,30,0
