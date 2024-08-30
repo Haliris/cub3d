@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 14:40:28 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:14:33 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-# define FOV 120
+# define FOV 90
 # define ROT_STEP 1.0f
 # define MOV_STEP 0.1f
 # define KEY_PRESS 2
