@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:22:08 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 14:18:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:44:35 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,19 @@
 
 static t_texture	get_curr_dir(t_data *data)
 {
-	if (data->ray_dir.x < 0)
+	if (data->side == 0) // Vertical wall
 	{
-		if (data->side == 0)
-		{
-			if (data->ray_dir.y > 0)
-				return (W);
-			else
-				return (E);
-		}
+		if (data->ray_dir.x < 0)
+			return (W); // West
 		else
-			return (S);
+			return (E); // East
 	}
-	else
+	else // Horizontal wall
 	{
-		if (data->side == 0)
-		{
-			if (data->ray_dir.y > 0)
-				return (W);
-			else
-				return (E);
-		}
+		if (data->ray_dir.y < 0)
+			return (N); // North
 		else
-			return (N);
+			return (S); // South
 	}
 }
 
