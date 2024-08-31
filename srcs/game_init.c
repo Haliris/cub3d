@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 16:08:53 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/31 15:25:56 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int	load_assets(t_data *data)
 	m = data->mlx;
 	t->text_img[W] = mlx_xpm_file_to_image(m, p[W], &t->tex_h[W], &t->tex_w[W]);
 	t->text_img[S] = mlx_xpm_file_to_image(m, p[S], &t->tex_h[S], &t->tex_w[S]);
+	printf("texture width: %d\n", t->tex_w[W]);
+	printf("texture height: %d\n", t->tex_h[W]);
 	t->text_img[E] = mlx_xpm_file_to_image(m, p[E], &t->tex_h[E], &t->tex_w[E]);
 	t->text_img[N] = mlx_xpm_file_to_image(m, p[N], &t->tex_h[N], &t->tex_w[N]);
 	if (!t->text_img[N] || !t->text_img[S]
