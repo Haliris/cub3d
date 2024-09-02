@@ -6,15 +6,15 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 15:50:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:30:36 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 # include "cub3d.h"
-# define TEXTURES_NB 6
-# define TEXTURES_PATHS 4
+# define TEXTURES_NB 7
+# define TEXTURES_PATHS 5
 
 typedef enum e_bool		t_bool;
 typedef struct s_data	t_data;
@@ -24,15 +24,16 @@ typedef enum e_texture
 	S = 1,
 	E = 2,
 	W = 3,
+	D = 4,
 }	t_texture;
 
 typedef struct s_textdata
 {
-	void		*text_img[4];
-	int			tex_h[4];
-	int			tex_w[4];
-	char		*text_paths[4];
-	char		*text_addr[4];
+	void		*text_img[5];
+	int			tex_h[5];
+	int			tex_w[5];
+	char		*text_paths[5];
+	char		*text_addr[5];
 	int			floor;
 	int			ceiling;
 	int			textures_nb;

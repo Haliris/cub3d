@@ -2,13 +2,13 @@ NO ./assets/okan.xpm
 SO ./assets/yohurteb.xpm
 WE ./assets/okan.xpm
 EA ./assets/okan.xpm
+D ./assets/kat.xpm
 
 F 220,100,0
 C 225,30,0
 
 111111111
-100000001
-100010001
-1000N0001
-100000001
+1000D0001
+100DND001
+1000D0001
 111111111

@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/08/29 17:50:17 by jteissie         ###   ########.fr        #
+#    Updated: 2024/09/02 17:25:58 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@ NAME 		= cub3d
 SRCS_M		=	main.c \
 				game_init.c \
 				cleanup.c \
-				color_utils.c \
-				render_utils.c
+				color_utils.c
 
 
 SRCS_PS		= 	parser.c \
@@ -25,11 +24,11 @@ SRCS_PS		= 	parser.c \
 				get_textures.c \
 				get_textures_utils.c
 
-SRCS_EV		=	key_events.c
+SRCS_EV		=	key_events.c wall_collision.c mouse_events.c
 
 SRCS_MAP	= map.c
 
-SRCS_RC		= raycasting.c render_wall.c
+SRCS_RC		= raycasting.c render_wall.c render_utils.c
 
 SRCS_VEC	= vector.c vector_2.c vector_3.c
 
@@ -47,7 +46,7 @@ SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_RC), $(SRCS_RC)) \
 		  $(addprefix $(PATH_VEC), $(SRCS_VEC))
 
-HEADERS		= cub3d.h parser.h vector.h raycasting.h
+HEADERS		= cub3d.h parser.h vector.h
 
 OBJS		= $(SRCS:.c=.o)
 

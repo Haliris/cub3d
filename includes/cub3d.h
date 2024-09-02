@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/31 17:03:53 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:48:43 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 
 # include "parser.h"
 # include "vector.h"
-# include "raycasting.h"
 
 # define SUCCESS 0
 # define PANIC 1
@@ -48,8 +47,13 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define FOV 90
-# define ROT_STEP 1.0f
+# define ROT_STEP 1.5f
+# define MOUSE_ROT_STEP 1.0f
 # define MOV_STEP 0.1f
+# define MINI_MAP_W 200
+# define MINI_MAP_H 200
+# define MINI_MAP_X 15
+# define MINI_MAP_Y 15
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
@@ -75,6 +79,8 @@ typedef enum e_keys
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
+	M1 = 65307,
+	P_KEY = 112,
 }	t_keys;
 typedef enum e_bool
 {
@@ -110,10 +116,13 @@ typedef struct s_data
 	char		*map_path;
 	int			map_fd;
 	size_t		map_bound;
+	size_t		map_width;
 	char		**map;
 	void		*mlx;
 	void		*window;
+	int			pause;
 	t_image		image;
+	t_image		mini_map;
 	t_textdata	*textures;
 	t_wall		w_data;
 	t_vec		p_pos;
@@ -126,13 +135,23 @@ typedef struct s_data
 int		cleanup(t_data *data);
 int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
+int		mouse_move(int x, int y, t_data *data);
+void	move_check(t_vec *step, t_data *data, int add_or_sub);
+int		mouse_press(int button, int x, int y, t_data *data);
 /* color utils*/
 int		create_trgb(int t, int r, int g, int b);
 int		get_color(int trgb, char index);
 int		add_shade(double factor, int color);
 int		get_opposite(int color);
-/* rendering utils*/
+/* RC Rendering */
+int		rc_dda(t_vec *dist, t_vec *unit_dist, t_vec *pos, t_vec *dir);
+void	rc_ray_init(t_vec *dist, t_vec *pos, t_vec *dir, t_vec *unit_dst);
+double	rc_raydist(t_vec *ray, t_data *data);
+int		rc_rendering(t_data *data);
+void	rc_render_wall(t_data *data, int x, int y, double ray_dist);
 void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
+/* Mini Map */
+void	put_mini_map(t_data *data);
 
 #endif

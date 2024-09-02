@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 14:38:42 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:32:37 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	cleanup_textures(t_textdata *textures, void *mlx)
 		mlx_destroy_image(mlx, textures->text_img[E]);
 	if (textures->text_img[W])
 		mlx_destroy_image(mlx, textures->text_img[W]);
+	if (textures->text_img[D])
+		mlx_destroy_image(mlx, textures->text_img[D]);
 	if (textures->text_paths[N])
 		free(textures->text_paths[N]);
 	if (textures->text_paths[S])
@@ -30,6 +32,8 @@ static void	cleanup_textures(t_textdata *textures, void *mlx)
 		free(textures->text_paths[E]);
 	if (textures->text_paths[W])
 		free(textures->text_paths[W]);
+	if (textures->text_paths[D])
+		free(textures->text_paths[D]);
 	free(textures);
 }
 
