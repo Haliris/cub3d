@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 16:29:45 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 17:23:45 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef enum e_keys
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
+	M1 = 65307,
 	P_KEY = 112,
 }	t_keys;
 typedef enum e_bool
@@ -136,6 +137,7 @@ int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
 int		mouse_move(int x, int y, t_data *data);
 void	move_check(t_vec *step, t_data *data, int add_or_sub);
+int		mouse_press(int button, int x, int y, t_data *data);
 /* color utils*/
 int		create_trgb(int t, int r, int g, int b);
 int		get_color(int trgb, char index);

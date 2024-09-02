@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 16:17:55 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 17:25:27 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	get_text_addr(t_textdata *t)
 	t->text_addr[S] = mlx_get_data_addr(t->text_img[S], &pb, &lb, &endian);
 	t->text_addr[W] = mlx_get_data_addr(t->text_img[W], &pb, &lb, &endian);
 	t->text_addr[E] = mlx_get_data_addr(t->text_img[E], &pb, &lb, &endian);
+	t->text_addr[D] = mlx_get_data_addr(t->text_img[D], &pb, &lb, &endian);
 }
 
 static int	load_assets(t_data *data)
@@ -37,8 +38,10 @@ static int	load_assets(t_data *data)
 	t->text_img[S] = mlx_xpm_file_to_image(m, p[S], &t->tex_h[S], &t->tex_w[S]);
 	t->text_img[E] = mlx_xpm_file_to_image(m, p[E], &t->tex_h[E], &t->tex_w[E]);
 	t->text_img[N] = mlx_xpm_file_to_image(m, p[N], &t->tex_h[N], &t->tex_w[N]);
+	t->text_img[D] = mlx_xpm_file_to_image(m, p[D], &t->tex_h[D], &t->tex_w[D]);
 	if (!t->text_img[N] || !t->text_img[S]
-		|| !t->text_img[W] || !t->text_img[E])
+		|| !t->text_img[W] || !t->text_img[E]
+		|| !t->text_img[D])
 		return (PANIC);
 	get_text_addr(t);
 	return (SUCCESS);

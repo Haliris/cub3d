@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:12:37 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 11:03:19 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 14:31:31 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_bool	is_invalid_char(char c)
 		return (FALSE);
 	else if (c == ' ' || c == '\n')
 		return (FALSE);
-	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	else if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D')
 		return (FALSE);
 	return (TRUE);
 }
