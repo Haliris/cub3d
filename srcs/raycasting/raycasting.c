@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 10:37:34 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:10:12 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ int	rc_rendering(t_data *data)
 		ray_dist = rc_raydist(&data->ray_dir, data);
 		rc_stripe_pixel_put(data, x, ray_dist);
 	}
+	put_mini_map(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->mini_map.img,
+		MINI_MAP_X, MINI_MAP_Y);
 	return (0);
 }
