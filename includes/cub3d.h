@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 15:28:06 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:38:43 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 
 # include "parser.h"
 # include "vector.h"
-# include "raycasting.h"
 
 # define SUCCESS 0
 # define PANIC 1
@@ -48,7 +47,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define FOV 90
-# define ROT_STEP 1.0f
+# define ROT_STEP 1.5f
 # define MOV_STEP 0.1f
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
@@ -131,7 +130,12 @@ int		create_trgb(int t, int r, int g, int b);
 int		get_color(int trgb, char index);
 int		add_shade(double factor, int color);
 int		get_opposite(int color);
-/* rendering utils*/
+/* RC Rendering */
+int		rc_dda(t_vec *dist, t_vec *unit_dist, t_vec *pos, t_vec *dir);
+void	rc_ray_init(t_vec *dist, t_vec *pos, t_vec *dir, t_vec *unit_dst);
+double	rc_raydist(t_vec *ray, t_data *data);
+int		rc_rendering(t_data *data);
+void	rc_render_wall(t_data *data, int x, int y, double ray_dist);
 void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
 

@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:56:32 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 16:43:25 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 10:40:39 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <stdint.h>
-
-# define PI 3.14159265359f
 
 typedef struct s_vec
 {
