@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 12:05:23 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:30:19 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define HEIGHT 720
 # define FOV 90
 # define ROT_STEP 1.5f
+# define MOUSE_ROT_STEP 1.0f
 # define MOV_STEP 0.1f
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
@@ -125,7 +126,7 @@ typedef struct s_data
 int		cleanup(t_data *data);
 int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
-int		mousemove_events(int x, int y, t_data *data);
+int		mouse_move(int x, int y, t_data *data);
 void	move_check(t_vec *step, t_data *data, int add_or_sub);
 /* color utils*/
 int		create_trgb(int t, int r, int g, int b);
