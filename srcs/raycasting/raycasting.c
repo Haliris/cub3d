@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 10:37:34 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 14:45:03 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ double	rc_raydist(t_vec *ray, t_data *data)
 	t_vec	unit_dist;
 	t_vec	dist_ray;
 
+	ray->door = FALSE;
 	vec_init(&ray_pos, data->p_pos.x, data->p_pos.y);
 	unit_dist.x = sqrt(1 + ((ray->y * ray->y) / (ray->x * ray->x)));
 	unit_dist.y = sqrt(1 + ((ray->x * ray->x) / (ray->y * ray->y)));
@@ -61,6 +62,11 @@ double	rc_raydist(t_vec *ray, t_data *data)
 		data->side = rc_dda(&dist_ray, &unit_dist, &ray_pos, ray);
 		if (data->map[(int)ray_pos.x][(int)ray_pos.y] == '1')
 			break ;
+		if (data->map[(int)ray_pos.x][(int)ray_pos.y] == 'D')
+		{
+			ray->door = TRUE;
+			break ;
+		}
 	}
 	if (data->side == 1)
 		return ((dist_ray.y - unit_dist.y) * vec_cos(ray, &data->p_dir));

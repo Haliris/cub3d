@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:44:55 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 11:49:44 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 14:28:29 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	is_element(char *line, t_textdata *textures)
 		return (add_info_buff(line, textures, W));
 	else if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
 		return (add_floor_ceiling(line, textures));
+	else if (ft_strncmp(line, "D ", 2) == 0)
+		return (add_info_buff(line, textures, D));
 	else if (ft_strncmp(line, "\n", 2) == 0)
 		return (SUCCESS);
 	else

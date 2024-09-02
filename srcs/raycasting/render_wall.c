@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:22:08 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 10:33:28 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 14:44:31 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static t_texture	get_wall_dir(t_data *data)
 {
+	if (data->ray_dir.door == TRUE)
+		return (D);
 	if (data->side == 0)
 	{
 		if (data->ray_dir.x < 0)
