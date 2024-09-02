@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 13:39:24 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:20:08 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 // 		i++;
 // 	}
 // 	printf("Map bound: %zu\n", data->map_bound);
+// 	printf("Map width: %zu\n", data->map_width);
 // }
 
 static t_bool	is_cub_file(char *file)
@@ -54,6 +55,7 @@ static int	init_data(t_data *data, char *map_file)
 		ft_putstr_fd("Could not open map file!\n", STDERR_FILENO);
 		return (PANIC);
 	}
+	data->map_width = 0;
 	return (SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 13:33:15 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:17:55 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,9 @@ int	game_init(t_data *data)
 	data->image.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->image.addr = mlx_get_data_addr(data->image.img, &data->image.bpp,
 			&data->image.line_length, &data->image.endian);
+	data->mini_map.img = mlx_new_image(data->mlx, MINI_MAP_W, MINI_MAP_H);
+	data->mini_map.addr = mlx_get_data_addr(data->mini_map.img,
+			&data->mini_map.bpp, &data->mini_map.line_length,
+			&data->mini_map.endian);
 	return (SUCCESS);
 }

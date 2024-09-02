@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 13:38:28 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:29:45 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@
 # define ROT_STEP 1.5f
 # define MOUSE_ROT_STEP 1.0f
 # define MOV_STEP 0.1f
+# define MINI_MAP_W 200
+# define MINI_MAP_H 200
+# define MINI_MAP_X 15
+# define MINI_MAP_Y 15
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
@@ -111,11 +115,13 @@ typedef struct s_data
 	char		*map_path;
 	int			map_fd;
 	size_t		map_bound;
+	size_t		map_width;
 	char		**map;
 	void		*mlx;
 	void		*window;
 	int			pause;
 	t_image		image;
+	t_image		mini_map;
 	t_textdata	*textures;
 	t_wall		w_data;
 	t_vec		p_pos;
@@ -143,5 +149,7 @@ int		rc_rendering(t_data *data);
 void	rc_render_wall(t_data *data, int x, int y, double ray_dist);
 void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
+/* Mini Map */
+void	put_mini_map(t_data *data);
 
 #endif
