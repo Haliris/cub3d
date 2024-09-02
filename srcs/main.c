@@ -61,7 +61,6 @@ static int	init_data(t_data *data, char *map_file)
 
 void	start_game(t_data *data)
 {
-	mlx_mouse_hide(data->mlx, data->window);
 	mlx_loop_hook(data->mlx, rc_rendering, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
