@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 18:40:50 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 11:59:01 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:43:02 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,35 @@ static void	key_move_camera(t_data *data, t_rot dir)
 	return ;
 }
 
+static void	pause_game(t_data *data)
+{
+	if (data->pause == TRUE)
+	{
+		mlx_mouse_hide(data->mlx, data->window);
+		data->pause = FALSE;
+	}
+	else
+	{
+		mlx_mouse_show(data->mlx, data->window);
+		data->pause = TRUE;
+	}
+}
+
 int	key_events(int keycode, t_data *data)
 {
-	if (keycode == ARROW_RIGHT)
+	if (keycode == P_KEY)
+		pause_game(data);
+	else if (keycode == ARROW_RIGHT && data->pause == FALSE)
 		key_move_camera(data, CLOCK);
-	else if (keycode == ARROW_LEFT)
+	else if (keycode == ARROW_LEFT && data->pause == FALSE)
 		key_move_camera(data, CCLOCK);
-	else if (keycode == W_KEY)
+	else if (keycode == W_KEY && data->pause == FALSE)
 		move_player(data, FORWARD);
-	else if (keycode == S_KEY)
+	else if (keycode == S_KEY && data->pause == FALSE)
 		move_player(data, BACKWARD);
-	else if (keycode == A_KEY)
+	else if (keycode == A_KEY && data->pause == FALSE)
 		move_player(data, LEFT);
-	else if (keycode == D_KEY)
+	else if (keycode == D_KEY && data->pause == FALSE)
 		move_player(data, RIGHT);
 	else if (keycode == ESC_KEY)
 		cleanup(data);

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 13:30:19 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:38:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef enum e_keys
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
+	P_KEY = 112,
 }	t_keys;
 typedef enum e_bool
 {
@@ -113,6 +114,7 @@ typedef struct s_data
 	char		**map;
 	void		*mlx;
 	void		*window;
+	int			pause;
 	t_image		image;
 	t_textdata	*textures;
 	t_wall		w_data;

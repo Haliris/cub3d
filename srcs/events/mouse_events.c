@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:59:13 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 13:30:19 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:33:50 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	mouse_move(int x, int y, t_data *data)
 {
+	if (data->pause == TRUE)
+		return (0);
 	if (x == WIDTH / 2 && y == HEIGHT / 2)
 		return (SUCCESS);
 	if (x >= WIDTH / 2)
