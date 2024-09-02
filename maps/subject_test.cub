@@ -1,7 +1,7 @@
-NO ./assets/okan.xpm
-SO ./assets/okan.xpm
-WE ./assets/okan.xpm
-EA ./assets/okan.xpm
+NO ./assets/made_wall_w.xpm
+SO ./assets/made_wall_w.xpm
+WE ./assets/made_window.xpm
+EA ./assets/made_window.xpm
 D ./assets/kat.xpm
 
 F 220,100,0
