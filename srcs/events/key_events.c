@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 18:40:50 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 11:24:41 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 11:59:01 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	move_player(t_data *data, t_move dir)
 	return ;
 }
 
-static void	move_camera(t_data *data, t_rot dir)
+static void	key_move_camera(t_data *data, t_rot dir)
 {
 	if (dir == CLOCK)
 	{
@@ -57,9 +57,9 @@ static void	move_camera(t_data *data, t_rot dir)
 int	key_events(int keycode, t_data *data)
 {
 	if (keycode == ARROW_RIGHT)
-		move_camera(data, CLOCK);
+		key_move_camera(data, CLOCK);
 	else if (keycode == ARROW_LEFT)
-		move_camera(data, CCLOCK);
+		key_move_camera(data, CCLOCK);
 	else if (keycode == W_KEY)
 		move_player(data, FORWARD);
 	else if (keycode == S_KEY)

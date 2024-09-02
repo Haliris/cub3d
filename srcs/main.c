@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 14:09:06 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 12:14:45 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	start_game(t_data *data)
 	mlx_loop_hook(data->mlx, rc_rendering, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
+	mlx_hook(data->window, MotionNotify, PointerMotionMask, &mousemove_events, data);
 	mlx_loop(data->mlx);
 }
 

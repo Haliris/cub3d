@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 11:12:53 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 12:05:23 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_data
 int		cleanup(t_data *data);
 int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
+int		mousemove_events(int x, int y, t_data *data);
 void	move_check(t_vec *step, t_data *data, int add_or_sub);
 /* color utils*/
 int		create_trgb(int t, int r, int g, int b);
