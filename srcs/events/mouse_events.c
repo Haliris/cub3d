@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 15:02:38 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 15:50:218:16 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 17:13:58 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,17 @@ static double	get_door_dist(t_vec *ray, t_data *data)
 		return ((dist_ray.x - unit_dist.x) * vec_cos(ray, &data->p_dir));
 }
 
-static void	change_door_state(t_data *data, double dist, t_vec *p_ray)
+static void	change_door_state(t_data *data, t_vec *p_ray)
 {
 	int		door_x;
 	int		door_y;
 
-	printf("dist: %f\n", dist);
 	door_x = data->p_pos.x + p_ray->x;
 	door_y = data->p_pos.y + p_ray->y;
-	printf("Door position is: (%d, %d)\n", door_x, door_y);
-	printf("Map value: %c\n", data->map[door_x][door_y]);
 	if (data->map[door_x][door_y] == 'D')
-	{
-		printf("Opening door!\n");
 		data->map[door_x][door_y] = 'O';
-	}
 	else if (data->map[door_x][door_y] == 'O')
-	{
-		printf("Closing door!\n");
 		data->map[door_x][door_y] = 'D';
-	}
 }
 
 static void	interact_door(t_data *data)
@@ -69,12 +60,8 @@ static void	interact_door(t_data *data)
 	p_ray.y = data->p_dir.y;
 	dist = get_door_dist(&p_ray, data);
 	if (dist > 0.5)
-	{
-		printf("Door too far!\n");
 		return ;
-	}
-	printf("In door range!\n");
-	change_door_state(data, dist, &p_ray);
+	change_door_state(data, &p_ray);
 	return ;
 }
 
