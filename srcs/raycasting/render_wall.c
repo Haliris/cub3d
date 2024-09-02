@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:22:08 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 16:04:06 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:33:28 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	get_y_coordinate(int *tex_pos, t_data *data, int wall_height, int y)
 		tex_pos[1] = data->textures->tex_h[dir] - 1;
 }
 
-void	mlx_render_wall(t_data *data, int x, int y, double ray_dist)
+void	rc_render_wall(t_data *data, int x, int y, double ray_dist)
 {
 	t_wall		w_data;
 	t_textdata	*tex;

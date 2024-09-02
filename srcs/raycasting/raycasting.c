@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 17:45:05 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 10:37:34 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "cub3d.h"
 
 void	rc_ray_init(t_vec *dist, t_vec *pos, t_vec *dir, t_vec *unit_dst)
 {

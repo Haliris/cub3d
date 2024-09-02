@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 16:08:53 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 09:38:54 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ int	game_init(t_data *data)
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, P_NAME);
 	if (!data->window)
 	{
+		ft_putstr_fd("Error when opening window\n", ER);
 		cleanup(data);
 		return (PANIC);
 	}
 	if (load_assets(data) == PANIC)
 	{
+		ft_putstr_fd("Error when loading assets\n", ER);
 		cleanup(data);
 		return (PANIC);
 	}
