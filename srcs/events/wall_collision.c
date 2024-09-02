@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 10:52:46 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 11:18:17 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 11:51:58 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	move_check(t_vec *step, t_data *data, int add_or_sub)
 		vec_sub(&p_pos_tmp, step);
 	else
 		vec_add(&p_pos_tmp, step);
-	if (data->map[(int)p_pos_tmp.x][(int)p_pos_tmp.y] == '1')
+	if (data->map[(int)floor(p_pos_tmp.x)][(int)floor(p_pos_tmp.y)] == '1')
 		return ;
 	if (add_or_sub == 1)
 		vec_sub(&data->p_pos, step);
 	else
 		vec_add(&data->p_pos, step);
+	return ;
 }
