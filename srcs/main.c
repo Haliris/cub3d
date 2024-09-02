@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 13:48:42 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:20:08 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ static int	init_data(t_data *data, char *map_file)
 
 void	start_game(t_data *data)
 {
+	mlx_mouse_hide(data->mlx, data->window);
 	mlx_loop_hook(data->mlx, rc_rendering, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
+	mlx_hook(data->window, MotionNotify, PointerMotionMask, &mouse_move, data);
 	mlx_loop(data->mlx);
 }
 

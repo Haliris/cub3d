@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 16:11:01 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:18:49 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define HEIGHT 720
 # define FOV 90
 # define ROT_STEP 1.5f
+# define MOUSE_ROT_STEP 1.0f
 # define MOV_STEP 0.1f
 # define MINI_MAP_W 200
 # define MINI_MAP_H 200
@@ -78,6 +79,7 @@ typedef enum e_keys
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
+	P_KEY = 112,
 }	t_keys;
 typedef enum e_bool
 {
@@ -117,6 +119,7 @@ typedef struct s_data
 	char		**map;
 	void		*mlx;
 	void		*window;
+	int			pause;
 	t_image		image;
 	t_image		mini_map;
 	t_textdata	*textures;
@@ -131,6 +134,7 @@ typedef struct s_data
 int		cleanup(t_data *data);
 int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
+int		mouse_move(int x, int y, t_data *data);
 void	move_check(t_vec *step, t_data *data, int add_or_sub);
 /* color utils*/
 int		create_trgb(int t, int r, int g, int b);
