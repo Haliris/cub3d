@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:56:32 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 10:40:39 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 14:42:38 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_vec
 {
 	double	x;
 	double	y;
+	int		door;
 }	t_vec;
 
 void	vec_init(t_vec *vec, double x, double y);

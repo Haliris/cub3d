@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 14:09:41 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 14:37:40 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_parse_status	check_walls(char **map, uint32_t x, uint32_t y, size_t bound)
 {
 	if (x == bound || y >= ft_strlen(map[x]))
 		return (MAP_ERR);
-	else if (map[x][y] == 'F')
+	else if (map[x][y] == 'F' || map[x][y] == 'C')
 		return (MAP_OK);
 	else if (map[x][y] == '1')
 		return (MAP_OK);
@@ -24,7 +24,10 @@ t_parse_status	check_walls(char **map, uint32_t x, uint32_t y, size_t bound)
 		return (MAP_ERR);
 	else if (y == 0 || map[x][y] == '\n' || map[x][y] == '\0')
 		return (MAP_ERR);
-	map[x][y] = 'F';
+	if (map[x][y] == 'D')
+		map[x][y] = 'C';
+	else
+		map[x][y] = 'F';
 	if (check_walls(map, x - 1, y, bound) == MAP_ERR)
 		return (MAP_ERR);
 	if (check_walls(map, x + 1, y, bound) == MAP_ERR)
@@ -33,6 +36,8 @@ t_parse_status	check_walls(char **map, uint32_t x, uint32_t y, size_t bound)
 		return (MAP_ERR);
 	if (check_walls(map, x, y + 1, bound) == MAP_ERR)
 		return (MAP_ERR);
+	if (map[x][y] == 'C')
+		map[x][y] = 'D';
 	return (MAP_OK);
 }
 
