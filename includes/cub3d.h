@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/30 14:08:32 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:28:06 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,13 @@
 
 typedef enum e_texture		t_texture;
 typedef struct s_textdata	t_textdata;
-
+typedef struct s_image		t_image;
+typedef struct s_wall
+{
+	int	height;
+	int	draw_bounds[2];
+	int	tex_pos[2];
+}	t_wall;
 typedef enum e_keys
 {
 	ARROW_RIGHT = 65363,
@@ -109,9 +115,12 @@ typedef struct s_data
 	void		*window;
 	t_image		image;
 	t_textdata	*textures;
+	t_wall		w_data;
 	t_vec		p_pos;
 	t_vec		p_dir;
 	t_vec		p_cam;
+	t_vec		ray_dir;
+	int			side;
 }	t_data;
 
 int		cleanup(t_data *data);

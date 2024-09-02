@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 11:33:16 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:50:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,17 @@ typedef enum e_texture
 	E = 2,
 	W = 3,
 }	t_texture;
+
 typedef struct s_textdata
 {
-	void	*text_img[4];
-	char	*text_paths[4];
-	char	*text_addr[4];
-	int		floor;
-	int		ceiling;
-	int		textures_nb;
+	void		*text_img[4];
+	int			tex_h[4];
+	int			tex_w[4];
+	char		*text_paths[4];
+	char		*text_addr[4];
+	int			floor;
+	int			ceiling;
+	int			textures_nb;
 }	t_textdata;
 typedef enum e_parse_status
 {

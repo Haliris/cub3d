@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:12:17 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/08/29 19:10:18 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 14:37:39 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist)
 		else if (y > (HEIGHT + wall_height) / 2)
 			rc_mlx_pixel_put(&data->image, x, y, data->textures->floor);
 		else
-			rc_mlx_pixel_put(&data->image, x, y, data->textures->ceiling);
+			mlx_render_wall(data, x, y, ray_dist);
 	}
 }

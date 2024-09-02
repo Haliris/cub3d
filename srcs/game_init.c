@@ -3,31 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 14:08:48 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/08/30 16:08:53 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	get_text_addr(t_textdata *t)
+{
+	int	pb;
+	int	lb;
+	int	endian;
+
+	t->text_addr[N] = mlx_get_data_addr(t->text_img[N], &pb, &lb, &endian);
+	t->text_addr[S] = mlx_get_data_addr(t->text_img[S], &pb, &lb, &endian);
+	t->text_addr[W] = mlx_get_data_addr(t->text_img[W], &pb, &lb, &endian);
+	t->text_addr[E] = mlx_get_data_addr(t->text_img[E], &pb, &lb, &endian);
+}
+
 static int	load_assets(t_data *data)
 {
-	int			w;
-	int			h;
 	t_textdata	*t;
+	char		**p;
+	void		*m;
 
 	t = data->textures;
-	w = 0;
-	h = 0;
-	t->text_img[N] = mlx_xpm_file_to_image(data->mlx, t->text_paths[N], &w, &h);
-	t->text_img[S] = mlx_xpm_file_to_image(data->mlx, t->text_paths[S], &w, &h);
-	t->text_img[E] = mlx_xpm_file_to_image(data->mlx, t->text_paths[E], &w, &h);
-	t->text_img[W] = mlx_xpm_file_to_image(data->mlx, t->text_paths[W], &w, &h);
+	p = t->text_paths;
+	m = data->mlx;
+	t->text_img[W] = mlx_xpm_file_to_image(m, p[W], &t->tex_h[W], &t->tex_w[W]);
+	t->text_img[S] = mlx_xpm_file_to_image(m, p[S], &t->tex_h[S], &t->tex_w[S]);
+	t->text_img[E] = mlx_xpm_file_to_image(m, p[E], &t->tex_h[E], &t->tex_w[E]);
+	t->text_img[N] = mlx_xpm_file_to_image(m, p[N], &t->tex_h[N], &t->tex_w[N]);
 	if (!t->text_img[N] || !t->text_img[S]
 		|| !t->text_img[W] || !t->text_img[E])
 		return (PANIC);
+	get_text_addr(t);
 	return (SUCCESS);
 }
 

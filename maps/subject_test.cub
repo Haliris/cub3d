@@ -1,7 +1,7 @@
-NO ./assets/dummy1.xpm
-SO ./assets/dummy2.xpm
-WE ./assets/dummy3.xpm
-EA ./assets/dummy4.xpm
+NO ./assets/okan.xpm
+SO ./assets/dexi.xpm
+WE ./assets/dexi.xpm
+EA ./assets/okan.xpm
 
 F 220,100,0
 C 225,30,0
