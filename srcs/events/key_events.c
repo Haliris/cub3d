@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 18:40:50 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 13:43:02 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 17:28:10 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,9 @@ static void	key_move_camera(t_data *data, t_rot dir)
 static void	pause_game(t_data *data)
 {
 	if (data->pause == TRUE)
-	{
-		mlx_mouse_hide(data->mlx, data->window);
 		data->pause = FALSE;
-	}
 	else
-	{
-		mlx_mouse_show(data->mlx, data->window);
 		data->pause = TRUE;
-	}
 }
 
 int	key_events(int keycode, t_data *data)
