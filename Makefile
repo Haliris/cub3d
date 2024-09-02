@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
+#    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/09/02 11:11:09 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/09/02 15:07:22 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME 		= cub3d
 SRCS_M		=	main.c \
 				game_init.c \
 				cleanup.c \
-				color_utils.c 
+				color_utils.c
 
 
 SRCS_PS		= 	parser.c \
@@ -24,7 +24,7 @@ SRCS_PS		= 	parser.c \
 				get_textures.c \
 				get_textures_utils.c
 
-SRCS_EV		=	key_events.c wall_collision.c
+SRCS_EV		=	key_events.c wall_collision.c mouse_events.c
 
 SRCS_MAP	= map.c
 
