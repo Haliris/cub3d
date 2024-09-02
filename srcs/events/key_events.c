@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 18:40:50 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/29 16:52:06 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 11:21:11 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,26 @@ static void	move_player(t_data *data, t_move dir)
 	if (dir == FORWARD)
 	{
 		vec_copy_scale(&step, &data->p_dir, MOV_STEP);
-		vec_add(&data->p_pos, &step);
+		move_check(&step, data, 0);
+		// vec_add(&data->p_pos, &step);
 	}
 	else if (dir == BACKWARD)
 	{
 		vec_copy_scale(&step, &data->p_dir, MOV_STEP);
-		vec_sub(&data->p_pos, &step);
+		move_check(&step, data, 1);
+		// vec_sub(&data->p_pos, &step);
 	}
 	else if (dir == RIGHT)
 	{
 		vec_copy_scale(&step, &data->p_cam, MOV_STEP);
-		vec_add(&data->p_pos, &step);
+		move_check(&step, data, 0);
+		// vec_add(&data->p_pos, &step);
 	}
 	else if (dir == LEFT)
 	{
 		vec_copy_scale(&step, &data->p_cam, MOV_STEP);
-		vec_sub(&data->p_pos, &step);
+		move_check(&step, data, 1);
+		// vec_sub(&data->p_pos, &step);
 	}
 	return ;
 }
