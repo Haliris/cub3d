@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 15:08:00 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/02 17:26:14 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 // 		i++;
 // 	}
 // 	printf("Map bound: %zu\n", data->map_bound);
+// 	printf("Map width: %zu\n", data->map_width);
 // }
 
 static t_bool	is_cub_file(char *file)
@@ -54,15 +55,18 @@ static int	init_data(t_data *data, char *map_file)
 		ft_putstr_fd("Could not open map file!\n", STDERR_FILENO);
 		return (PANIC);
 	}
+	data->map_width = 0;
 	return (SUCCESS);
 }
 
 void	start_game(t_data *data)
 {
+	mlx_mouse_hide(data->mlx, data->window);
 	mlx_loop_hook(data->mlx, rc_rendering, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
 	mlx_hook(data->window, ButtonPress, ButtonPressMask, &mouse_press, data);
+	mlx_hook(data->window, MotionNotify, PointerMotionMask, &mouse_move, data);
 	mlx_loop(data->mlx);
 }
 

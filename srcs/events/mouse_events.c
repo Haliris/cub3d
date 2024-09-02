@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 15:02:38 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 17:13:58 by jteissie         ###   ########.fr       */
+/*   Created: 2024/09/02 11:59:13 by jteissie          #+#    #+#             */
+/*   Updated: 2024/09/02 17:25:01 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,25 @@ int	mouse_press(int button, int x, int y, t_data *data)
 	(void)y;
 	if (button == 1)
 		interact_door(data);
+	return (SUCCESS);
+}
+
+int	mouse_move(int x, int y, t_data *data)
+{
+	if (data->pause == TRUE)
+		return (0);
+	if (x == WIDTH / 2 && y == HEIGHT / 2)
+		return (SUCCESS);
+	if (x >= WIDTH / 2)
+	{
+		vec_rotate(&data->p_cam, MOUSE_ROT_STEP * -1);
+		vec_rotate(&data->p_dir, MOUSE_ROT_STEP * -1);
+	}
+	else
+	{
+		vec_rotate(&data->p_cam, MOUSE_ROT_STEP);
+		vec_rotate(&data->p_dir, MOUSE_ROT_STEP);
+	}
+	mlx_mouse_move(data->mlx, data->window, WIDTH / 2, HEIGHT / 2);
 	return (SUCCESS);
 }

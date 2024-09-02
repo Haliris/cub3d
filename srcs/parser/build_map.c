@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:51:48 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/30 14:07:33 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/02 12:16:14 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static t_list	*read_map_file(char *line, t_data *data)
 				return (NULL);
 			}
 			ft_lstadd_back(&map_list, new_node);
+			if (ft_strlen(line) > data->map_width)
+				data->map_width = ft_strlen(line);
 		}
 		else
 			free(line);
