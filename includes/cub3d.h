@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 18:48:43 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/03 18:39:21 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 # include "parser.h"
 # include "vector.h"
+# include "frame.h"
 
 # define SUCCESS 0
 # define PANIC 1
@@ -68,6 +69,7 @@ typedef struct s_wall
 	int	draw_bounds[2];
 	int	tex_pos[2];
 }	t_wall;
+
 typedef enum e_keys
 {
 	ARROW_RIGHT = 65363,
@@ -82,6 +84,7 @@ typedef enum e_keys
 	M1 = 65307,
 	P_KEY = 112,
 }	t_keys;
+
 typedef enum e_bool
 {
 	FALSE,
@@ -124,6 +127,7 @@ typedef struct s_data
 	t_image		image;
 	t_image		mini_map;
 	t_textdata	*textures;
+	t_frame		*frames;
 	t_wall		w_data;
 	t_vec		p_pos;
 	t_vec		p_dir;

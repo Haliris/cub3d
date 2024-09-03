@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:44:55 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 14:28:29 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/03 18:16:56 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	parse_info_line(char **line, t_textdata *textures, t_data *data)
 		if (is_element(*line, textures) == PANIC)
 		{
 			free(*line);
+			*line = NULL;
 			panic_clean(textures);
 			return (PANIC);
 		}

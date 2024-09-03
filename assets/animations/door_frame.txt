@@ -1,0 +1,4 @@
+./assets/animations/made_door_frames01.xpm
+./assets/animations/made_door_frames02.xpm
+./assets/animations/made_door_frames03.xpm
+./assets/animations/made_door_frames04.xpm

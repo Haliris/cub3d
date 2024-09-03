@@ -1,0 +1,4 @@
+./assets/door_frame/Kat_1.xpm
+./assets/door_frame/Kat_2.xpm
+./assets/door_frame/Kat_3.xpm
+./assets/door_frame/Kat_4.xpm
