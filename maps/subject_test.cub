@@ -2,7 +2,7 @@ NO ./assets/made_wall_n.xpm
 SO ./assets/made_wall_s.xpm
 WE ./assets/made_wall_w.xpm
 EA ./assets/made_wall_e.xpm
-D ./assets/kat.xpm
+D ./assets/made_door.xpm
 
 F 64,64,64
 C 182,182,182
