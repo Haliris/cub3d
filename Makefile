@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
+#    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/09/02 17:25:58 by jteissie         ###   ########.fr        #
+#    Updated: 2024/09/03 16:36:38 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,19 +32,23 @@ SRCS_RC		= raycasting.c render_wall.c render_utils.c
 
 SRCS_VEC	= vector.c vector_2.c vector_3.c
 
+SRCS_FRM	= lst_add_back.c lst_clear.c lst_last.c lst_new.c lst_size.c
+
 PATH_M		= srcs/
 PATH_PS		= srcs/parser/
 PATH_EV		= srcs/events/
 PATH_MAP	= srcs/map/
 PATH_RC		= srcs/raycasting/
 PATH_VEC	= srcs/vector/
+PATH_FRM	= srcs/frames/
 
 SRCS		= $(addprefix $(PATH_M), $(SRCS_M)) \
 		  $(addprefix $(PATH_PS), $(SRCS_PS)) \
 		  $(addprefix $(PATH_EV), $(SRCS_EV)) \
 		  $(addprefix $(PATH_MAP), $(SRCS_MAP)) \
 		  $(addprefix $(PATH_RC), $(SRCS_RC)) \
-		  $(addprefix $(PATH_VEC), $(SRCS_VEC))
+		  $(addprefix $(PATH_VEC), $(SRCS_VEC)) \
+		  $(addprefix $(PATH_FRM), $(SRCS_FRM))
 
 HEADERS		= cub3d.h parser.h vector.h
 
