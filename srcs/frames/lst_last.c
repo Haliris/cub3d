@@ -6,12 +6,21 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:53:24 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/03 16:39:06 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:27:23 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "frame.h"
 
+t_frame	*lst_last(t_frame *lst)
+{
+	t_frame	*tmp;
+
+	tmp = lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
+}
 
 /* Note
  * 1. if lst is NULL, it will return NULL

@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/03 16:57:45 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:24:40 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,44 @@ static void	get_text_addr(t_textdata *t)
 	t->text_addr[D] = mlx_get_data_addr(t->text_img[D], &pb, &lb, &endian);
 }
 
+static int	init_frame(char *line, t_data *data, t_frame *f)
+{
+	char	*path;
+
+	path = ft_strtrim(line, "\n");
+	if (!path)
+		return (1);
+	f->img = mlx_xpm_file_to_image(data->mlx, path, &f->frm_w, &f->frm_h);
+	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->ll, &f->endian);
+	lst_add_back(&data->frames, f);
+	free(path);
+	return (0);
+}
+
 static int	load_frames(t_data *data)
 {
 	t_frame		*f;
 	int			frame_fd;
 	char		*line;
-	char		*path;
 
 	frame_fd = open("./assets/door_frame/door_frame.txt", O_RDONLY);
 	if (frame_fd == -1)
-		return (1);
+		return (SUCCESS);
 	line = get_next_line(frame_fd);
 	if (!line)
-		return (2);
-	printf("first line: %s", line);
+		return (PANIC);
 	while (line)
 	{
 		f = lst_new();
 		if (!f)
-			return (3);
-		path = ft_strtrim(line, "\n");
-		if (!path)
-			return (free(line), 3);
-		printf("path: %s\n", path);
-		f->img = mlx_xpm_file_to_image(data->mlx, path, &f->frm_w, &f->frm_h);
-		f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->ll, &f->endian);
-		lst_add_back(&data->frames, f);
-		free(path);
+			return (close(frame_fd), PANIC);
+		if (init_frame(line, data, f))
+			return (free(line), close(frame_fd), PANIC);
 		free(line);
 		line = get_next_line(frame_fd);
 	}
 	close(frame_fd);
-	return (0);
+	return (SUCCESS);
 }
 
 static int	load_assets(t_data *data)
@@ -79,7 +85,8 @@ static int	load_assets(t_data *data)
 		return (PANIC);
 	get_text_addr(t);
 	printf("ready to load frames\n");
-	load_frames(data);
+	if (load_frames(data))
+		return (PANIC);
 	printf("frames load success\n");
 	return (SUCCESS);
 }
