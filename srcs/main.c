@@ -6,29 +6,29 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:03:33 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/03 16:32:41 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/03 17:56:49 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	print_data(t_data *data)
-// {
-// 	int	i;
+void	print_data(t_data *data)
+{
+	int	i;
 
-// 	i = 0;
-// 	printf("Player position  x: %.2f, y: %.2f\n", data->p_pos.x, data->p_pos.y);
-// 	printf("Player direction x: %.2f, y: %.2f\n", data->p_dir.x, data->p_dir.y);
-// 	printf("Map path is: %s\n", data->map_path);
-// 	printf("Map output:\n");
-// 	while (data->map[i])
-// 	{
-// 		printf("%s", data->map[i]);
-// 		i++;
-// 	}
-// 	printf("Map bound: %zu\n", data->map_bound);
-// 	printf("Map width: %zu\n", data->map_width);
-// }
+	i = 0;
+	printf("Player position  x: %.2f, y: %.2f\n", data->p_pos.x, data->p_pos.y);
+	printf("Player direction x: %.2f, y: %.2f\n", data->p_dir.x, data->p_dir.y);
+	printf("Map path is: %s\n", data->map_path);
+	printf("Map output:\n");
+	while (data->map[i])
+	{
+		printf("%s", data->map[i]);
+		i++;
+	}
+	printf("Map bound: %zu\n", data->map_bound);
+	printf("Map width: %zu\n", data->map_width);
+}
 
 static t_bool	is_cub_file(char *file)
 {
@@ -84,6 +84,7 @@ int	main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	if (game_init(&data) == PANIC)
 		return (EXIT_FAILURE);
+	print_data(&data);
 	start_game(&data);
 	cleanup(&data);
 	return (0);

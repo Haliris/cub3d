@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:17 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 17:43:21 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/03 18:00:34 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	put_mini_map(t_data *data)
 		y = 0;
 		while (y < MINI_MAP_H)
 		{
-			map_x = x * (data->map_width - 1) / MINI_MAP_W;
-			map_y = y * (data->map_bound) / MINI_MAP_H;
+			map_x = x * (data->map_width - 2) / MINI_MAP_W;
+			map_y = y * (data->map_bound - 1) / MINI_MAP_H;
 			if (data->map[map_y][map_x] == '1')
 				rc_mlx_pixel_put(&data->mini_map, x, y, 0x212529);
 			else if (data->map[map_y][map_x] == 'D')
