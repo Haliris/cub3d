@@ -1,0 +1,14 @@
+NO ./assets/debug/debug_n.xpm
+SO ./assets/debug/debug_s.xpm
+WE ./assets/debug/debug_w.xpm
+EA ./assets/debug/debug_e.xpm
+D ./assets/debug/debug_door.xpm
+
+F 220,100,0
+C 225,30,0
+
+111111111
+100000101
+1000N0D01
+100000101
+111111111

@@ -1,11 +1,11 @@
-NO ./assets/okan.xpm
-SO ./assets/yohurteb.xpm
-WE ./assets/yohurteb.xpm
-EA ./assets/okan.xpm
-D ./assets/kat.xpm
+NO ./assets/made_wall_n.xpm
+SO ./assets/made_wall_s.xpm
+WE ./assets/made_wall_w.xpm
+EA ./assets/made_wall_e.xpm
+D ./assets/made_door.xpm
 
-F 220,100,0
-C 225,30,0
+F 64,64,64
+C 182,182,182
 
 1111111111111111111111111
 1000000000110000000000001

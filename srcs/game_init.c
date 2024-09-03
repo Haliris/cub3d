@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/03 18:31:00 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/03 18:58:48 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	load_frames(t_data *data)
 	int			frame_fd;
 	char		*line;
 
-	frame_fd = open("./assets/door_frame/door_frame.txt", O_RDONLY);
+	frame_fd = open("./assets/animations/door_frame.txt", O_RDONLY);
 	if (frame_fd == -1)
 		return (SUCCESS);
 	line = get_next_line(frame_fd);
