@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/03 17:24:40 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/03 18:31:00 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,8 @@ static int	load_assets(t_data *data)
 		|| !t->text_img[D])
 		return (PANIC);
 	get_text_addr(t);
-	printf("ready to load frames\n");
 	if (load_frames(data))
 		return (PANIC);
-	printf("frames load success\n");
 	return (SUCCESS);
 }
 
