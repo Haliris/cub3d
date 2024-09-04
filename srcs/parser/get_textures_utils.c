@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:29:47 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/04 13:46:00 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:49:02 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	panic_clean(t_textdata *textures)
 	size_t	i;
 
 	i = 0;
-	while (i < 5)
+	while (i < TEXTURES_PATHS)
 	{
 		if (textures->text_paths[i])
 			free(textures->text_paths[i]);
