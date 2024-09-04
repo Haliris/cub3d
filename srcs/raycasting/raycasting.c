@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:13:34 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/04 11:34:53 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 12:37:01 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,6 @@ int	rc_dda(t_vec *dist, t_vec *unit_dist, t_vec *pos, t_vec *dir)
 	}
 }
 
-static int	is_door(t_data *data, int map_x, int map_y)
-{
-	if (data->map[map_x][map_y] == 'D')
-		return (1);
-	else if (data->map[map_x][map_y] == 'S')
-		return (2);
-	else if (data->map[map_x][map_y] == 's')
-		return (3);
-	else
-		return (0);
-}
-
 double	rc_raydist(t_vec *ray, t_data *data)
 {
 	t_vec	ray_pos;
@@ -74,8 +62,7 @@ double	rc_raydist(t_vec *ray, t_data *data)
 		data->side = rc_dda(&dist_ray, &unit_dist, &ray_pos, ray);
 		if (data->map[(int)ray_pos.x][(int)ray_pos.y] == '1')
 			break ;
-		if (is_door(data, (int)ray_pos.x, (int)ray_pos.y))
-		// if (data->map[(int)ray_pos.x][(int)ray_pos.y] == 'D')
+		if (data->map[(int)ray_pos.x][(int)ray_pos.y] == 'D')
 		{
 			ray->door = TRUE;
 			break ;
