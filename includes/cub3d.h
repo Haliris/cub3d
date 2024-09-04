@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/04 09:44:06 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:25:44 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,5 +160,7 @@ void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
 /* Mini Map */
 void	put_mini_map(t_data *data);
+/* Sprite */
+void	play_sprite_forward(t_data *data, int map_x, int map_y);
 
 #endif

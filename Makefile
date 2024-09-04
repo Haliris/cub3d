@@ -6,7 +6,7 @@
 #    By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/15 12:02:08 by tsuchen           #+#    #+#              #
-#    Updated: 2024/09/03 16:36:38 by tsuchen          ###   ########.fr        #
+#    Updated: 2024/09/04 09:59:33 by tsuchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS_RC		= raycasting.c render_wall.c render_utils.c
 
 SRCS_VEC	= vector.c vector_2.c vector_3.c
 
-SRCS_FRM	= lst_add_back.c lst_clear.c lst_last.c lst_new.c lst_size.c
+SRCS_FRM	= frame_lst_utils.c sprite.c
 
 PATH_M		= srcs/
 PATH_PS		= srcs/parser/

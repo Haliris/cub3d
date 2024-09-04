@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:59:13 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/04 09:38:09 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 11:41:01 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ static void	change_door_state(t_data *data, t_vec *p_ray)
 	door_x = data->p_pos.x + p_ray->x;
 	door_y = data->p_pos.y + p_ray->y;
 	if (data->map[door_x][door_y] == 'D')
-		data->map[door_x][door_y] = 'O';
+	{
+		play_sprite_forward(data, door_x, door_y);
+		// data->map[door_x][door_y] = 'S';
+	}
 	else if (data->map[door_x][door_y] == 'O')
+	{
+		// play_sprite_backward(data, door_x, door_y);
 		data->map[door_x][door_y] = 'D';
+	}
 }
 
 void	interact_door(t_data *data)
