@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/04 13:18:12 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:57:10 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
 # define FILE_EXTENSION ".cub"
+# define FRAME_SCRIPT "./assets/animations/door_frame.txt"
 
 typedef enum e_texture		t_texture;
 typedef struct s_textdata	t_textdata;

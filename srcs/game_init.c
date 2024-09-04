@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:03:43 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/03 18:58:48 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:36:40 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static int	init_frame(char *line, t_data *data, t_frame *f)
 
 	path = ft_strtrim(line, "\n");
 	if (!path)
-		return (1);
+		return (PANIC);
 	f->img = mlx_xpm_file_to_image(data->mlx, path, &f->frm_w, &f->frm_h);
+	if (!f->img)
+		return (free(path), PANIC);
 	f->addr = mlx_get_data_addr(f->img, &f->bpp, &f->ll, &f->endian);
 	lst_add_back(&data->frames, f);
 	free(path);
@@ -45,9 +47,9 @@ static int	load_frames(t_data *data)
 	int			frame_fd;
 	char		*line;
 
-	frame_fd = open("./assets/animations/door_frame.txt", O_RDONLY);
+	frame_fd = open(FRAME_SCRIPT, O_RDONLY);
 	if (frame_fd == -1)
-		return (SUCCESS);
+		return (PANIC);
 	line = get_next_line(frame_fd);
 	if (!line)
 		return (PANIC);
@@ -57,7 +59,7 @@ static int	load_frames(t_data *data)
 		if (!f)
 			return (close(frame_fd), PANIC);
 		if (init_frame(line, data, f))
-			return (free(line), close(frame_fd), PANIC);
+			return (free(line), close(frame_fd), free(f), PANIC);
 		free(line);
 		line = get_next_line(frame_fd);
 	}
