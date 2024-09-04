@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 18:40:50 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 17:28:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:48:55 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ static void	key_move_camera(t_data *data, t_rot dir)
 	return ;
 }
 
+static void	turn_around(t_data *data)
+{
+	vec_mirror(&data->p_cam);
+	vec_mirror(&data->p_dir);
+}
+
 static void	pause_game(t_data *data)
 {
 	if (data->pause == TRUE)
@@ -78,6 +84,10 @@ int	key_events(int keycode, t_data *data)
 		move_player(data, LEFT);
 	else if (keycode == D_KEY && data->pause == FALSE)
 		move_player(data, RIGHT);
+	else if (keycode == R_KEY && data->pause == FALSE)
+		turn_around(data);
+	else if (keycode == SPACE_KEY && data->pause == FALSE)
+		interact_door(data);
 	else if (keycode == ESC_KEY)
 		cleanup(data);
 	return (SUCCESS);

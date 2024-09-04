@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:59:13 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 17:25:01 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:25:22 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static void	change_door_state(t_data *data, t_vec *p_ray)
 	door_x = data->p_pos.x + p_ray->x;
 	door_y = data->p_pos.y + p_ray->y;
 	if (data->map[door_x][door_y] == 'D')
-		data->map[door_x][door_y] = 'O';
+		play_sprite_forward(data, door_x, door_y);
 	else if (data->map[door_x][door_y] == 'O')
-		data->map[door_x][door_y] = 'D';
+		play_sprite_backward(data, door_x, door_y);
 }
 
-static void	interact_door(t_data *data)
+void	interact_door(t_data *data)
 {
 	t_vec	p_ray;
 	double	dist;

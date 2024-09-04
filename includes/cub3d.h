@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/03 18:39:21 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 12:28:56 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define MINI_MAP_W 200
 # define MINI_MAP_H 200
 # define MINI_MAP_X 15
-# define MINI_MAP_Y 15
+# define MINI_MAP_Y 505
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
@@ -77,10 +77,12 @@ typedef enum e_keys
 	ARROW_UP = 65362,
 	ARROW_DOWN = 65364,
 	ESC_KEY = 65307,
+	SPACE_KEY = 32,
 	W_KEY = 119,
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
+	R_KEY = 114,
 	M1 = 65307,
 	P_KEY = 112,
 }	t_keys;
@@ -142,6 +144,7 @@ int		key_events(int keycode, t_data *data);
 int		mouse_move(int x, int y, t_data *data);
 void	move_check(t_vec *step, t_data *data, int add_or_sub);
 int		mouse_press(int button, int x, int y, t_data *data);
+void	interact_door(t_data *data);
 /* color utils*/
 int		create_trgb(int t, int r, int g, int b);
 int		get_color(int trgb, char index);
@@ -157,5 +160,8 @@ void	rc_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
 /* Mini Map */
 void	put_mini_map(t_data *data);
+/* Sprite */
+void	play_sprite_forward(t_data *data, int map_x, int map_y);
+void	play_sprite_backward(t_data *data, int map_x, int map_y);
 
 #endif
