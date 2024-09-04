@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/04 13:18:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:12:24 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ static void	get_player_dir(t_data *data, u_int32_t x, u_int32_t y)
 
 t_parse_status	verify_map(char **map, t_data *data)
 {
-	uint32_t	start[2];
+	int	start[2];
 
-	start[0] = 0;
-	start[1] = 0;
+	start[0] = -1;
+	start[1] = -1;
 	if (check_invalid_chars(map) == MAP_ERR)
 		return (MAP_ERR);
 	fill_whitespaces(map);
