@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/04 10:25:44 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 12:28:56 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,5 +162,6 @@ void	rc_stripe_pixel_put(t_data *data, int x, double ray_dist);
 void	put_mini_map(t_data *data);
 /* Sprite */
 void	play_sprite_forward(t_data *data, int map_x, int map_y);
+void	play_sprite_backward(t_data *data, int map_x, int map_y);
 
 #endif
