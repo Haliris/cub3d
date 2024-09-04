@@ -4,7 +4,7 @@ WE ./assets/made_wall_w.xpm
 EA ./assets/made_wall_e.xpm
 D ./assets/made_door.xpm
 
-Fa 64,     64,      64
+F 64,     64,      64
 C 182,182,182
 
 1111111
