@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:59:13 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/02 17:25:01 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:38:09 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	change_door_state(t_data *data, t_vec *p_ray)
 		data->map[door_x][door_y] = 'D';
 }
 
-static void	interact_door(t_data *data)
+void	interact_door(t_data *data)
 {
 	t_vec	p_ray;
 	double	dist;

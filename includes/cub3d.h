@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/04 09:11:56 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 09:44:06 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,12 @@ typedef enum e_keys
 	ARROW_UP = 65362,
 	ARROW_DOWN = 65364,
 	ESC_KEY = 65307,
+	SPACE_KEY = 32,
 	W_KEY = 119,
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
+	R_KEY = 114,
 	M1 = 65307,
 	P_KEY = 112,
 }	t_keys;
@@ -142,6 +144,7 @@ int		key_events(int keycode, t_data *data);
 int		mouse_move(int x, int y, t_data *data);
 void	move_check(t_vec *step, t_data *data, int add_or_sub);
 int		mouse_press(int button, int x, int y, t_data *data);
+void	interact_door(t_data *data);
 /* color utils*/
 int		create_trgb(int t, int r, int g, int b);
 int		get_color(int trgb, char index);
