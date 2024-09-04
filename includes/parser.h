@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/03 16:25:54 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:29:24 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ typedef enum e_texture
 
 typedef struct s_textdata
 {
-	void		*text_img[5];
-	int			tex_h[5];
-	int			tex_w[5];
-	char		*text_paths[5];
-	char		*text_addr[5];
+	void		*text_img[TEXTURES_PATHS];
+	int			tex_h[TEXTURES_PATHS];
+	int			tex_w[TEXTURES_PATHS];
+	char		*text_paths[TEXTURES_PATHS];
+	char		*text_addr[TEXTURES_PATHS];
 	int			floor;
 	int			ceiling;
 	int			textures_nb;
