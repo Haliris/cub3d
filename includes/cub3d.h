@@ -6,7 +6,7 @@
 /*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/03 18:39:21 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 09:11:56 by tsuchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define MINI_MAP_W 200
 # define MINI_MAP_H 200
 # define MINI_MAP_X 15
-# define MINI_MAP_Y 15
+# define MINI_MAP_Y 505
 # define KEY_PRESS 2
 # define MOUSE_PRESS 4
 # define MOUSE_MOVE 6
