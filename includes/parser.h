@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:00:57 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/04 13:29:24 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:13:17 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_bool			is_invalid_char(char c);
 t_parse_status	check_invalid_chars(char **map);
 void			fill_whitespaces(char **map);
 t_textdata		*get_textures_info(t_data *data, char **line);
-t_parse_status	find_start(uint32_t coordinate[], char **map);
+t_parse_status	find_start(int coordinate[], char **map);
 int				ft_atoi_texture(t_textdata *textures, int *color, char *line);
 int				add_info_buff(char *line, t_textdata *textures, t_texture type);
 int				check_textpaths(char **paths);
