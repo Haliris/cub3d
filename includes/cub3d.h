@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:19:44 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/04 12:28:56 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:18:12 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ typedef struct s_data
 }	t_data;
 
 int		cleanup(t_data *data);
+void	cleanup_textures(t_textdata *textures, void *mlx);
 int		game_init(t_data *data);
 int		key_events(int keycode, t_data *data);
 int		mouse_move(int x, int y, t_data *data);

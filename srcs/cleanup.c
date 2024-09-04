@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsuchen <tsuchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:04:32 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/03 17:36:22 by tsuchen          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:17:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	cleanup_textures(t_textdata *textures, void *mlx)
+void	cleanup_textures(t_textdata *textures, void *mlx)
 {
 	if (textures->text_img[N])
 		mlx_destroy_image(mlx, textures->text_img[N]);
