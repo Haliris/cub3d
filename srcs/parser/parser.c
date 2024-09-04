@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 12:12:00 by tsuchen           #+#    #+#             */
-/*   Updated: 2024/09/02 14:37:40 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:18:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,11 @@ int	parse_map(t_data *data)
 	data->map = build_map(data, line);
 	close(data->map_fd);
 	if (!data->map)
-		return (PANIC);
+		return (cleanup_textures(data->textures, data->mlx), PANIC);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);
+		cleanup_textures(data->textures, data->mlx);
 		return (ft_free_all(data->map), PANIC);
 	}
 	return (SUCCESS);
